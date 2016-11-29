@@ -10,14 +10,14 @@ import domain.User;
  * Time: 2016.11.29 
  * */
 
-public class UserImpl implements UserDAO{
+public class UserImpl extends BaseDAO implements UserDAO{
 
 	/**
 	 * insert a user to database
 	 * */
 	@Override
 	public boolean insertUser(User user) {
-		JDBCConnection jdbcConnection = new JDBCConnection();
+		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
 	    String sql = "insert into user values(null, '"+user.getPassword()+"','"+user.getPhone()+"'," + user.getType()+ ")";
 		boolean result = jdbcConnection.insert(sql);
@@ -30,7 +30,7 @@ public class UserImpl implements UserDAO{
 	 * */
 	@Override
 	public boolean updateUser(User user) {
-		JDBCConnection jdbcConnection = new JDBCConnection();
+		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
 	    String sql = "update user set password='"+user.getPassword()+"',phone='"+user.getPhone()+"',type=" + user.getType()+ " where id="+user.getId();
 		boolean result = jdbcConnection.update(sql);
@@ -43,7 +43,7 @@ public class UserImpl implements UserDAO{
 	 * */
 	@Override
 	public boolean deleteUser(User user) {
-		JDBCConnection jdbcConnection = new JDBCConnection();
+		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
 	    String sql = "delete from user where id="+user.getId();
 		boolean result = jdbcConnection.delete(sql);
@@ -57,7 +57,7 @@ public class UserImpl implements UserDAO{
 	@Override
 	public User findUserById(int id) {
 		User user = null;
-		JDBCConnection jdbcConnection = new JDBCConnection();
+		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
 	    String sql = "select * from user where id="+id;
 		ResultSet rs = jdbcConnection.find(sql);
@@ -90,7 +90,7 @@ public class UserImpl implements UserDAO{
 	@Override
 	public User findUserByPhone(String phone) {
 		User user = null;
-		JDBCConnection jdbcConnection = new JDBCConnection();
+		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
 	    String sql = "select * from user where phone='"+phone +"'";
 		ResultSet rs = jdbcConnection.find(sql);
@@ -123,7 +123,7 @@ public class UserImpl implements UserDAO{
 	 * */
 	@Override
 	public User validateUser(User user) {
-		JDBCConnection jdbcConnection = new JDBCConnection();
+		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
 	    String sql = "select * from user where id=" + user.getId() + " and password='" +user.getPassword()+"'";
 	    String sql2 = "select * from user where phone='"+user.getPhone() + "' and password='"+user.getPassword()+"'";
@@ -141,10 +141,10 @@ public class UserImpl implements UserDAO{
 			
 			if(rs2.next()){
 				user2 = new User();
-				user2.setId(rs.getInt("id"));
-				user2.setPassword(rs.getString("password"));
-				user2.setPhone(rs.getString("phone"));
-				user2.setType(rs.getInt("type"));
+				user2.setId(rs2.getInt("id"));
+				user2.setPassword(rs2.getString("password"));
+				user2.setPhone(rs2.getString("phone"));
+				user2.setType(rs2.getInt("type"));
 			}
 			jdbcConnection.close();
 		} catch (SQLException e) {
@@ -153,6 +153,13 @@ public class UserImpl implements UserDAO{
 			if(rs != null){
 				try {
 					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(rs2 != null){
+				try {
+					rs2.close();
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
