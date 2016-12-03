@@ -9,7 +9,7 @@ public class UserInfo {
 	private String birthday;
 	private String email;
 	private String hobby;
-	private String persionalizedSignature;
+	private String personalizedSignature;
 	public int getId() {
 		return id;
 	}
@@ -58,11 +58,12 @@ public class UserInfo {
 	public void setHobby(String hobby) {
 		this.hobby = hobby;
 	}
-	public String getPersionalizedSignature() {
-		return persionalizedSignature;
+	public String getPersonalizedSignature() {
+		return personalizedSignature;
 	}
-	public void setPersionalizedSignature(String persionalizedSignature) {
-		this.persionalizedSignature = persionalizedSignature;
+	public void setPersonalizedSignature(String personalizedSignature) {
+		this.personalizedSignature = personalizedSignature;
 	}
+	
 	
 }

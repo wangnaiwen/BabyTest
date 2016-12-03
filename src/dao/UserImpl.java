@@ -85,7 +85,7 @@ public class UserImpl extends BaseDAO implements UserDAO{
 	}
 
 	/**
-	 * select a user from database by column of ssphone
+	 * select a user from database by column of phone
 	 * */
 	@Override
 	public User findUserByPhone(String phone) {

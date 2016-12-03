@@ -3,9 +3,13 @@ package dao;
 import jdbc.JDBCConnection;
 
 public class BaseDAO {
+	
 	private JDBCConnection jdbcConnection;
-
+	
 	public JDBCConnection getJdbcConnection() {
+		if(jdbcConnection == null){
+			jdbcConnection = new JDBCConnection();
+		}
 		return jdbcConnection;
 	}
 

@@ -5,18 +5,73 @@
 	xmlns:p="http://www.springframework.org/schema/p"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd">
 
-    <!-- config the dao -->
+    <!-- configure the DAO -->
     <bean id="baseDAO" class="dao.BaseDAO"></bean>
 	<bean id="userDAO" class="dao.UserImpl" parent="baseDAO"></bean>
+	<bean id="receAddressDAO" class="dao.ReceAddressImpl" parent="baseDAO"></bean>
+	<bean id="userInfoDAO" class="dao.UserInfoImpl" parent="baseDAO"></bean>
 	
-	<!-- config the service -->
+	<!-- configure the service -->
 	<bean id="baseUserServiceDAO" class="service.BaseUserServiceDAO">
 		<property name="userDAO" ref="userDAO"></property>
 	</bean>
 	<bean id="loginServiceDAO" class="service.LoginService" parent="baseUserServiceDAO"></bean>
+	<bean id="registerServiceDAO" class="service.RegisterService" parent="baseUserServiceDAO"></bean>
+	<bean id="findUserServiceDAO" class="service.FindUserService" parent="baseUserServiceDAO"></bean>
 	
-	<!-- config the action -->
+	<bean id="baseUserInfoServiceDAO" class="service.BaseUserInfoServiceDAO">
+		<property name="userInfoDAO" ref="userInfoDAO"></property>
+	</bean>
+	<bean id="insertUserInfoServiceDAO" class="service.InsertUserInfoService" parent="baseUserInfoServiceDAO"></bean>
+	<bean id="updateUserInfoServiceDAO" class="service.UpdateUserInfoService" parent="baseUserInfoServiceDAO"></bean>
+	<bean id="findUserInfoServiceDAO" class="service.FindUserInfoService" parent="baseUserInfoServiceDAO"></bean>
+	<bean id="findUserInfoByUserIdServiceDAO" class="service.FindUserInfoByUserIdService" parent="baseUserInfoServiceDAO"></bean>
+	
+	<bean id="baseReceAddressServiceDAO" class="service.BaseReceAddressServiceDAO">
+		<property name="receAddressDAO" ref="receAddressDAO"></property>
+	</bean>
+	<bean id="insertReceAddressServiceDAO" class="service.InsertReceAddressService" parent="baseReceAddressServiceDAO"></bean>
+	<bean id="updateReceAddressServiceDAO" class="service.UpdateReceAddressService" parent="baseReceAddressServiceDAO"></bean>
+	<bean id="findReceAddressServiceDAO" class="service.FindReceAddressService" parent="baseReceAddressServiceDAO"></bean>
+	<bean id="findReceAddressByUserIdServiceDAO" class="service.FindReceAddressByUserIdService" parent="baseReceAddressServiceDAO"></bean>
+	<bean id="deleteReceAddressServiceDAO" class="service.DeleteReceAddressService" parent="baseReceAddressServiceDAO"></bean>
+	
+	<!-- configure the action -->
 	<bean id="loginAction" class="action.LoginAction">
 		<property name="loginServiceDAO" ref="loginServiceDAO"></property>
+	</bean>
+	<bean id="registerAction" class="action.RegisterAction">
+		<property name="registerServiceDAO" ref="registerServiceDAO"></property>
+		<property name="findUserServiceDAO" ref="findUserServiceDAO"></property>
+	</bean>
+	
+	<bean id ="insertUserInfoAction" class="action.InsertUserInfoAction">
+		<property name="insertUserInfoServiceDAO" ref="insertUserInfoServiceDAO" ></property>
+	</bean>
+	<bean id ="updateUserInfoAction" class="action.UpdateUserInfoAction">
+		<property name="updateUserInfoServiceDAO" ref="updateUserInfoServiceDAO"></property>
+	</bean>
+	<bean id="findUserInfoAction" class="action.FindUserInfoAction">
+		<property name="findUserInfoServiceDAO" ref="findUserInfoServiceDAO"></property>
+	</bean>
+	<bean id="findUserInfoByUserIdAction" class="action.FindUserInfoByUserIdAction">
+		<property name="findUserInfoByUserIdServiceDAO" ref="findUserInfoByUserIdServiceDAO"></property>
+	</bean>
+	
+	<bean id="insertReceAddressAction" class="action.InsertReceAddressAction">
+		<property name="insertReceAddressServiceDAO" ref="insertReceAddressServiceDAO"></property>
+	</bean>
+	<bean id="updateReceAddressAction" class="action.UpdateReceAddressAction">
+		<property name="updateReceAddressServiceDAO" ref="updateReceAddressServiceDAO"></property>
+	</bean>
+	<bean id="findReceAddressAction" class="action.FindReceAddressAction">
+		<property name="findReceAddressServiceDAO" ref="findReceAddressServiceDAO"></property>
+	</bean>
+	<bean id="findReceAddressByUserIdAction" class="action.FindReceAddressByUserIdAction">
+		<property name="findReceAddressByUserIdServiceDAO" ref="findReceAddressByUserIdServiceDAO"></property>
+	</bean>
+	<bean id="deleteReceAddressAction" class="action.DeleteReceAddressAction">
+		<property name="findReceAddressServiceDAO" ref="findReceAddressServiceDAO"></property>
+		<property name="deleteReceAddressServiceDAO" ref="deleteReceAddressServiceDAO"></property>
 	</bean>
 </beans>

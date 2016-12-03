@@ -16,8 +16,8 @@ public class ReceAddressImpl extends BaseDAO implements ReceAddressDAO{
 	public boolean insertReceAddress(ReceAddress address) {
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-		String sql = "insert into rece_add values(null,"+address.getUserId()+",'"+address.getAddress()+
-				",'"+address.getReceiver()+",'" +address.getPhone() +",'" +address.getPostcode()+"')";
+		String sql = "insert into rece_add values(null,"+address.getUserId()+",'"+address.getReceiver()+
+				"','"+address.getAddress()+"','" +address.getPhone() +"'," +address.getPostcode()+")";
 		boolean result = jdbcConnection.insert(sql);
 		jdbcConnection.close();
 		return result;
@@ -28,7 +28,7 @@ public class ReceAddressImpl extends BaseDAO implements ReceAddressDAO{
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
 		String sql = "update rece_add set receiver='"+ address.getReceiver()+"',address='" + address.getAddress() + 
-				"',phone='"+address.getPhone() + "',postcode='" + address.getPostcode() +"'";
+				"',phone='"+address.getPhone() + "',postcode=" + address.getPostcode() +" where id=" + address.getId();
 		boolean result = jdbcConnection.update(sql);
 		jdbcConnection.close();
 		return result;
@@ -78,13 +78,16 @@ public class ReceAddressImpl extends BaseDAO implements ReceAddressDAO{
 
 	@Override
 	public List<ReceAddress> findReceAddressByUserId(int userId) {
-		List<ReceAddress> addressList = new ArrayList<ReceAddress>();
+		List<ReceAddress> addressList = null;
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
 	    String sql = "select * from rece_add where user_id="+userId;
 		ResultSet rs = jdbcConnection.find(sql);
 		try {
 			while(rs.next()) {
+				if(addressList == null){
+					addressList = new ArrayList<ReceAddress>();
+				}
 				ReceAddress address = new ReceAddress();
 				address.setId(rs.getInt("id"));
 				address.setUserId(rs.getInt("user_id"));

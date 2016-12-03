@@ -7,5 +7,66 @@
                 <param name="root">dataMap</param>  
             </result>
 		</action>
+	
+		<action name="register" class="registerAction" >
+		    <result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
+		
+		<action name="insertUserInfo" class="insertUserInfoAction" >
+		    <result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
+		
+		<action name="updateUserInfo" class="updateUserInfoAction" >
+		    <result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
+		
+		<action name="findUserInfo" class="findUserInfoAction" >
+		    <result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
+		
+		<action name="findUserInfoByUserId" class="findUserInfoByUserIdAction" >
+		    <result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
+		
+		<action name="insertReceAddress" class="insertReceAddressAction" >
+		    <result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
+		
+		<action name="updateReceAddress" class="updateReceAddressAction" >
+		    <result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
+		
+		<action name="findReceAddress" class="findReceAddressAction" >
+		    <result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
+		
+		<action name="findReceAddressByUserId" class="findReceAddressByUserIdAction" >
+		    <result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
+		
+		<action name="deleteReceAddress" class="deleteReceAddressAction" >
+		    <result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
+		
 	</package>
 </struts>    

@@ -74,14 +74,13 @@ public class LoginAction extends ActionSupport{
 		}
 		return "success";
 	}
-	
-	  public Map<String, Object> getDataMap() {  
-	        return dataMap;  
-	    }  
-	  
-	    //设置key属性不作为json的内容返回  
-	    @JSON(serialize=false)  
-	    public String getKey() {  
-	        return key;  
-	    } 
+	public Map<String, Object> getDataMap() {  
+        return dataMap;  
+	}
+	    
+	//设置key属性不作为json的内容返回  
+    @JSON(serialize=false)  
+    public String getKey() {  
+        return key;  
+    }  
 }

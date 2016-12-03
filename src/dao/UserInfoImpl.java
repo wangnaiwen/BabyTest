@@ -23,7 +23,7 @@ public class UserInfoImpl extends BaseDAO implements UserInfoDAO{
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
 	    String sql = "insert into user_info values(null,"+userInfo.getUserId()+",'"+userInfo.getSex()+"','" + userInfo.getUserImg()+
-	    		"','" +userInfo.getNickName()+"','"+userInfo.getBirthday()+"','"+userInfo.getEmail()+"','"+userInfo.getHobby()+"','"+userInfo.getPersionalizedSignature()+"')";
+	    		"','" +userInfo.getNickName()+"','"+userInfo.getBirthday()+"','"+userInfo.getEmail()+"','"+userInfo.getHobby()+"','"+userInfo.getPersonalizedSignature()+"')";
 		boolean result = jdbcConnection.insert(sql);
 		jdbcConnection.close();
 		return result;
@@ -37,10 +37,11 @@ public class UserInfoImpl extends BaseDAO implements UserInfoDAO{
 	public boolean updateUserInfo(UserInfo userInfo) {
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-	    String sql = "update user_info set sex='"+userInfo.getSex()+"',user_img='"+userInfo.getUserImg()+"',nickname=" + userInfo.getNickName()+ 
-	    		"',birthday=" + userInfo.getBirthday()+ "',email=" + userInfo.getEmail()+ "',hobby=" + userInfo.getHobby()+ 
-	    		"',personalized_signature=" + userInfo.getPersionalizedSignature()+ " where id="+userInfo.getId();
-		boolean result = jdbcConnection.update(sql);
+	    String sql = "update user_info set sex='"+userInfo.getSex()+"',user_img='"+userInfo.getUserImg()+"',nickname='" + userInfo.getNickName()+ 
+	    		"',birthday='" + userInfo.getBirthday()+ "',email='" + userInfo.getEmail()+ "',hobby='" + userInfo.getHobby()+ 
+	    		"',personalized_signature='" + userInfo.getPersonalizedSignature()+ "' where id="+userInfo.getId();
+		System.out.print(sql);
+	    boolean result = jdbcConnection.update(sql);
 		jdbcConnection.close();
 		return result;
 	}
@@ -81,7 +82,7 @@ public class UserInfoImpl extends BaseDAO implements UserInfoDAO{
 				userInfo.setEmail(rs.getString("email"));
 				userInfo.setBirthday(rs.getString("birthday"));
 				userInfo.setHobby(rs.getString("hobby"));
-				userInfo.setPersionalizedSignature(rs.getString("personalized_signature"));
+				userInfo.setPersonalizedSignature(rs.getString("personalized_signature"));
 			}
 			jdbcConnection.close();
 		} catch (SQLException e) {
@@ -119,7 +120,7 @@ public class UserInfoImpl extends BaseDAO implements UserInfoDAO{
 				userInfo.setEmail(rs.getString("email"));
 				userInfo.setBirthday(rs.getString("birthday"));
 				userInfo.setHobby(rs.getString("hobby"));
-				userInfo.setPersionalizedSignature(rs.getString("personalized_signature"));
+				userInfo.setPersonalizedSignature(rs.getString("personalized_signature"));
 			}
 			jdbcConnection.close();
 		} catch (SQLException e) {
