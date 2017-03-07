@@ -13,6 +13,21 @@
                 <param name="root">dataMap</param>  
             </result>
 		</action>
+		<action name="updateUserPassword" class="updateUserPasswordAction" >
+		    <result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
+		<action name="updateUserType" class="updateUserTypeAction" >
+		    <result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
+		<action name="findUser" class="findUserAction" >
+		    <result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
 		
 		<action name="insertUserInfo" class="insertUserInfoAction" >
 		    <result type="json">  

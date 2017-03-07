@@ -2,6 +2,7 @@ package dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
 import jdbc.JDBCConnection;
 import domain.User;
 
@@ -33,6 +34,34 @@ public class UserImpl extends BaseDAO implements UserDAO{
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
 	    String sql = "update user set password='"+user.getPassword()+"',phone='"+user.getPhone()+"',type=" + user.getType()+ " where id="+user.getId();
+		boolean result = jdbcConnection.update(sql);
+		jdbcConnection.close();
+		return result;
+	}
+	
+	
+	/**
+	 * update the user's password
+	 * */
+	
+	@Override
+	public boolean updateUserPassword(String phone, String password) {
+		JDBCConnection jdbcConnection = getJdbcConnection();
+		jdbcConnection.OpenConn();
+	    String sql = "update user set password='"+password+"' where phone='"+phone+ "'";
+		boolean result = jdbcConnection.update(sql);
+		jdbcConnection.close();
+		return result;
+	}
+
+	/**
+	 * update the user's type
+	 * */
+	@Override
+	public boolean updateUserType(String phone, int type) {
+		JDBCConnection jdbcConnection = getJdbcConnection();
+		jdbcConnection.OpenConn();
+		String sql = "update user set type="+type+" where phone='"+phone+ "'";
 		boolean result = jdbcConnection.update(sql);
 		jdbcConnection.close();
 		return result;

@@ -17,6 +17,8 @@
 	</bean>
 	<bean id="loginServiceDAO" class="service.LoginService" parent="baseUserServiceDAO"></bean>
 	<bean id="registerServiceDAO" class="service.RegisterService" parent="baseUserServiceDAO"></bean>
+    <bean id="updateUserPasswordServiceDAO" class="service.UpdateUserPasswordService" parent="baseUserServiceDAO"></bean>	
+    <bean id="updateUserTypeServiceDAO" class="service.UpdateUserTypeService" parent="baseUserServiceDAO"></bean>
 	<bean id="findUserServiceDAO" class="service.FindUserService" parent="baseUserServiceDAO"></bean>
 	
 	<bean id="baseUserInfoServiceDAO" class="service.BaseUserInfoServiceDAO">
@@ -42,6 +44,17 @@
 	</bean>
 	<bean id="registerAction" class="action.RegisterAction">
 		<property name="registerServiceDAO" ref="registerServiceDAO"></property>
+		<property name="findUserServiceDAO" ref="findUserServiceDAO"></property>
+	</bean>
+	<bean id="updateUserPasswordAction" class="action.UpdateUserPasswordAction">
+		<property name="updateUserPasswordServiceDAO" ref="updateUserPasswordServiceDAO"></property>
+	</bean>
+	
+	<bean id="updateUserTypeAction" class="action.UpdateUserTypeAction">
+		<property name="updateUserTypeServiceDAO" ref="updateUserTypeServiceDAO"></property>
+	</bean>
+	
+	<bean id="findUserAction" class="action.FindUserAction">
 		<property name="findUserServiceDAO" ref="findUserServiceDAO"></property>
 	</bean>
 	

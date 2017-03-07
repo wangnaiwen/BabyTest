@@ -65,5 +65,4 @@ public class UserInfo {
 		this.personalizedSignature = personalizedSignature;
 	}
 	
-	
 }

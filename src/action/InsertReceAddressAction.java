@@ -25,7 +25,10 @@ public class InsertReceAddressAction extends ActionSupport{
     private InsertReceAddressServiceDAO insertReceAddressServiceDAO;
     private int userId;
     private String receiver;
-    private String address;
+    private String province;
+    private String city;
+    private String county;
+    private String detailAddress;
     private String phone;
     private int postcode; 
 	
@@ -48,11 +51,31 @@ public class InsertReceAddressAction extends ActionSupport{
 	public void setReceiver(String receiver) {
 		this.receiver = receiver;
 	}
-	public String getAddress() {
-		return address;
+
+	public String getProvince() {
+		return province;
 	}
-	public void setAddress(String address) {
-		this.address = address;
+	public void setProvince(String province) {
+		this.province = province;
+	}
+	public String getCity() {
+		return city;
+	}
+	public void setCity(String city) {
+		this.city = city;
+	}
+	
+	public String getCounty() {
+		return county;
+	}
+	public void setCounty(String county) {
+		this.county = county;
+	}
+	public String getDetailAddress() {
+		return detailAddress;
+	}
+	public void setDetailAddress(String detailAddress) {
+		this.detailAddress = detailAddress;
 	}
 	public String getPhone() {
 		return phone;
@@ -72,7 +95,10 @@ public class InsertReceAddressAction extends ActionSupport{
 		ReceAddress receAddress = new ReceAddress();
 		receAddress.setUserId(userId);
 		receAddress.setReceiver(receiver);
-		receAddress.setAddress(address);
+		receAddress.setProvince(province);
+		receAddress.setCity(city);
+		receAddress.setCounty(county);
+		receAddress.setDetailAddress(detailAddress);
 		receAddress.setPhone(phone);
 		receAddress.setPostcode(postcode);
 		dataMap = new HashMap<String, Object>();  

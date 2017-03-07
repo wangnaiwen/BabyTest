@@ -4,7 +4,10 @@ public class ReceAddress {
 	private int id;
 	private int userId;
 	private String receiver;
-	private String address;
+	private String province;
+	private String city;
+	private String county;
+	private String detailAddress;	
 	private String phone;
 	private int postcode;
 	public int getId() {
@@ -25,11 +28,30 @@ public class ReceAddress {
 	public void setReceiver(String receiver) {
 		this.receiver = receiver;
 	}
-	public String getAddress() {
-		return address;
+	public String getProvince() {
+		return province;
 	}
-	public void setAddress(String address) {
-		this.address = address;
+	public void setProvince(String province) {
+		this.province = province;
+	}
+	public String getCity() {
+		return city;
+	}
+	public void setCity(String city) {
+		this.city = city;
+	}
+	
+	public String getCounty() {
+		return county;
+	}
+	public void setCounty(String county) {
+		this.county = county;
+	}
+	public String getDetailAddress() {
+		return detailAddress;
+	}
+	public void setDetailAddress(String detailAddress) {
+		this.detailAddress = detailAddress;
 	}
 	public String getPhone() {
 		return phone;
@@ -43,5 +65,4 @@ public class ReceAddress {
 	public void setPostcode(int postcode) {
 		this.postcode = postcode;
 	}
-	
 }

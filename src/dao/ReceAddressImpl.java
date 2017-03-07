@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import jdbc.JDBCConnection;
 import domain.ReceAddress;
 
@@ -17,7 +16,8 @@ public class ReceAddressImpl extends BaseDAO implements ReceAddressDAO{
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
 		String sql = "insert into rece_add values(null,"+address.getUserId()+",'"+address.getReceiver()+
-				"','"+address.getAddress()+"','" +address.getPhone() +"'," +address.getPostcode()+")";
+				"','"+address.getPhone() +"',"+address.getProvince()+"',"+address.getCity()+"',"+address.getCounty()
+				+"',"+address.getDetailAddress()+"','"  +address.getPostcode()+")";
 		boolean result = jdbcConnection.insert(sql);
 		jdbcConnection.close();
 		return result;
@@ -27,8 +27,9 @@ public class ReceAddressImpl extends BaseDAO implements ReceAddressDAO{
 	public boolean updateReceAddress(ReceAddress address) {
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-		String sql = "update rece_add set receiver='"+ address.getReceiver()+"',address='" + address.getAddress() + 
-				"',phone='"+address.getPhone() + "',postcode=" + address.getPostcode() +" where id=" + address.getId();
+		String sql = "update rece_add set receiver='"+ address.getReceiver()+"',phone='"+address.getPhone() 
+				+ "',province=" + address.getProvince() + "',city=" + address.getCity() 
+				+ "',county=" + address.getCounty()+ "',detail_address=" + address.getDetailAddress()+ "',postcode=" + address.getPostcode() +" where id=" + address.getId();
 		boolean result = jdbcConnection.update(sql);
 		jdbcConnection.close();
 		return result;
@@ -57,8 +58,11 @@ public class ReceAddressImpl extends BaseDAO implements ReceAddressDAO{
 				address.setId(rs.getInt("id"));
 				address.setUserId(rs.getInt("user_id"));
 				address.setReceiver(rs.getString("receiver"));
-				address.setAddress(rs.getString("address"));
 				address.setPhone(rs.getString("phone"));
+				address.setProvince("province");
+				address.setCity("city");
+				address.setCounty("county");
+				address.setDetailAddress("detail_address");
 				address.setPostcode(rs.getInt("postcode"));
 			}
 			jdbcConnection.close();
@@ -92,8 +96,11 @@ public class ReceAddressImpl extends BaseDAO implements ReceAddressDAO{
 				address.setId(rs.getInt("id"));
 				address.setUserId(rs.getInt("user_id"));
 				address.setReceiver(rs.getString("receiver"));
-				address.setAddress(rs.getString("address"));
 				address.setPhone(rs.getString("phone"));
+				address.setProvince(rs.getString("province"));
+				address.setCity(rs.getString("city"));
+				address.setCounty(rs.getString("county"));
+				address.setDetailAddress(rs.getString("detail_address"));
 				address.setPostcode(rs.getInt("postcode"));
 				addressList.add(address);
 			}
