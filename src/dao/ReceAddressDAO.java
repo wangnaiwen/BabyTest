@@ -10,4 +10,5 @@ public interface ReceAddressDAO{
 	boolean deleteReceAddress(ReceAddress address);
 	ReceAddress findReceAddressById(int id);
 	List<ReceAddress> findReceAddressByUserId(int userId);
+	ReceAddress findFinalReceAddressByUserId(int userId);
 }

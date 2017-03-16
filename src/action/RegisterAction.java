@@ -8,8 +8,10 @@ import org.apache.struts2.json.annotations.JSON;
 import com.opensymphony.xwork2.ActionSupport;
 
 import service.FindUserServiceDAO;
+import service.InsertUserInfoServiceDAO;
 import service.RegisterServiceDAO;
 import domain.User;
+import domain.UserInfo;
 
 public class RegisterAction extends ActionSupport{
 	/**
@@ -23,6 +25,7 @@ public class RegisterAction extends ActionSupport{
     private String key = "Just see see";
     private RegisterServiceDAO registerServiceDAO;
     private FindUserServiceDAO findUserServiceDAO;
+    private InsertUserInfoServiceDAO insertUserInfoServiceDAO;
     
 	private String phone;
 	private String password;
@@ -48,6 +51,13 @@ public class RegisterAction extends ActionSupport{
 		this.findUserServiceDAO = findUserServiceDAO;
 	}
 	
+	public InsertUserInfoServiceDAO getInsertUserInfoServiceDAO() {
+		return insertUserInfoServiceDAO;
+	}
+	public void setInsertUserInfoServiceDAO(
+			InsertUserInfoServiceDAO insertUserInfoServiceDAO) {
+		this.insertUserInfoServiceDAO = insertUserInfoServiceDAO;
+	}
 	/**
 	 * Register:
 	 * 1. phone and password
@@ -73,8 +83,13 @@ public class RegisterAction extends ActionSupport{
 			return "success";
 		}else{
 			dataMap.put("exist", false);
+			
 			if(registerServiceDAO.register(u)){
-				dataMap.put("register", true);
+				user = findUserServiceDAO.findUserByPhone(u.getPhone());
+				UserInfo userInfo = new UserInfo();
+				userInfo.setUserId(user.getId());
+			
+				dataMap.put("register", insertUserInfoServiceDAO.insertUserInfo(userInfo));
 				return "success";
 			}else{
 				dataMap.put("register", false);

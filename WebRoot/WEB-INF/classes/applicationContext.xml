@@ -37,6 +37,7 @@
 	<bean id="findReceAddressServiceDAO" class="service.FindReceAddressService" parent="baseReceAddressServiceDAO"></bean>
 	<bean id="findReceAddressByUserIdServiceDAO" class="service.FindReceAddressByUserIdService" parent="baseReceAddressServiceDAO"></bean>
 	<bean id="deleteReceAddressServiceDAO" class="service.DeleteReceAddressService" parent="baseReceAddressServiceDAO"></bean>
+	<bean id="finalReceAddressByUserIdServiceDAO" class="service.FindFinalReceAddressByUserIdService" parent="baseReceAddressServiceDAO"></bean>
 	
 	<!-- configure the action -->
 	<bean id="loginAction" class="action.LoginAction">
@@ -45,6 +46,7 @@
 	<bean id="registerAction" class="action.RegisterAction">
 		<property name="registerServiceDAO" ref="registerServiceDAO"></property>
 		<property name="findUserServiceDAO" ref="findUserServiceDAO"></property>
+		<property name="insertUserInfoServiceDAO" ref="insertUserInfoServiceDAO"></property>
 	</bean>
 	<bean id="updateUserPasswordAction" class="action.UpdateUserPasswordAction">
 		<property name="updateUserPasswordServiceDAO" ref="updateUserPasswordServiceDAO"></property>
@@ -73,10 +75,12 @@
 	
 	<bean id="insertReceAddressAction" class="action.InsertReceAddressAction">
 		<property name="insertReceAddressServiceDAO" ref="insertReceAddressServiceDAO"></property>
+		<property name="finalReceAddressByUserIdServiceDAO" ref="finalReceAddressByUserIdServiceDAO"></property>
 	</bean>
 	<bean id="updateReceAddressAction" class="action.UpdateReceAddressAction">
 		<property name="updateReceAddressServiceDAO" ref="updateReceAddressServiceDAO"></property>
 	</bean>
+	
 	<bean id="findReceAddressAction" class="action.FindReceAddressAction">
 		<property name="findReceAddressServiceDAO" ref="findReceAddressServiceDAO"></property>
 	</bean>

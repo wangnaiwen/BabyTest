@@ -22,9 +22,10 @@ public class UserInfoImpl extends BaseDAO implements UserInfoDAO{
 	public boolean insertUserInfo(UserInfo userInfo) {
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-	    String sql = "insert into user_info values(null,"+userInfo.getUserId()+",'"+userInfo.getSex()+"','" + userInfo.getUserImg()+
-	    		"','" +userInfo.getNickName()+"','"+userInfo.getBirthday()+"','"+userInfo.getEmail()+"','"+userInfo.getHobby()+"','"+userInfo.getPersonalizedSignature()+"')";
-		boolean result = jdbcConnection.insert(sql);
+	    String sql = "insert into user_info values(null,"+userInfo.getUserId()+",'ÄÐ'," + userInfo.getUserImg()+
+	    		"," +userInfo.getNickName()+","+userInfo.getBirthday()+","+userInfo.getEmail()+","+userInfo.getHobby()+","+userInfo.getPersonalizedSignature()+")";
+		System.out.println(sql);
+	    boolean result = jdbcConnection.insert(sql);
 		jdbcConnection.close();
 		return result;
 	}

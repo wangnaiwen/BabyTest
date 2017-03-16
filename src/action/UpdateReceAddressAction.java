@@ -6,8 +6,6 @@ import java.util.Map;
 import org.apache.struts2.json.annotations.JSON;
 
 import com.opensymphony.xwork2.ActionSupport;
-
-import service.FindReceAddressServiceDAO;
 import service.UpdateReceAddressServiceDAO;
 import domain.ReceAddress;
 
@@ -22,7 +20,6 @@ public class UpdateReceAddressAction extends ActionSupport{
     private Map<String,Object> dataMap;  
     private String key = "Just see see";
     
-    private FindReceAddressServiceDAO findReceAddressServiceDAO;
     private UpdateReceAddressServiceDAO updateReceAddressServiceDAO;
     
     private int id;
@@ -34,14 +31,7 @@ public class UpdateReceAddressAction extends ActionSupport{
     private String detailAddress;
     private String phone;
     private int postcode; 
-    
-    public FindReceAddressServiceDAO getFindReceAddressServiceDAO() {
-		return findReceAddressServiceDAO;
-	}
-	public void setFindReceAddressServiceDAO(
-			FindReceAddressServiceDAO findReceAddressServiceDAO) {
-		this.findReceAddressServiceDAO = findReceAddressServiceDAO;
-	}
+
 	public UpdateReceAddressServiceDAO getUpdateReceAddressServiceDAO() {
 		return updateReceAddressServiceDAO;
 	}

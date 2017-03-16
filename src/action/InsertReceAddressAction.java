@@ -7,6 +7,7 @@ import org.apache.struts2.json.annotations.JSON;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+import service.FindFinalReceAddressByUserIdServiceDAO;
 import service.InsertReceAddressServiceDAO;
 import domain.ReceAddress;
 
@@ -23,6 +24,7 @@ public class InsertReceAddressAction extends ActionSupport{
     private String key = "Just see see";
     
     private InsertReceAddressServiceDAO insertReceAddressServiceDAO;
+    private FindFinalReceAddressByUserIdServiceDAO finalReceAddressByUserIdServiceDAO;
     private int userId;
     private String receiver;
     private String province;
@@ -32,6 +34,13 @@ public class InsertReceAddressAction extends ActionSupport{
     private String phone;
     private int postcode; 
 	
+	public FindFinalReceAddressByUserIdServiceDAO getFinalReceAddressByUserIdServiceDAO() {
+		return finalReceAddressByUserIdServiceDAO;
+	}
+	public void setFinalReceAddressByUserIdServiceDAO(
+			FindFinalReceAddressByUserIdServiceDAO finalReceAddressByUserIdServiceDAO) {
+		this.finalReceAddressByUserIdServiceDAO = finalReceAddressByUserIdServiceDAO;
+	}
 	public InsertReceAddressServiceDAO getInsertReceAddressServiceDAO() {
 		return insertReceAddressServiceDAO;
 	}
@@ -102,7 +111,12 @@ public class InsertReceAddressAction extends ActionSupport{
 		receAddress.setPhone(phone);
 		receAddress.setPostcode(postcode);
 		dataMap = new HashMap<String, Object>();  
-		dataMap.put("insertReceAdd", insertReceAddressServiceDAO.insertReceAddress(receAddress));
+		boolean isSuccess = insertReceAddressServiceDAO.insertReceAddress(receAddress);
+		if(isSuccess){
+			dataMap.put("insertReceAdd", finalReceAddressByUserIdServiceDAO.findFinalReceAddressByUserId(userId));
+		}else {
+			dataMap.put("insertReceAdd", null);
+		}
 		return "success";
 	}
 	public Map<String, Object> getDataMap() {  
