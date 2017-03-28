@@ -1,5 +1,7 @@
 package service;
 
+import service.dao.BaseUserServiceDAO;
+import service.dao.RegisterServiceDAO;
 import dao.UserDAO;
 import domain.User;
 

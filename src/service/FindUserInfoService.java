@@ -1,5 +1,7 @@
 package service;
 
+import service.dao.BaseUserInfoServiceDAO;
+import service.dao.FindUserInfoServiceDAO;
 import dao.UserInfoDAO;
 import domain.UserInfo;
 

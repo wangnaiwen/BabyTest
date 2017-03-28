@@ -7,8 +7,8 @@ import org.apache.struts2.json.annotations.JSON;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-import service.FindFinalReceAddressByUserIdServiceDAO;
-import service.InsertReceAddressServiceDAO;
+import service.dao.FindFinalReceAddressByUserIdServiceDAO;
+import service.dao.InsertReceAddressServiceDAO;
 import domain.ReceAddress;
 
 public class InsertReceAddressAction extends ActionSupport{

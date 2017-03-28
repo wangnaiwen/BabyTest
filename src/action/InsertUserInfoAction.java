@@ -7,7 +7,7 @@ import org.apache.struts2.json.annotations.JSON;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-import service.InsertUserInfoServiceDAO;
+import service.dao.InsertUserInfoServiceDAO;
 import domain.UserInfo;
 
 public class InsertUserInfoAction extends ActionSupport{

@@ -5,8 +5,8 @@ import java.util.Map;
 
 import org.apache.struts2.json.annotations.JSON;
 
-import service.DeleteReceAddressServiceDAO;
-import service.FindReceAddressServiceDAO;
+import service.dao.DeleteReceAddressServiceDAO;
+import service.dao.FindReceAddressServiceDAO;
 
 import com.opensymphony.xwork2.ActionSupport;
 

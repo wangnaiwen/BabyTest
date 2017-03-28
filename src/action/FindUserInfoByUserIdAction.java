@@ -7,7 +7,7 @@ import org.apache.struts2.json.annotations.JSON;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-import service.FindUserInfoByUserIdServiceDAO;
+import service.dao.FindUserInfoByUserIdServiceDAO;
 
 public class FindUserInfoByUserIdAction extends ActionSupport{
 	/**

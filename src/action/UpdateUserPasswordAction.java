@@ -7,7 +7,7 @@ import org.apache.struts2.json.annotations.JSON;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-import service.UpdateUserPasswordServiceDAO;
+import service.dao.UpdateUserPasswordServiceDAO;
 
 public class UpdateUserPasswordAction extends ActionSupport{
 

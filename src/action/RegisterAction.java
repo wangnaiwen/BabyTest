@@ -7,9 +7,9 @@ import org.apache.struts2.json.annotations.JSON;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-import service.FindUserServiceDAO;
-import service.InsertUserInfoServiceDAO;
-import service.RegisterServiceDAO;
+import service.dao.FindUserServiceDAO;
+import service.dao.InsertUserInfoServiceDAO;
+import service.dao.RegisterServiceDAO;
 import domain.User;
 import domain.UserInfo;
 

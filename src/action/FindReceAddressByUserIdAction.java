@@ -7,7 +7,7 @@ import org.apache.struts2.json.annotations.JSON;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-import service.FindReceAddressByUserIdServiceDAO;
+import service.dao.FindReceAddressByUserIdServiceDAO;
 
 public class FindReceAddressByUserIdAction extends ActionSupport{
 	/**

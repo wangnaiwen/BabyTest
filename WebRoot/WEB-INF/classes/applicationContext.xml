@@ -7,12 +7,12 @@
 
     <!-- configure the DAO -->
     <bean id="baseDAO" class="dao.BaseDAO"></bean>
-	<bean id="userDAO" class="dao.UserImpl" parent="baseDAO"></bean>
-	<bean id="receAddressDAO" class="dao.ReceAddressImpl" parent="baseDAO"></bean>
-	<bean id="userInfoDAO" class="dao.UserInfoImpl" parent="baseDAO"></bean>
+	<bean id="userDAO" class="dao.impl.UserImpl" parent="baseDAO"></bean>
+	<bean id="receAddressDAO" class="dao.impl.ReceAddressImpl" parent="baseDAO"></bean>
+	<bean id="userInfoDAO" class="dao.impl.UserInfoImpl" parent="baseDAO"></bean>
 	
 	<!-- configure the service -->
-	<bean id="baseUserServiceDAO" class="service.BaseUserServiceDAO">
+	<bean id="baseUserServiceDAO" class="service.dao.BaseUserServiceDAO">
 		<property name="userDAO" ref="userDAO"></property>
 	</bean>
 	<bean id="loginServiceDAO" class="service.LoginService" parent="baseUserServiceDAO"></bean>
@@ -21,7 +21,7 @@
     <bean id="updateUserTypeServiceDAO" class="service.UpdateUserTypeService" parent="baseUserServiceDAO"></bean>
 	<bean id="findUserServiceDAO" class="service.FindUserService" parent="baseUserServiceDAO"></bean>
 	
-	<bean id="baseUserInfoServiceDAO" class="service.BaseUserInfoServiceDAO">
+	<bean id="baseUserInfoServiceDAO" class="service.dao.BaseUserInfoServiceDAO">
 		<property name="userInfoDAO" ref="userInfoDAO"></property>
 	</bean>
 	<bean id="insertUserInfoServiceDAO" class="service.InsertUserInfoService" parent="baseUserInfoServiceDAO"></bean>
@@ -29,7 +29,7 @@
 	<bean id="findUserInfoServiceDAO" class="service.FindUserInfoService" parent="baseUserInfoServiceDAO"></bean>
 	<bean id="findUserInfoByUserIdServiceDAO" class="service.FindUserInfoByUserIdService" parent="baseUserInfoServiceDAO"></bean>
 	
-	<bean id="baseReceAddressServiceDAO" class="service.BaseReceAddressServiceDAO">
+	<bean id="baseReceAddressServiceDAO" class="service.dao.BaseReceAddressServiceDAO">
 		<property name="receAddressDAO" ref="receAddressDAO"></property>
 	</bean>
 	<bean id="insertReceAddressServiceDAO" class="service.InsertReceAddressService" parent="baseReceAddressServiceDAO"></bean>

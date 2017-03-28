@@ -6,7 +6,8 @@ import java.util.Map;
 import org.apache.struts2.json.annotations.JSON;
 
 import com.opensymphony.xwork2.ActionSupport;
-import service.UpdateReceAddressServiceDAO;
+
+import service.dao.UpdateReceAddressServiceDAO;
 import domain.ReceAddress;
 
 public class UpdateReceAddressAction extends ActionSupport{

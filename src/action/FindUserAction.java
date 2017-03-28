@@ -5,7 +5,7 @@ import java.util.Map;
 
 import org.apache.struts2.json.annotations.JSON;
 
-import service.FindUserServiceDAO;
+import service.dao.FindUserServiceDAO;
 
 import com.opensymphony.xwork2.ActionSupport;
 
