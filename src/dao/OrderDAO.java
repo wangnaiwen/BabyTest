@@ -1,7 +1,6 @@
 package dao;
 
 import java.util.List;
-
 import domain.Order;
 
 public interface OrderDAO {

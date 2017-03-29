@@ -10,8 +10,17 @@
 	<bean id="userDAO" class="dao.impl.UserImpl" parent="baseDAO"></bean>
 	<bean id="receAddressDAO" class="dao.impl.ReceAddressImpl" parent="baseDAO"></bean>
 	<bean id="userInfoDAO" class="dao.impl.UserInfoImpl" parent="baseDAO"></bean>
+	<bean id="dealDAO" class="dao.impl.DealImpl" parent="baseDAO"></bean>
+	<bean id="mcDAO" class="dao.impl.McImpl" parent="baseDAO"></bean>
+	<bean id="orderDAO" class="dao.impl.OrderImpl" parent="baseDAO"></bean>
+	<bean id="prDAO" class="dao.impl.PrImpl" parent="baseDAO"></bean>
+	<bean id="productDAO" class="dao.impl.ProductImpl" parent="baseDAO"></bean>
+	<bean id="scDAO" class="dao.impl.ScImpl" parent="baseDAO"></bean>
+	<bean id="shopDAO" class="dao.impl.ShopImpl" parent="baseDAO"></bean>
+	<bean id="articleDAO" class="dao.impl.ArticleImpl" parent="baseDAO"></bean>
 	
 	<!-- configure the service -->
+	<!-- user service -->
 	<bean id="baseUserServiceDAO" class="service.dao.BaseUserServiceDAO">
 		<property name="userDAO" ref="userDAO"></property>
 	</bean>
@@ -21,6 +30,7 @@
     <bean id="updateUserTypeServiceDAO" class="service.UpdateUserTypeService" parent="baseUserServiceDAO"></bean>
 	<bean id="findUserServiceDAO" class="service.FindUserService" parent="baseUserServiceDAO"></bean>
 	
+	<!-- userinfo service -->
 	<bean id="baseUserInfoServiceDAO" class="service.dao.BaseUserInfoServiceDAO">
 		<property name="userInfoDAO" ref="userInfoDAO"></property>
 	</bean>
@@ -29,6 +39,7 @@
 	<bean id="findUserInfoServiceDAO" class="service.FindUserInfoService" parent="baseUserInfoServiceDAO"></bean>
 	<bean id="findUserInfoByUserIdServiceDAO" class="service.FindUserInfoByUserIdService" parent="baseUserInfoServiceDAO"></bean>
 	
+	<!-- receAddress service -->
 	<bean id="baseReceAddressServiceDAO" class="service.dao.BaseReceAddressServiceDAO">
 		<property name="receAddressDAO" ref="receAddressDAO"></property>
 	</bean>
@@ -38,6 +49,91 @@
 	<bean id="findReceAddressByUserIdServiceDAO" class="service.FindReceAddressByUserIdService" parent="baseReceAddressServiceDAO"></bean>
 	<bean id="deleteReceAddressServiceDAO" class="service.DeleteReceAddressService" parent="baseReceAddressServiceDAO"></bean>
 	<bean id="finalReceAddressByUserIdServiceDAO" class="service.FindFinalReceAddressByUserIdService" parent="baseReceAddressServiceDAO"></bean>
+	
+	<!-- deal service -->
+	<bean id="baseDealServiceDAO" class="service.dao.BaseDealServiceDAO">
+		<property name="dealDAO" ref="dealDAO"></property>
+	</bean>
+	<bean id="insertDealServiceDAO" class="service.InsertDealService" parent="baseDealServiceDAO"></bean>
+	<bean id="updateDealServiceDAO" class="service.UpdateDealService" parent="baseDealServiceDAO"></bean>
+	<bean id="deleteDealServiceDAO" class="service.DeleteDealService" parent="baseDealServiceDAO"></bean>
+	<bean id="findDealByIdServiceDAO" class="service.FindDealByIdService" parent="baseDealServiceDAO"></bean>
+	<bean id="findDealByOrderIdServiceDAO" class="service.FindDealByOrderIdService" parent="baseDealServiceDAO"></bean>
+	
+	<!-- mc service -->
+	<bean id="baseMcServiceDAO" class="service.dao.BaseMcServiceDAO">
+		<property name="mcDAO" ref="mcDAO"></property>
+	</bean>
+	<bean id="insertMcServiceDAO" class="service.InsertMcService" parent="baseMcServiceDAO"></bean>
+	<bean id="updateMcServiceDAO" class="service.UpdateMcService" parent="baseMcServiceDAO"></bean>
+	<bean id="deleteMcServiceDAO" class="service.DeleteMcService" parent="baseMcServiceDAO"></bean>
+	<bean id="findMcByIdServiceDAO" class="service.FindMcByIdService" parent="baseMcServiceDAO"></bean>
+	<bean id="findMcsServiceDAO" class="service.FindMcsService" parent="baseMcServiceDAO"></bean>
+	
+	<!-- order service -->
+	<bean id="baseOrderServiceDAO" class="service.dao.BaseOrderServiceDAO">
+		<property name="orderDAO" ref="orderDAO"></property>
+	</bean>
+	<bean id="insertOrderServiceDAO" class="service.InsertOrderService" parent="baseOrderServiceDAO"></bean>
+	<bean id="updateOrderServiceDAO" class="service.UpdateOrderService" parent="baseOrderServiceDAO"></bean>
+	<bean id="deleteOrderServiceDAO" class="service.DeleteOrderService" parent="baseOrderServiceDAO"></bean>
+	<bean id="findOrderByIdServiceDAO" class="service.FindOrderByIdService" parent="baseOrderServiceDAO"></bean>
+	<bean id="findOrderByUserIdServiceDAO" class="service.FindOrderByUserIdService" parent="baseOrderServiceDAO"></bean>
+	<bean id="findOrderByShopIdServiceDAO" class="service.FindOrderByShopIdService" parent="baseOrderServiceDAO"></bean>
+	
+	<!-- pr service -->
+	<bean id="basePrServiceDAO" class="service.dao.BasePrServiceDAO">
+		<property name="prDAO" ref="prDAO"></property>
+	</bean>
+	<bean id="insertPrServiceDAO" class="service.InsertPrService" parent="basePrServiceDAO"></bean>
+	<bean id="deletePrServiceDAO" class="service.DeletePrService" parent="basePrServiceDAO"></bean>
+	<bean id="findPrByIdServiceDAO" class="service.FindPrByIdService" parent="basePrServiceDAO"></bean>
+	<bean id="findPrsByUserIdServiceDAO" class="service.FindPrsByUserIdService" parent="basePrServiceDAO"></bean>
+	<bean id="findOrderByDealIdServiceDAO" class="service.FindPrsByDealIdService" parent="basePrServiceDAO"></bean>
+	<bean id="findOrderByProductIdServiceDAO" class="service.FindPrsByProductIdService" parent="basePrServiceDAO"></bean>
+	
+	<!-- product service -->
+	<bean id="baseProductServiceDAO" class="service.dao.BaseProductServiceDAO">
+		<property name="productDAO" ref="productDAO"></property>
+	</bean>
+	<bean id="insertProductServiceDAO" class="service.InsertProductService" parent="baseProductServiceDAO"></bean>
+	<bean id="updateProductServiceDAO" class="service.UpdateProductService" parent="baseProductServiceDAO"></bean>
+	<bean id="deleteProductServiceDAO" class="service.DeleteProductService" parent="baseProductServiceDAO"></bean>
+	<bean id="findProductByIdServiceDAO" class="service.FindProductByIdService" parent="baseProductServiceDAO"></bean>
+	<bean id="findProductByNumberingServiceDAO" class="service.FindProductByNumberingService" parent="baseProductServiceDAO"></bean>
+	<bean id="findProductByScIdServiceDAO" class="service.FindProductByScIdService" parent="baseProductServiceDAO"></bean>
+	
+	<!-- shop service -->
+	<bean id="baseShopServiceDAO" class="service.dao.BaseShopServiceDAO">
+		<property name="shopDAO" ref="shopDAO"></property>
+	</bean>
+	<bean id="insertShopServiceDAO" class="service.InsertShopService" parent="baseShopServiceDAO"></bean>
+	<bean id="updateShopServiceDAO" class="service.UpdateShopService" parent="baseShopServiceDAO"></bean>
+	<bean id="deleteShopServiceDAO" class="service.DeleteShopService" parent="baseShopServiceDAO"></bean>
+	<bean id="findShopByIdServiceDAO" class="service.FindShopByIdService" parent="baseShopServiceDAO"></bean>
+	<bean id="findShopByUserIdServiceDAO" class="service.FindShopByUserIdService" parent="baseShopServiceDAO"></bean>
+	
+	<!-- sc service -->
+	<bean id="baseScServiceDAO" class="service.dao.BaseScServiceDAO">
+		<property name="scDAO" ref="scDAO"></property>
+	</bean>
+	<bean id="insertScServiceDAO" class="service.InsertScService" parent="baseScServiceDAO"></bean>
+	<bean id="updateScServiceDAO" class="service.UpdateScService" parent="baseScServiceDAO"></bean>
+	<bean id="deleteScServiceDAO" class="service.DeleteScService" parent="baseScServiceDAO"></bean>
+	<bean id="findScByIdServiceDAO" class="service.FindScByIdService" parent="baseScServiceDAO"></bean>
+	<bean id="findScsByMcIdServiceDAO" class="service.FindScsByMcIdService" parent="baseScServiceDAO"></bean>
+	
+	<!-- article service -->
+	<bean id="baseArticleServiceDAO" class="service.dao.BaseArticleServiceDAO">
+		<property name="articleDAO" ref="articleDAO"></property>
+	</bean>
+	<bean id="insertArticleServiceDAO" class="service.InsertArticleService" parent="baseArticleServiceDAO"></bean>
+	<bean id="updateArticleServiceDAO" class="service.UpdateArticleService" parent="baseArticleServiceDAO"></bean>
+	<bean id="updateArticleReadTimesServiceDAO" class="service.UpdateArticleReadTimesService" parent="baseArticleServiceDAO"></bean>
+	<bean id="updateArticleLikeTimesServiceDAO" class="service.UpdateArticleLikeTimesService" parent="baseArticleServiceDAO"></bean>
+	<bean id="deleteArticleServiceDAO" class="service.DeleteArticleService" parent="baseArticleServiceDAO"></bean>
+	<bean id="findArticleByIdServiceDAO" class="service.FindArticleByIdService" parent="baseArticleServiceDAO"></bean>
+	<bean id="findAllArticlesServiceDAO" class="service.FindAllArticlesService" parent="baseArticleServiceDAO"></bean>
 	
 	<!-- configure the action -->
 	<bean id="loginAction" class="action.LoginAction">

@@ -52,7 +52,7 @@ public class ArticleImpl extends BaseDAO implements ArticleDAO{
 
 	//add one more times
 	@Override
-	public boolean updateLikeTimes() {
+	public boolean updateArticleLikeTimes() {
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
 	    String sql = "delete from article where id=";
@@ -64,13 +64,13 @@ public class ArticleImpl extends BaseDAO implements ArticleDAO{
 
 	//add one more times
 	@Override
-	public boolean updateReadTimes() {
+	public boolean updateArticleReadTimes() {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public Article findArticle(int id) {
+	public Article findArticleById(int id) {
 		Article article = null;
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
