@@ -18,6 +18,10 @@
 	<bean id="scDAO" class="dao.impl.ScImpl" parent="baseDAO"></bean>
 	<bean id="shopDAO" class="dao.impl.ShopImpl" parent="baseDAO"></bean>
 	<bean id="articleDAO" class="dao.impl.ArticleImpl" parent="baseDAO"></bean>
+	<bean id="shoppingCarDAO" class="dao.impl.ShoppingCarImpl" parent="baseDAO"></bean>
+	<bean id="newProductDAO" class="dao.impl.NewProductImpl" parent="baseDAO"></bean>
+	<bean id="hotSaleDAO" class="dao.impl.HotSaleImpl" parent="baseDAO"></bean>
+	<bean id="specialPriceDAO" class="dao.impl.SpecialPriceImpl" parent="baseDAO"></bean>
 	
 	<!-- configure the service -->
 	<!-- user service -->
@@ -135,7 +139,40 @@
 	<bean id="findArticleByIdServiceDAO" class="service.FindArticleByIdService" parent="baseArticleServiceDAO"></bean>
 	<bean id="findAllArticlesServiceDAO" class="service.FindAllArticlesService" parent="baseArticleServiceDAO"></bean>
 	
+	<!-- shopping car service -->
+	<bean id="baseShoppingCarServiceDAO" class="service.dao.BaseShoppingCarServiceDAO">
+		<property name="shoppingCarDAO" ref="shoppingCarDAO"></property>
+	</bean>
+	<bean id="insertShoppingCarServiceDAO" class="service.InsertShoppingCarService" parent="baseShoppingCarServiceDAO"></bean>
+	<bean id="updateShoppingCarServiceDAO" class="service.UpdateShoppingCarService" parent="baseShoppingCarServiceDAO"></bean>
+	<bean id="deleteShoppingCarServiceDAO" class="service.DeleteShoppingCarService" parent="baseShoppingCarServiceDAO"></bean>
+	<bean id="findShoppingCarByUserIdServiceDAO" class="service.FindShoppingCarByUserIdService" parent="baseShoppingCarServiceDAO"></bean>
+	
+		<!-- new product service -->
+	<bean id="baseNewProductServiceDAO" class="service.dao.BaseNewProductServiceDAO">
+		<property name="newProductDAO" ref="newProductDAO"></property>
+	</bean>
+	<bean id="insertNewProductServiceDAO" class="service.InsertNewProductService" parent="baseNewProductServiceDAO"></bean>
+	<bean id="findNewProductServiceDAO" class="service.FindNewProductService" parent="baseNewProductServiceDAO"></bean>
+
+		<!-- hot sale service -->
+	<bean id="baseHotSaleServiceDAO" class="service.dao.BaseHotSaleServiceDAO">
+		<property name="hotSaleDAO" ref="hotSaleDAO"></property>
+	</bean>
+	<bean id="insertHotSaleServiceDAO" class="service.InsertHotSaleService" parent="baseHotSaleServiceDAO"></bean>
+	<bean id="findHotSaleServiceDAO" class="service.FindHotSaleService" parent="baseHotSaleServiceDAO"></bean>
+
+		<!-- special price service -->
+	<bean id="baseSpecialPriceServiceDAO" class="service.dao.BaseSpecialPriceServiceDAO">
+		<property name="specialPriceDAO" ref="specialPriceDAO"></property>
+	</bean>
+	<bean id="insertSpecialPriceServiceDAO" class="service.InsertSpecialPriceService" parent="baseSpecialPriceServiceDAO"></bean>
+	<bean id="findSpecialPriceServiceDAO" class="service.FindSpecialPriceService" parent="baseSpecialPriceServiceDAO"></bean>
+	
+	
+	
 	<!-- configure the action -->
+	<!-- user action -->
 	<bean id="loginAction" class="action.LoginAction">
 		<property name="loginServiceDAO" ref="loginServiceDAO"></property>
 	</bean>
@@ -147,15 +184,14 @@
 	<bean id="updateUserPasswordAction" class="action.UpdateUserPasswordAction">
 		<property name="updateUserPasswordServiceDAO" ref="updateUserPasswordServiceDAO"></property>
 	</bean>
-	
 	<bean id="updateUserTypeAction" class="action.UpdateUserTypeAction">
 		<property name="updateUserTypeServiceDAO" ref="updateUserTypeServiceDAO"></property>
 	</bean>
-	
 	<bean id="findUserAction" class="action.FindUserAction">
 		<property name="findUserServiceDAO" ref="findUserServiceDAO"></property>
 	</bean>
 	
+	<!-- userinfo action -->
 	<bean id ="insertUserInfoAction" class="action.InsertUserInfoAction">
 		<property name="insertUserInfoServiceDAO" ref="insertUserInfoServiceDAO" ></property>
 	</bean>
@@ -169,6 +205,7 @@
 		<property name="findUserInfoByUserIdServiceDAO" ref="findUserInfoByUserIdServiceDAO"></property>
 	</bean>
 	
+	<!-- receAddress action -->
 	<bean id="insertReceAddressAction" class="action.InsertReceAddressAction">
 		<property name="insertReceAddressServiceDAO" ref="insertReceAddressServiceDAO"></property>
 		<property name="finalReceAddressByUserIdServiceDAO" ref="finalReceAddressByUserIdServiceDAO"></property>
@@ -176,7 +213,6 @@
 	<bean id="updateReceAddressAction" class="action.UpdateReceAddressAction">
 		<property name="updateReceAddressServiceDAO" ref="updateReceAddressServiceDAO"></property>
 	</bean>
-	
 	<bean id="findReceAddressAction" class="action.FindReceAddressAction">
 		<property name="findReceAddressServiceDAO" ref="findReceAddressServiceDAO"></property>
 	</bean>
@@ -187,4 +223,24 @@
 		<property name="findReceAddressServiceDAO" ref="findReceAddressServiceDAO"></property>
 		<property name="deleteReceAddressServiceDAO" ref="deleteReceAddressServiceDAO"></property>
 	</bean>
+	
+	<!-- new product action -->
+	<bean id="findNewProductsAction" class="action.FindNewProductsAction">
+		<property name="findNewProductServiceDAO" ref="findNewProductServiceDAO"></property>
+		<property name="findProductByIdServiceDAO" ref="findProductByIdServiceDAO"></property>
+		
+	</bean>
+	
+	<!-- hot Sale action -->
+	<bean id="findHotSaleAction" class="action.FindHotSaleAction">
+		<property name="findHotSaleServiceDAO" ref="findHotSaleServiceDAO"></property>
+		<property name="findProductByIdServiceDAO" ref="findProductByIdServiceDAO"></property>
+	</bean>
+	
+	<!-- special price action -->
+	<bean id="findSpecialPriceAction" class="action.FindSpecialPriceAction">
+		<property name="findSpecialPriceServiceDAO" ref="findSpecialPriceServiceDAO"></property>
+		<property name="findProductByIdServiceDAO" ref="findProductByIdServiceDAO"></property>
+	</bean>
+	
 </beans>

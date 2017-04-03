@@ -2,6 +2,8 @@
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
 	<package name="struts" extends="struts-default,json-default"  namespace="/">
+	
+	<!-- user action-->
 		<action name="login" class="loginAction" >
 		    <result type="json">  
                 <param name="root">dataMap</param>  
@@ -29,6 +31,7 @@
             </result>
 		</action>
 		
+	<!-- userinfo action-->
 		<action name="insertUserInfo" class="insertUserInfoAction" >
 		    <result type="json">  
                 <param name="root">dataMap</param>  
@@ -53,6 +56,7 @@
             </result>
 		</action>
 		
+	<!-- receAddress action-->
 		<action name="insertReceAddress" class="insertReceAddressAction" >
 		    <result type="json">  
                 <param name="root">dataMap</param>  
@@ -83,5 +87,26 @@
             </result>
 		</action>
 		
+	<!-- newProduct action-->
+		<action name="findNewProducts" class="findNewProductsAction" >
+		    <result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
+		
+		
+	<!-- hotSale action-->
+		<action name="findHotSale" class="findHotSaleAction" >
+		    <result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
+	
+	<!-- SpecialPrice action-->	
+		<action name="findSpecialPrice" class="findSpecialPriceAction" >
+		    <result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
 	</package>
 </struts>    

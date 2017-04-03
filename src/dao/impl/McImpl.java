@@ -29,7 +29,7 @@ public class McImpl extends BaseDAO implements McDAO{
 		jdbcConnection.OpenConn();
 	    String sql = "update mc set name='"+mc.getName()+"' where id=" +mc.getId();
 	    System.out.println(sql);
-		boolean result = jdbcConnection.insert(sql);
+		boolean result = jdbcConnection.update(sql);
 		jdbcConnection.close();
 		return result;
 	}
@@ -81,7 +81,7 @@ public class McImpl extends BaseDAO implements McDAO{
 	    String sql = "select * from mc";
 		ResultSet rs = jdbcConnection.find(sql);
 		try {
-			if(rs.next()) {
+			while(rs.next()) {
 				Mc mc = new Mc();
 				mc.setId(rs.getInt("id"));
 				mc.setName(rs.getString("name"));

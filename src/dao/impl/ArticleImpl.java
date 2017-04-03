@@ -18,7 +18,7 @@ public class ArticleImpl extends BaseDAO implements ArticleDAO{
 		jdbcConnection.OpenConn();
 	    String sql = "insert into article values(null, '"+article.getAuthor()+"','"+article.getTime() +"','"
 	    		+article.getTitle()+"','"+article.getContent()+"','"+article.getCoverImg()+"',"
-	    		+article.getReadTimes()+",'"+article.getLikeTimes()+")";
+	    		+article.getReadTimes()+","+article.getLikeTimes()+")";
 	    System.out.println(sql);
 		boolean result = jdbcConnection.insert(sql);
 		jdbcConnection.close();
@@ -31,7 +31,7 @@ public class ArticleImpl extends BaseDAO implements ArticleDAO{
 		jdbcConnection.OpenConn();
 	    String sql = "delete from article where id=" + id;
 	    System.out.println(sql);
-		boolean result = jdbcConnection.insert(sql);
+		boolean result = jdbcConnection.delete(sql);
 		jdbcConnection.close();
 		return result;
 	}
@@ -41,11 +41,11 @@ public class ArticleImpl extends BaseDAO implements ArticleDAO{
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
 	    String sql = "update article set author='"+article.getAuthor()+"',time='"+article.getTime() +"',title='"
-	    		+article.getTitle()+"',content='"+article.getContent()+"',cover_img'"+article.getCoverImg()
-	    		+"',read_times="+article.getReadTimes()+",like_times='"+article.getLikeTimes()+" where id=" 
+	    		+article.getTitle()+"',content='"+article.getContent()+"',cover_img='"+article.getCoverImg()
+	    		+"',read_times="+article.getReadTimes()+",like_times="+article.getLikeTimes()+" where id=" 
 	    		+article.getId();
 	    System.out.println(sql);
-		boolean result = jdbcConnection.insert(sql);
+		boolean result = jdbcConnection.update(sql);
 		jdbcConnection.close();
 		return result;
 	}
@@ -55,7 +55,7 @@ public class ArticleImpl extends BaseDAO implements ArticleDAO{
 	public boolean updateArticleLikeTimes() {
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-	    String sql = "delete from article where id=";
+	    String sql = null;
 	    System.out.println(sql);
 		boolean result = jdbcConnection.insert(sql);
 		jdbcConnection.close();
@@ -82,10 +82,10 @@ public class ArticleImpl extends BaseDAO implements ArticleDAO{
 				article.setId(rs.getInt("id"));
 				article.setAuthor(rs.getString("anthor"));
 				article.setTime(rs.getString(rs.getString("time")));
-				article.setTitle("title");
+				article.setTitle(rs.getString("title"));
 				article.setContent(rs.getString("content"));
 				article.setCoverImg(rs.getString("cover_img"));
-				article.setReadTimes(rs.getInt(rs.getInt("read_times")));
+				article.setReadTimes(rs.getInt("read_times"));
 				article.setLikeTimes(rs.getInt("like_times"));
 			}
 			jdbcConnection.close();
@@ -111,15 +111,15 @@ public class ArticleImpl extends BaseDAO implements ArticleDAO{
 	    String sql = "select * from article";
 		ResultSet rs = jdbcConnection.find(sql);
 		try {
-			if(rs.next()) {
+			while(rs.next()) {
 				Article article = new Article();
 				article.setId(rs.getInt("id"));
 				article.setAuthor(rs.getString("anthor"));
 				article.setTime(rs.getString(rs.getString("time")));
-				article.setTitle("title");
+				article.setTitle(rs.getString("title"));
 				article.setContent(rs.getString("content"));
 				article.setCoverImg(rs.getString("cover_img"));
-				article.setReadTimes(rs.getInt(rs.getInt("read_times")));
+				article.setReadTimes(rs.getInt("read_times"));
 				article.setLikeTimes(rs.getInt("like_times"));
 				
 				if(articles == null){

@@ -14,7 +14,7 @@ public class ShopImpl extends BaseDAO implements ShopDAO{
 	public boolean insertShop(Shop shop) {
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-	    String sql = "insert into shop values(null, "+shop.getUserId()+",'"+shop.getName()+",'"+shop.getOwner()+"','"
+	    String sql = "insert into shop values(null, "+shop.getUserId()+",'"+shop.getName()+"','"+shop.getOwner()+"','"
 	    		+ shop.getWechat()+ "',"+shop.getMoney()+ ",'"+shop.getIdCard()+"',"+shop.getReviewType()+ ")";
 	    System.out.println(sql);
 		boolean result = jdbcConnection.insert(sql);
@@ -29,7 +29,7 @@ public class ShopImpl extends BaseDAO implements ShopDAO{
 	    String sql = "update shop set name='"+shop.getName()+"',owner='"+shop.getOwner()+ "',wechat='"+shop.getWechat()+"',money="
 		+shop.getMoney()+",id_card='"+shop.getIdCard()+"',review_type=" +shop.getReviewType() +" where id="+ shop.getId();
 	    System.out.println(sql);
-		boolean result = jdbcConnection.insert(sql);
+		boolean result = jdbcConnection.update(sql);
 		jdbcConnection.close();
 		return result;
 	}

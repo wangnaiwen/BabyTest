@@ -16,8 +16,8 @@ public class PrImpl extends BaseDAO implements PrDAO{
 	public boolean insertPr(Pr pr) {
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-	    String sql = "insert into pr values(null, "+pr.getDealId()+","+pr.getProductId() +","+pr.getUserId()+
-	    		","+pr.getServiceScore()+","+pr.getLogisticsScore()+","+pr.getProductScore()+",'"+pr.getEvalution()+"')";
+	    String sql = "insert into pr values(null, "+pr.getDealId()+",'"+pr.getUserNickName()+"',"+pr.getProductId() +","+pr.getUserId()+
+	    		","+pr.getServiceScore()+","+pr.getLogisticsScore()+",'"+pr.getEvalution()+"',"+pr.getTime()+")";
 	    System.out.println(sql);
 		boolean result = jdbcConnection.insert(sql);
 		jdbcConnection.close();
@@ -42,7 +42,7 @@ public class PrImpl extends BaseDAO implements PrDAO{
 		jdbcConnection.OpenConn();
 	    String sql = "delete from pr where id=" + id;
 	    System.out.println(sql);
-		boolean result = jdbcConnection.insert(sql);
+		boolean result = jdbcConnection.delete(sql);
 		jdbcConnection.close();
 		return result;
 	}
@@ -60,11 +60,13 @@ public class PrImpl extends BaseDAO implements PrDAO{
 				pr.setId(rs.getInt("id"));
 				pr.setDealId(rs.getInt("deal_id"));
 				pr.setUserId(rs.getInt("user_id"));
+				pr.setUserNickName(rs.getString("user_nickname"));
 				pr.setProductId(rs.getInt("product_id"));
 				pr.setServiceScore(rs.getInt("service_score"));
 				pr.setLogisticsScore(rs.getInt("logistics_score"));
 				pr.setProductScore(rs.getInt("product_score"));
 				pr.setEvalution(rs.getString("evalution"));
+				pr.setTime(rs.getString("time"));
 			}
 			jdbcConnection.close();
 		} catch (SQLException e) {
@@ -89,7 +91,7 @@ public class PrImpl extends BaseDAO implements PrDAO{
 	    String sql = "select * from pr where user_id="+userId;
 		ResultSet rs = jdbcConnection.find(sql);
 		try {
-			if(rs.next()) {
+			while(rs.next()) {
 				Pr pr = new Pr();
 				pr.setId(rs.getInt("id"));
 				pr.setDealId(rs.getInt("deal_id"));
@@ -99,6 +101,7 @@ public class PrImpl extends BaseDAO implements PrDAO{
 				pr.setLogisticsScore(rs.getInt("logistics_score"));
 				pr.setProductScore(rs.getInt("product_score"));
 				pr.setEvalution(rs.getString("evalution"));
+				pr.setTime(rs.getString("time"));
 				if(prList == null){
 					prList = new ArrayList<Pr>();
 				}
@@ -137,6 +140,7 @@ public class PrImpl extends BaseDAO implements PrDAO{
 				pr.setLogisticsScore(rs.getInt("logistics_score"));
 				pr.setProductScore(rs.getInt("product_score"));
 				pr.setEvalution(rs.getString("evalution"));
+				pr.setTime(rs.getString("time"));
 				if(prList == null){
 					prList = new ArrayList<Pr>();
 				}
@@ -175,6 +179,7 @@ public class PrImpl extends BaseDAO implements PrDAO{
 				pr.setLogisticsScore(rs.getInt("logistics_score"));
 				pr.setProductScore(rs.getInt("product_score"));
 				pr.setEvalution(rs.getString("evalution"));
+				pr.setTime(rs.getString("time"));
 				if(prList == null){
 					prList = new ArrayList<Pr>();
 				}

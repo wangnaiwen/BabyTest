@@ -30,10 +30,10 @@ public class ProductImpl extends BaseDAO implements ProductDAO{
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
 	    String sql = "update product set sc_id="+product.getScId()+",numbering='"+product.getNumbering()+"',name='"+product.getName() +"',brand='"
-	    		+product.getBrand()+"',retail_price="+product.getRetailPrice()+",standard_price"+product.getStandardPrice()+",description='"
+	    		+product.getBrand()+"',retail_price="+product.getRetailPrice()+",standard_price="+product.getStandardPrice()+",description='"
 	    		+product.getDescription()+"',cover_img='"+product.getCoverImg()+"' where id=" +product.getId();
 	    System.out.println(sql);
-		boolean result = jdbcConnection.insert(sql);
+		boolean result = jdbcConnection.update(sql);
 		jdbcConnection.close();
 		return result;
 	}
@@ -44,7 +44,7 @@ public class ProductImpl extends BaseDAO implements ProductDAO{
 		jdbcConnection.OpenConn();
 	    String sql = "delete product where id=" + id;
 	    System.out.println(sql);
-		boolean result = jdbcConnection.insert(sql);
+		boolean result = jdbcConnection.delete(sql);
 		jdbcConnection.close();
 		return result;
 	}
@@ -68,7 +68,6 @@ public class ProductImpl extends BaseDAO implements ProductDAO{
 				p.setStandardPrice(rs.getInt("standard_price"));
 				p.setRetailPrice(rs.getInt("retail_price"));
 				p.setCoverImg(rs.getString("cover_img"));
-	
 			}
 			jdbcConnection.close();
 		} catch (SQLException e) {
@@ -129,7 +128,7 @@ public class ProductImpl extends BaseDAO implements ProductDAO{
 	    String sql = "select * from product where sc_id="+scId;
 		ResultSet rs = jdbcConnection.find(sql);
 		try {
-			if(rs.next()) {
+			while(rs.next()) {
 				Product p = new Product();
 				p.setId(rs.getInt("id"));
 				p.setScId(rs.getInt("sc_id"));

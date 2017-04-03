@@ -4,11 +4,13 @@ public class Pr {
 	private int id;
 	private int dealId;
 	private int userId;
+	private String userNickName;
 	private int productId;
 	private int serviceScore;
 	private int logisticsScore;
 	private int productScore;
 	private String evalution;
+	private String time;
 	public int getId() {
 		return id;
 	}
@@ -56,6 +58,18 @@ public class Pr {
 	}
 	public void setEvalution(String evalution) {
 		this.evalution = evalution;
+	}
+	public String getUserNickName() {
+		return userNickName;
+	}
+	public void setUserNickName(String userNickName) {
+		this.userNickName = userNickName;
+	}
+	public String getTime() {
+		return time;
+	}
+	public void setTime(String time) {
+		this.time = time;
 	}
 	
 }

@@ -56,7 +56,7 @@ public class ReceAddressImpl extends BaseDAO implements ReceAddressDAO{
 	    String sql = "select * from rece_add where id="+id;
 		ResultSet rs = jdbcConnection.find(sql);
 		try {
-			if(rs.next()) {
+			while(rs.next()) {
 				address = new ReceAddress();
 				address.setId(rs.getInt("id"));
 				address.setUserId(rs.getInt("user_id"));

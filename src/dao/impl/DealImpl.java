@@ -32,7 +32,7 @@ public class DealImpl extends BaseDAO implements DealDAO{
 		+deal.getProductName()+"',product_count="+deal.getProductCount()+",sum_price="+deal.getSumPrice()+" where id="
 		+deal.getId();
 	    System.out.println(sql);
-		boolean result = jdbcConnection.insert(sql);
+		boolean result = jdbcConnection.update(sql);
 		jdbcConnection.close();
 		return result;
 	}
@@ -43,7 +43,7 @@ public class DealImpl extends BaseDAO implements DealDAO{
 		jdbcConnection.OpenConn();
 	    String sql = "delete from deal where id=" + id;
 	    System.out.println(sql);
-		boolean result = jdbcConnection.insert(sql);
+		boolean result = jdbcConnection.delete(sql);
 		jdbcConnection.close();
 		return result;
 	}
@@ -89,7 +89,7 @@ public class DealImpl extends BaseDAO implements DealDAO{
 	    String sql = "select * from deal where order_id="+orderId;
 		ResultSet rs = jdbcConnection.find(sql);
 		try {
-			if(rs.next()) {
+			while(rs.next()) {
 				Deal deal = new Deal();
 				deal.setId(rs.getInt("id"));
 				deal.setOrderId(rs.getInt("order_id"));

@@ -29,10 +29,10 @@ public class OrderImpl extends BaseDAO implements OrderDAO{
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
 	    String sql = "update order set shop_id="+order.getShopId()+",user_id="+order.getUserId() +",order_number='"+order.getOrderNumber()+
-	    		"',order_typ=e"+order.getOrderType()+",create_time='"+order.getCreateTime()+"',pay_time='"+order.getPayTime()+"',finish_time='"+order.getFinishTime()
+	    		"',order_type="+order.getOrderType()+",create_time='"+order.getCreateTime()+"',pay_time='"+order.getPayTime()+"',finish_time='"+order.getFinishTime()
 	    		+"' where id=" +order.getId();
 	    System.out.println(sql);
-		boolean result = jdbcConnection.insert(sql);
+		boolean result = jdbcConnection.update(sql);
 		jdbcConnection.close();
 		return result;
 	}
@@ -42,7 +42,7 @@ public class OrderImpl extends BaseDAO implements OrderDAO{
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
 	    String sql = "delete from order where id=" + id;
-		boolean result = jdbcConnection.insert(sql);
+		boolean result = jdbcConnection.delete(sql);
 		jdbcConnection.close();
 		return result;
 	}
@@ -55,7 +55,7 @@ public class OrderImpl extends BaseDAO implements OrderDAO{
 	    String sql = "select * from order where id="+id;
 		ResultSet rs = jdbcConnection.find(sql);
 		try {
-			if(rs.next()) {
+			while(rs.next()) {
 				order = new Order();
 				order.setId(rs.getInt("id"));
 				order.setShopId(rs.getInt("shop_id"));

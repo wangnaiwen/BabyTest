@@ -30,7 +30,7 @@ public class ScImpl extends BaseDAO implements ScDAO{
 		jdbcConnection.OpenConn();
 	    String sql = "update sc set name='"+sc.getName()+"',mc_id="+sc.getMcId() +" where id=" + sc.getId();
 	    System.out.println(sql);
-		boolean result = jdbcConnection.insert(sql);
+		boolean result = jdbcConnection.update(sql);
 		jdbcConnection.close();
 		return result;
 	}
@@ -83,7 +83,7 @@ public class ScImpl extends BaseDAO implements ScDAO{
 	    String sql = "select * from sc where mc_id="+mcId;
 		ResultSet rs = jdbcConnection.find(sql);
 		try {
-			if(rs.next()) {
+			while(rs.next()) {
 				Sc sc = new Sc();
 				sc.setId(rs.getInt("id"));
 				sc.setName(rs.getString("name"));
