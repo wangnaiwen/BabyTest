@@ -108,5 +108,49 @@
                 <param name="root">dataMap</param>  
             </result>
 		</action>
+		
+	<!-- Product review action-->	
+		<action name="insertPr" class="insertPrAction" >
+		    <result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
+		<action name="findPrsByUserId" class="findPrsByUserIdAction" >
+		    <result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
+		<action name="findPrsByProductId" class="findPrsByProductIdAction" >
+		    <result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
+		
+	<!-- shopping car review action-->	
+		<action name="insertShoppingCar" class="insertShoppingCarAction" >
+		    <result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
+		<action name="updateShoppingCar" class="updateShoppingCarAction" >
+		    <result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
+		<action name="updateShoppingCarProductCount" class="updateShoppingCarProductCountAction" >
+		    <result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
+		<action name="deleteShoppingCar" class="deleteShoppingCarAction" >
+		    <result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
+		<action name="findShoppingCarByUserId" class="findShoppingCarByUserIdAction" >
+		    <result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
 	</package>
-</struts>    
+</struts>   

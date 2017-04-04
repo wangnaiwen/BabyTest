@@ -40,6 +40,17 @@ public class ShoppingCarImpl extends BaseDAO implements ShoppingCarDAO{
 	}
 
 	@Override
+	public boolean updateShoppingCarProductCount(int id, int count) {
+		JDBCConnection jdbcConnection = getJdbcConnection();
+		jdbcConnection.OpenConn();
+	    String sql = "update shopping_car set product_count="+count +" where id="+id;
+	    System.out.println(sql);
+		boolean result = jdbcConnection.update(sql);
+		jdbcConnection.close();
+		return result;
+	}
+
+	@Override
 	public boolean deleteShoppingCar(int id) {
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();

@@ -9,7 +9,7 @@ public interface PrDAO {
 	//boolean updatePr(Pr pr);
 	boolean deletePr(int id);
 	Pr findPrById(int id);
-	List<Pr> findPrsByUserId(int userId);
+	List<Pr> findPrsByUserId(int userId, int number);
 	List<Pr> findPrsByDealId(int dealId);
-	List<Pr> findPrsByProductId(int productId);
+	List<Pr> findPrsByProductId(int productId, int number); //这里number表示第几次分页查询
 }

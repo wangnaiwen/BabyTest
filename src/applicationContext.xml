@@ -93,8 +93,8 @@
 	<bean id="deletePrServiceDAO" class="service.DeletePrService" parent="basePrServiceDAO"></bean>
 	<bean id="findPrByIdServiceDAO" class="service.FindPrByIdService" parent="basePrServiceDAO"></bean>
 	<bean id="findPrsByUserIdServiceDAO" class="service.FindPrsByUserIdService" parent="basePrServiceDAO"></bean>
-	<bean id="findOrderByDealIdServiceDAO" class="service.FindPrsByDealIdService" parent="basePrServiceDAO"></bean>
-	<bean id="findOrderByProductIdServiceDAO" class="service.FindPrsByProductIdService" parent="basePrServiceDAO"></bean>
+	<bean id="findPrsByDealIdServiceDAO" class="service.FindPrsByDealIdService" parent="basePrServiceDAO"></bean>
+	<bean id="findPrsByProductIdServiceDAO" class="service.FindPrsByProductIdService" parent="basePrServiceDAO"></bean>
 	
 	<!-- product service -->
 	<bean id="baseProductServiceDAO" class="service.dao.BaseProductServiceDAO">
@@ -145,6 +145,7 @@
 	</bean>
 	<bean id="insertShoppingCarServiceDAO" class="service.InsertShoppingCarService" parent="baseShoppingCarServiceDAO"></bean>
 	<bean id="updateShoppingCarServiceDAO" class="service.UpdateShoppingCarService" parent="baseShoppingCarServiceDAO"></bean>
+	<bean id="updateShoppingCarProductCountServiceDAO" class="service.UpdateShoppingCarProductCountService" parent="baseShoppingCarServiceDAO"></bean>
 	<bean id="deleteShoppingCarServiceDAO" class="service.DeleteShoppingCarService" parent="baseShoppingCarServiceDAO"></bean>
 	<bean id="findShoppingCarByUserIdServiceDAO" class="service.FindShoppingCarByUserIdService" parent="baseShoppingCarServiceDAO"></bean>
 	
@@ -243,4 +244,31 @@
 		<property name="findProductByIdServiceDAO" ref="findProductByIdServiceDAO"></property>
 	</bean>
 	
+	<!-- product review action -->
+	<bean id="insertPrAction" class="action.InsertPrAction">
+		<property name="insertPrServiceDAO" ref="insertPrServiceDAO"></property>
+	</bean>
+	<bean id="findPrsByUserIdAction" class="action.FindPrsByUserIdAction">
+		<property name="findPrsByUserIdServiceDAO" ref="findPrsByUserIdServiceDAO"></property>
+	</bean>
+	<bean id="findPrsByProductIdAction" class="action.FindPrsByProductIdAction">
+		<property name="findPrsByProductIdServiceDAO" ref="findPrsByProductIdServiceDAO"></property>
+	</bean>
+	
+	<!-- shoppingCar action -->
+	<bean id="insertShoppingCarAction" class="action.InsertShoppingCarAction">
+		<property name="insertShoppingCarServiceDAO" ref="insertShoppingCarServiceDAO"></property>
+	</bean>
+	<bean id="updateShoppingCarAction" class="action.UpdateShoppingCarAction">
+		<property name="updateShoppingCarServiceDAO" ref="updateShoppingCarServiceDAO"></property>
+	</bean>
+	<bean id="updateShoppingCarProductCountAction" class="action.UpdateShoppingCarProductCountAction">
+		<property name="updateShoppingCarProductCountServiceDAO" ref="updateShoppingCarProductCountServiceDAO"></property>
+	</bean>
+	<bean id="deleteShoppingCarAction" class="action.DeleteShoppingCarAction">
+		<property name="deleteShoppingCarServiceDAO" ref="deleteShoppingCarServiceDAO"></property>
+	</bean>
+	<bean id="findShoppingCarByUserIdAction" class="action.FindShoppingCarByUserIdAction">
+		<property name="findShoppingCarByUserIdServiceDAO" ref="findShoppingCarByUserIdServiceDAO"></property>
+	</bean>
 </beans>

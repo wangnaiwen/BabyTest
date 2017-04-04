@@ -54,9 +54,9 @@ public class FindNewProductsAction extends ActionSupport{
 					products.add(product);
 				}
 			}
-			dataMap.put("specialPrice", products);
+			dataMap.put("newProduct", products);
 		}else {
-			dataMap.put("specialPrice", newProducts);
+			dataMap.put("newProduct", newProducts);
 		}
 		return "success";
 	}

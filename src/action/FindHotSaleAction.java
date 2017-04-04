@@ -51,9 +51,9 @@ public class FindHotSaleAction extends ActionSupport{
 					products.add(product);
 				}
 			}
-			dataMap.put("specialPrice", products);
+			dataMap.put("hotSale", products);
 		}else {
-			dataMap.put("specialPrice", hotSales);
+			dataMap.put("hotSale", hotSales);
 		}
 		return "success";
 	}

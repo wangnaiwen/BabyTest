@@ -9,7 +9,7 @@ public class Pr {
 	private int serviceScore;
 	private int logisticsScore;
 	private int productScore;
-	private String evalution;
+	private String evaluation;
 	private String time;
 	public int getId() {
 		return id;
@@ -54,10 +54,10 @@ public class Pr {
 		this.productScore = productScore;
 	}
 	public String getEvalution() {
-		return evalution;
+		return evaluation;
 	}
 	public void setEvalution(String evalution) {
-		this.evalution = evalution;
+		this.evaluation = evalution;
 	}
 	public String getUserNickName() {
 		return userNickName;

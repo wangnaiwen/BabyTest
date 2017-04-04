@@ -10,9 +10,9 @@ import service.dao.FindPrsByUserIdServiceDAO;
 public class FindPrsByUserIdService extends BasePrServiceDAO implements FindPrsByUserIdServiceDAO{
 
 	@Override
-	public List<Pr> findPrsByUserId(int userId) {
+	public List<Pr> findPrsByUserId(int userId, int number) {
 		PrDAO prDAO = getPrDAO();
-		return prDAO.findPrsByUserId(userId);
+		return prDAO.findPrsByUserId(userId, number);
 	}
 	
 }
