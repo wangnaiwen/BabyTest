@@ -52,10 +52,10 @@ public class ArticleImpl extends BaseDAO implements ArticleDAO{
 
 	//add one more times
 	@Override
-	public boolean updateArticleLikeTimes() {
+	public boolean updateArticleLikeTimes(int id) {
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-	    String sql = null;
+	    String sql = "update acticle set like_times = (like_time + 1) where id = " +id;
 	    System.out.println(sql);
 		boolean result = jdbcConnection.insert(sql);
 		jdbcConnection.close();
@@ -64,9 +64,14 @@ public class ArticleImpl extends BaseDAO implements ArticleDAO{
 
 	//add one more times
 	@Override
-	public boolean updateArticleReadTimes() {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean updateArticleReadTimes(int id) {
+		JDBCConnection jdbcConnection = getJdbcConnection();
+		jdbcConnection.OpenConn();
+	    String sql = "update acticle set read_times = (read_times + 1) where id = " +id;
+	    System.out.println(sql);
+		boolean result = jdbcConnection.insert(sql);
+		jdbcConnection.close();
+		return result;
 	}
 
 	@Override

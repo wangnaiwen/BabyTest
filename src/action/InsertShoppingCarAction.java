@@ -5,8 +5,9 @@ import java.util.Map;
 
 import org.apache.struts2.json.annotations.JSON;
 
+import service.dao.FindShoppingCarByUserIdAndProductIdServiceDAO;
 import service.dao.InsertShoppingCarServiceDAO;
-
+import service.dao.UpdateShoppingCarAddOneProductServiceDAO;
 import com.opensymphony.xwork2.ActionSupport;
 
 import domain.ShoppingCar;
@@ -16,6 +17,8 @@ public class InsertShoppingCarAction extends ActionSupport{
     private String key = "Just see see";
 	private static final long serialVersionUID = 1L;
 	private InsertShoppingCarServiceDAO insertShoppingCarServiceDAO;
+	private FindShoppingCarByUserIdAndProductIdServiceDAO findShoppingCarByUserIdAndProductIdServiceDAO;
+	private UpdateShoppingCarAddOneProductServiceDAO updateShoppingCarAddOneProductServiceDAO;
 	private int userId;
 	private int productId;
 	private String productName;
@@ -29,6 +32,20 @@ public class InsertShoppingCarAction extends ActionSupport{
 	public void setInsertShoppingCarServiceDAO(
 			InsertShoppingCarServiceDAO insertShoppingCarServiceDAO) {
 		this.insertShoppingCarServiceDAO = insertShoppingCarServiceDAO;
+	}
+	public UpdateShoppingCarAddOneProductServiceDAO getUpdateShoppingCarAddOneProductServiceDAO() {
+		return updateShoppingCarAddOneProductServiceDAO;
+	}
+	public void setUpdateShoppingCarAddOneProductServiceDAO(
+			UpdateShoppingCarAddOneProductServiceDAO updateShoppingCarAddOneProductServiceDAO) {
+		this.updateShoppingCarAddOneProductServiceDAO = updateShoppingCarAddOneProductServiceDAO;
+	}
+	public FindShoppingCarByUserIdAndProductIdServiceDAO getFindShoppingCarByUserIdAndProductIdServiceDAO() {
+		return findShoppingCarByUserIdAndProductIdServiceDAO;
+	}
+	public void setFindShoppingCarByUserIdAndProductIdServiceDAO(
+			FindShoppingCarByUserIdAndProductIdServiceDAO findShoppingCarByUserIdAndProductIdServiceDAO) {
+		this.findShoppingCarByUserIdAndProductIdServiceDAO = findShoppingCarByUserIdAndProductIdServiceDAO;
 	}
 	public int getUserId() {
 		return userId;
@@ -69,18 +86,34 @@ public class InsertShoppingCarAction extends ActionSupport{
 	public void setDataMap(Map<String, Object> dataMap) {
 		this.dataMap = dataMap;
 	}
+	
 	@Override
 	public String execute() throws Exception{
 		dataMap = new HashMap<String, Object>(); 
-		ShoppingCar car = new ShoppingCar();
-		car.setUserId(userId);
-		car.setProductId(productId);
-		car.setProductName(productName);
-		car.setProductCount(productCount);
-		car.setProductCount(productCount);
-		car.setProductCover(productCover);
-		car.setRetailPrice(retailPrice);
-		dataMap.put("insertShoppingCar", insertShoppingCarServiceDAO.insertShoppingCar(car));
+		/**
+		 * 判断该产品是否已经在购物车里面了
+		 * 如果存在，则update product count
+		 * 如果不存在，则insert product to db
+		 * */
+		boolean result = false;
+		ShoppingCar shoppingCar = findShoppingCarByUserIdAndProductIdServiceDAO.findShoppingCarByUserIdAndProductId(userId, productId);
+		if(shoppingCar != null){
+			//说明存在,加一个
+			result = updateShoppingCarAddOneProductServiceDAO.updateShoppingCarAddOneProduct(shoppingCar.getId());
+		}else{
+			//说明不存在,插入一条ShoppingCar
+			ShoppingCar car = new ShoppingCar();
+			car.setUserId(userId);
+			car.setProductId(productId);
+			car.setProductName(productName);
+			car.setProductCount(productCount);
+			car.setProductCount(productCount);
+			car.setProductCover(productCover);
+			car.setRetailPrice(retailPrice);
+			result = insertShoppingCarServiceDAO.insertShoppingCar(car);
+		}
+		
+		dataMap.put("insertShoppingCar",result);
 		return "success";
 	}
 	public Map<String, Object> getDataMap() {  

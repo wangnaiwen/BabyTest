@@ -1,5 +1,5 @@
 package service.dao;
 
 public interface UpdateArticleLikeTimesServiceDAO {
-	boolean updateArticleLikeTimes();
+	boolean updateArticleLikeTimes(int id);
 }

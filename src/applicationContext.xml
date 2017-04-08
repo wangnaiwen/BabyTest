@@ -147,9 +147,11 @@
 	<bean id="updateShoppingCarServiceDAO" class="service.UpdateShoppingCarService" parent="baseShoppingCarServiceDAO"></bean>
 	<bean id="updateShoppingCarProductCountServiceDAO" class="service.UpdateShoppingCarProductCountService" parent="baseShoppingCarServiceDAO"></bean>
 	<bean id="deleteShoppingCarServiceDAO" class="service.DeleteShoppingCarService" parent="baseShoppingCarServiceDAO"></bean>
+	<bean id="updateShoppingCarAddOneProductServiceDAO" class="service.UpdateShoppingCarAddOneProductService" parent="baseShoppingCarServiceDAO"></bean>
 	<bean id="findShoppingCarByUserIdServiceDAO" class="service.FindShoppingCarByUserIdService" parent="baseShoppingCarServiceDAO"></bean>
+	<bean id="findShoppingCarByUserIdAndProductIdServiceDAO" class="service.FindShoppingCarByUserIdAndProductIdService" parent="baseShoppingCarServiceDAO"></bean>
 	
-		<!-- new product service -->
+	<!-- new product service -->
 	<bean id="baseNewProductServiceDAO" class="service.dao.BaseNewProductServiceDAO">
 		<property name="newProductDAO" ref="newProductDAO"></property>
 	</bean>
@@ -258,6 +260,8 @@
 	<!-- shoppingCar action -->
 	<bean id="insertShoppingCarAction" class="action.InsertShoppingCarAction">
 		<property name="insertShoppingCarServiceDAO" ref="insertShoppingCarServiceDAO"></property>
+		<property name="findShoppingCarByUserIdAndProductIdServiceDAO" ref="findShoppingCarByUserIdAndProductIdServiceDAO"></property>
+		<property name="updateShoppingCarAddOneProductServiceDAO" ref="updateShoppingCarAddOneProductServiceDAO"></property>
 	</bean>
 	<bean id="updateShoppingCarAction" class="action.UpdateShoppingCarAction">
 		<property name="updateShoppingCarServiceDAO" ref="updateShoppingCarServiceDAO"></property>

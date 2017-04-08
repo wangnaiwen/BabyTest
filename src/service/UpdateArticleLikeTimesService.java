@@ -7,9 +7,9 @@ import service.dao.UpdateArticleLikeTimesServiceDAO;
 public class UpdateArticleLikeTimesService extends BaseArticleServiceDAO implements UpdateArticleLikeTimesServiceDAO{
 
 	@Override
-	public boolean updateArticleLikeTimes() {
+	public boolean updateArticleLikeTimes(int id) {
 		ArticleDAO articleDAO = getArticleDAO();
-		return articleDAO.updateArticleLikeTimes();
+		return articleDAO.updateArticleLikeTimes(id);
 	}
 
 }

@@ -98,4 +98,50 @@ public class ShoppingCarImpl extends BaseDAO implements ShoppingCarDAO{
 		return carList;
 	}
 
+	@Override
+	public ShoppingCar findShoppingCarByUserIdAndProductId(int userId,
+			int productId) {
+		ShoppingCar car = null;
+		JDBCConnection jdbcConnection = getJdbcConnection();
+		jdbcConnection.OpenConn();
+	    String sql = "select * from shopping_car where user_id="+userId +
+	    		" and product_id=" +productId;
+		ResultSet rs = jdbcConnection.find(sql);
+		try {
+			if(rs.next()) {
+			    car = new ShoppingCar();
+				car.setId(rs.getInt("id"));
+				car.setUserId(rs.getInt("user_id"));
+				car.setProductId(rs.getInt("product_id"));
+				car.setProductName(rs.getString("product_name"));
+				car.setProductCover(rs.getString("product_cover"));
+				car.setRetailPrice(rs.getInt("retail_price"));
+				car.setProductCount(rs.getInt("product_count"));
+			}
+			jdbcConnection.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			if(rs != null){
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return car;
+	}
+
+	@Override
+	public boolean updateShoppingCarAddOneProduct(int id) {
+		JDBCConnection jdbcConnection = getJdbcConnection();
+		jdbcConnection.OpenConn();
+	    String sql = "update shopping_car set product_count = (product_count + 1) where id = " +id;
+	    System.out.println(sql);
+		boolean result = jdbcConnection.insert(sql);
+		jdbcConnection.close();
+		return result;
+	}
+
 }

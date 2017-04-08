@@ -8,8 +8,8 @@ public interface ArticleDAO {
 	boolean insertArticle(Article article);
 	boolean deleteArticle(int id);
 	boolean updateArticle(Article article);
-	boolean updateArticleLikeTimes();
-	boolean updateArticleReadTimes();
+	boolean updateArticleLikeTimes(int id);
+	boolean updateArticleReadTimes(int id);
 	Article findArticleById(int id);
 	List<Article> findAllArticles();
 }
