@@ -16,7 +16,7 @@ public class NewProductImpl extends BaseDAO implements NewProductDAO{
 	public boolean insertNewProduct(NewProduct newPrduct) {
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-	    String sql = "insert into new_product values(null, "+newPrduct.getProductId()+",'"+newPrduct.getTime()+"')";
+	    String sql = "insert into lb_new_product values(null, "+newPrduct.getProductId()+",'"+newPrduct.getTime()+"')";
 	    System.out.println(sql);
 		boolean result = jdbcConnection.insert(sql);
 		jdbcConnection.close();
@@ -29,7 +29,7 @@ public class NewProductImpl extends BaseDAO implements NewProductDAO{
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
 		//找最顶上的四个
-	    String sql = "SELECT * FROM new_product ORDER BY id DESC LIMIT 0,4;";
+	    String sql = "SELECT * FROM lb_new_product ORDER BY id DESC LIMIT 0,4;";
 		ResultSet rs = jdbcConnection.find(sql);
 		try {
 			while(rs.next()) {

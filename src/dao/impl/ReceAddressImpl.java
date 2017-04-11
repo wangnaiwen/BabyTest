@@ -17,7 +17,7 @@ public class ReceAddressImpl extends BaseDAO implements ReceAddressDAO{
 	public boolean insertReceAddress(ReceAddress address) {
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-		String sql = "insert into rece_add values(null,"+address.getUserId()+",'"+address.getReceiver()+
+		String sql = "insert into lb_rece_add values(null,"+address.getUserId()+",'"+address.getReceiver()+
 				"','"+address.getPhone() +"','"+address.getProvince()+"','"+address.getCity()+"','"+address.getCounty()
 				+"','"+address.getDetailAddress()+"',"  +address.getPostcode()+")";
 		System.out.println(sql);
@@ -30,7 +30,7 @@ public class ReceAddressImpl extends BaseDAO implements ReceAddressDAO{
 	public boolean updateReceAddress(ReceAddress address) {
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-		String sql = "update rece_add set receiver='"+ address.getReceiver()+"',phone='"+address.getPhone() 
+		String sql = "update lb_rece_add set receiver='"+ address.getReceiver()+"',phone='"+address.getPhone() 
 				+ "',province='" + address.getProvince() + "',city='" + address.getCity() 
 				+ "',county='" + address.getCounty()+ "',detail_address='" + address.getDetailAddress()+ "',postcode=" + address.getPostcode() +" where id=" + address.getId();
 		boolean result = jdbcConnection.update(sql);
@@ -42,7 +42,7 @@ public class ReceAddressImpl extends BaseDAO implements ReceAddressDAO{
 	public boolean deleteReceAddress(ReceAddress address) {
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-		String sql = "delete from rece_add where id=" + address.getId();
+		String sql = "delete from lb_rece_add where id=" + address.getId();
 		boolean result = jdbcConnection.delete(sql);
 		jdbcConnection.close();
 		return result;
@@ -53,7 +53,7 @@ public class ReceAddressImpl extends BaseDAO implements ReceAddressDAO{
 		ReceAddress address = null;
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-	    String sql = "select * from rece_add where id="+id;
+	    String sql = "select * from lb_rece_add where id="+id;
 		ResultSet rs = jdbcConnection.find(sql);
 		try {
 			while(rs.next()) {
@@ -88,7 +88,7 @@ public class ReceAddressImpl extends BaseDAO implements ReceAddressDAO{
 		List<ReceAddress> addressList = null;
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-	    String sql = "select * from rece_add where user_id="+userId;
+	    String sql = "select * from lb_rece_add where user_id="+userId;
 		ResultSet rs = jdbcConnection.find(sql);
 		try {
 			while(rs.next()) {
@@ -127,7 +127,7 @@ public class ReceAddressImpl extends BaseDAO implements ReceAddressDAO{
 		ReceAddress address = null;
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-	    String sql = "select * from rece_add where id=(select max(id) from rece_add where user_id="+userId + ")";
+	    String sql = "select * from lb_rece_add where id=(select max(id) from rece_add where user_id="+userId + ")";
 		ResultSet rs = jdbcConnection.find(sql);
 		try {
 			if(rs.next()) {

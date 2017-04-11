@@ -9,6 +9,7 @@ public class Order {
 	private String createTime;
 	private String payTime;
 	private String finishTime;
+	private int addressId;
 	public int getId() {
 		return id;
 	}
@@ -57,5 +58,10 @@ public class Order {
 	public void setFinishTime(String finishTime) {
 		this.finishTime = finishTime;
 	}
-	
+	public int getAddressId() {
+		return addressId;
+	}
+	public void setAddressId(int addressId) {
+		this.addressId = addressId;
+	}
 }

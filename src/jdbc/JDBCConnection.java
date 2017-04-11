@@ -23,13 +23,8 @@ public class JDBCConnection {
 	 * */
 	public void OpenConn() {
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			String url = "jdbc:mysql://localhost:3306/love_baby";
-			String user = "root";
-			//String password = "k6LtvaXucKKt";
-			String password = "123456";
-			conn = DriverManager.getConnection(url, user, password);
-			
+			Class.forName(SqlConfig.CLASS_NAME);
+			conn = DriverManager.getConnection(SqlConfig.URL, SqlConfig.USER, SqlConfig.PASSWORD);
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {

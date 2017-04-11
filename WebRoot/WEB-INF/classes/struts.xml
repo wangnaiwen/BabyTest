@@ -152,5 +152,81 @@
                 <param name="root">dataMap</param>  
             </result>
 		</action>
+		
+	<!-- shop action -->
+		<action name="insertShop" class="insertShopAction" >
+		    <result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
+		<action name="updateShop" class="updateShopAction" >
+		    <result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
+		<action name="findShopByUserId" class="findShopByUserIdAction" >
+		    <result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
+		<action name="findShopById" class="findShopByIdAction" >
+		    <result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
+		<action name="findShopByInvitee" class="findShopByInviteeAction" >
+		    <result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
+		
+	<!-- order action -->
+		<action name="insertOrder" class="insertOrderAction" >
+		    <result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
+		<action name="updateOrder" class="updateOrderAction" >
+		    <result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
+		<action name="findOrderByUserId" class="findOrderByUserIdAction" >
+		    <result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
+		<action name="findOrderById" class="findOrderByIdAction" >
+		    <result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
+		<action name="findOrderByShopId" class="findOrderByShopIdAction" >
+		    <result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
+		
+	<!-- deal action -->
+		<action name="insertDeal" class="insertDealAction" >
+		    <result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
+		<action name="updateDeal" class="updateDealAction" >
+		    <result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
+		<action name="findDealById" class="findDealByIdAction" >
+		    <result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
+		<action name="findDealByOrderId" class="findDealByOrderIdAction" >
+		    <result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
 	</package>
 </struts>   

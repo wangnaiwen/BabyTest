@@ -16,7 +16,7 @@ public class HotSaleImpl extends BaseDAO implements HotSaleDAO{
 	public boolean insertHotSale(HotSale hotSale) {
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-	    String sql = "insert into hot_sale values(null, "+hotSale.getProductId()+",'"+hotSale.getTime()+"')";
+	    String sql = "insert into lb_hot_sale values(null, "+hotSale.getProductId()+",'"+hotSale.getTime()+"')";
 	    System.out.println(sql);
 		boolean result = jdbcConnection.insert(sql);
 		jdbcConnection.close();
@@ -29,7 +29,7 @@ public class HotSaleImpl extends BaseDAO implements HotSaleDAO{
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
 		//找最顶上的四个
-	    String sql = "SELECT * FROM hot_sale ORDER BY id DESC LIMIT 0,4;  ";
+	    String sql = "SELECT * FROM lb_hot_sale ORDER BY id DESC LIMIT 0,4;  ";
 		ResultSet rs = jdbcConnection.find(sql);
 		try {
 			while(rs.next()) {

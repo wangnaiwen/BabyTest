@@ -24,7 +24,7 @@ public class UserInfoImpl extends BaseDAO implements UserInfoDAO{
 	public boolean insertUserInfo(UserInfo userInfo) {
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-	    String sql = "insert into user_info values(null,"+userInfo.getUserId()+",'ÄÐ'," + userInfo.getUserImg()+
+	    String sql = "insert into lb_user_info values(null,"+userInfo.getUserId()+",'ÄÐ'," + userInfo.getUserImg()+
 	    		"," +userInfo.getNickName()+","+userInfo.getBirthday()+","+userInfo.getEmail()+","+userInfo.getHobby()+","+userInfo.getPersonalizedSignature()+")";
 		System.out.println(sql);
 	    boolean result = jdbcConnection.insert(sql);
@@ -40,7 +40,7 @@ public class UserInfoImpl extends BaseDAO implements UserInfoDAO{
 	public boolean updateUserInfo(UserInfo userInfo) {
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-	    String sql = "update user_info set sex='"+userInfo.getSex()+"',user_img='"+userInfo.getUserImg()+"',nickname='" + userInfo.getNickName()+ 
+	    String sql = "update lb_user_info set sex='"+userInfo.getSex()+"',user_img='"+userInfo.getUserImg()+"',nickname='" + userInfo.getNickName()+ 
 	    		"',birthday='" + userInfo.getBirthday()+ "',email='" + userInfo.getEmail()+ "',hobby='" + userInfo.getHobby()+ 
 	    		"',personalized_signature='" + userInfo.getPersonalizedSignature()+ "' where id="+userInfo.getId();
 		System.out.print(sql);
@@ -57,7 +57,7 @@ public class UserInfoImpl extends BaseDAO implements UserInfoDAO{
 	public boolean deleteUserInfo(UserInfo userInfo) {
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-	    String sql = "delete from user_info where id="+userInfo.getId();
+	    String sql = "delete from lb_user_info where id="+userInfo.getId();
 		boolean result = jdbcConnection.delete(sql);
 		jdbcConnection.close();
 		return result;
@@ -72,7 +72,7 @@ public class UserInfoImpl extends BaseDAO implements UserInfoDAO{
 		UserInfo userInfo = null;
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-	    String sql = "select * from user_info where id="+id;
+	    String sql = "select * from lb_user_info where id="+id;
 		ResultSet rs = jdbcConnection.find(sql);
 		try {
 			if(rs.next()) {
@@ -110,7 +110,7 @@ public class UserInfoImpl extends BaseDAO implements UserInfoDAO{
 		UserInfo userInfo = null;
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-	    String sql = "select * from user_info where user_id="+userId;
+	    String sql = "select * from lb_user_info where user_id="+userId;
 		ResultSet rs = jdbcConnection.find(sql);
 		try {
 			if(rs.next()) {

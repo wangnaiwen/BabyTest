@@ -1,5 +1,7 @@
 package dao;
 
+import java.util.List;
+
 import domain.Shop;
 
 public interface ShopDAO {
@@ -8,4 +10,5 @@ public interface ShopDAO {
 	boolean deleteShop(int id);
 	Shop findShopByUserId(int userId);
 	Shop findShopById(int id);
+	List<Shop> findShopByInvitee(int invitee);
 }

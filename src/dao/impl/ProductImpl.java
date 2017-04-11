@@ -16,7 +16,7 @@ public class ProductImpl extends BaseDAO implements ProductDAO{
 	public boolean insertProduct(Product product) {
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-	    String sql = "insert into product values(null, "+product.getScId()+",'"+product.getNumbering()+"','"+product.getName() +"','"
+	    String sql = "insert into lb_product values(null, "+product.getScId()+",'"+product.getNumbering()+"','"+product.getName() +"','"
 	    		+product.getBrand()+"',"+product.getRetailPrice()+","+product.getStandardPrice()+",'"
 	    		+product.getDescription()+"','"+product.getCoverImg()+"')";
 	    System.out.println(sql);
@@ -29,7 +29,7 @@ public class ProductImpl extends BaseDAO implements ProductDAO{
 	public boolean updateProduct(Product product) {
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-	    String sql = "update product set sc_id="+product.getScId()+",numbering='"+product.getNumbering()+"',name='"+product.getName() +"',brand='"
+	    String sql = "update lb_product set sc_id="+product.getScId()+",numbering='"+product.getNumbering()+"',name='"+product.getName() +"',brand='"
 	    		+product.getBrand()+"',retail_price="+product.getRetailPrice()+",standard_price="+product.getStandardPrice()+",description='"
 	    		+product.getDescription()+"',cover_img='"+product.getCoverImg()+"' where id=" +product.getId();
 	    System.out.println(sql);
@@ -42,7 +42,7 @@ public class ProductImpl extends BaseDAO implements ProductDAO{
 	public boolean deleteProduct(int id) {
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-	    String sql = "delete product where id=" + id;
+	    String sql = "delete lb_product where id=" + id;
 	    System.out.println(sql);
 		boolean result = jdbcConnection.delete(sql);
 		jdbcConnection.close();
@@ -54,7 +54,7 @@ public class ProductImpl extends BaseDAO implements ProductDAO{
 		Product p = null;
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-	    String sql = "select * from product where id="+id;
+	    String sql = "select * from lb_product where id="+id;
 		ResultSet rs = jdbcConnection.find(sql);
 		try {
 			if(rs.next()) {
@@ -89,7 +89,7 @@ public class ProductImpl extends BaseDAO implements ProductDAO{
 		Product p = null;
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-	    String sql = "select * from product where numbering='"+numbering +"'";
+	    String sql = "select * from lb_product where numbering='"+numbering +"'";
 		ResultSet rs = jdbcConnection.find(sql);
 		try {
 			if(rs.next()) {
@@ -125,7 +125,7 @@ public class ProductImpl extends BaseDAO implements ProductDAO{
 		List<Product> products = null;
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-	    String sql = "select * from product where sc_id="+scId;
+	    String sql = "select * from lb_product where sc_id="+scId;
 		ResultSet rs = jdbcConnection.find(sql);
 		try {
 			while(rs.next()) {

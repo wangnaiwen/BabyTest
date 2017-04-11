@@ -16,7 +16,7 @@ public class DealImpl extends BaseDAO implements DealDAO{
 	public boolean insertDeal(Deal deal) {
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-	    String sql = "insert into deal values(null, "+deal.getOrderId()+","+deal.getProductId() +",'"
+	    String sql = "insert into lb_deal values(null, "+deal.getOrderId()+","+deal.getProductId() +",'"
 		+deal.getProductName()+"',"+deal.getProductCount()+","+deal.getSumPrice()+")";
 	    System.out.println(sql);
 		boolean result = jdbcConnection.insert(sql);
@@ -28,7 +28,7 @@ public class DealImpl extends BaseDAO implements DealDAO{
 	public boolean updateDeal(Deal deal) {
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-	    String sql = "update deal set order_id="+deal.getOrderId()+",product_id="+deal.getProductId() +",product_name='"
+	    String sql = "update lb_deal set order_id="+deal.getOrderId()+",product_id="+deal.getProductId() +",product_name='"
 		+deal.getProductName()+"',product_count="+deal.getProductCount()+",sum_price="+deal.getSumPrice()+" where id="
 		+deal.getId();
 	    System.out.println(sql);
@@ -41,7 +41,7 @@ public class DealImpl extends BaseDAO implements DealDAO{
 	public boolean deleteDeal(int id) {
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-	    String sql = "delete from deal where id=" + id;
+	    String sql = "delete from lb_deal where id=" + id;
 	    System.out.println(sql);
 		boolean result = jdbcConnection.delete(sql);
 		jdbcConnection.close();
@@ -53,7 +53,7 @@ public class DealImpl extends BaseDAO implements DealDAO{
 		Deal deal = null;
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-	    String sql = "select * from deal where id="+id;
+	    String sql = "select * from lb_deal where id="+id;
 		ResultSet rs = jdbcConnection.find(sql);
 		try {
 			if(rs.next()) {
@@ -86,7 +86,7 @@ public class DealImpl extends BaseDAO implements DealDAO{
 		
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-	    String sql = "select * from deal where order_id="+orderId;
+	    String sql = "select * from lb_deal where order_id="+orderId;
 		ResultSet rs = jdbcConnection.find(sql);
 		try {
 			while(rs.next()) {

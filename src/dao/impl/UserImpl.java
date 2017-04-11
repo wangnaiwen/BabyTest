@@ -22,7 +22,7 @@ public class UserImpl extends BaseDAO implements UserDAO{
 	public boolean insertUser(User user) {
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-	    String sql = "insert into user values(null, '"+user.getPassword()+"','"+user.getPhone()+"'," + user.getType()+ ")";
+	    String sql = "insert into lb_user values(null, '"+user.getPassword()+"','"+user.getPhone()+"'," + user.getType()+ ")";
 		boolean result = jdbcConnection.insert(sql);
 		jdbcConnection.close();
 		return result;
@@ -35,7 +35,7 @@ public class UserImpl extends BaseDAO implements UserDAO{
 	public boolean updateUser(User user) {
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-	    String sql = "update user set password='"+user.getPassword()+"',phone='"+user.getPhone()+"',type=" + user.getType()+ " where id="+user.getId();
+	    String sql = "update lb_user set password='"+user.getPassword()+"',phone='"+user.getPhone()+"',type=" + user.getType()+ " where id="+user.getId();
 		boolean result = jdbcConnection.update(sql);
 		jdbcConnection.close();
 		return result;
@@ -50,7 +50,7 @@ public class UserImpl extends BaseDAO implements UserDAO{
 	public boolean updateUserPassword(String phone, String password) {
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-	    String sql = "update user set password='"+password+"' where phone='"+phone+ "'";
+	    String sql = "update lb_user set password='"+password+"' where phone='"+phone+ "'";
 		boolean result = jdbcConnection.update(sql);
 		jdbcConnection.close();
 		return result;
@@ -63,7 +63,7 @@ public class UserImpl extends BaseDAO implements UserDAO{
 	public boolean updateUserType(String phone, int type) {
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-		String sql = "update user set type="+type+" where phone='"+phone+ "'";
+		String sql = "update lb_user set type="+type+" where phone='"+phone+ "'";
 		boolean result = jdbcConnection.update(sql);
 		jdbcConnection.close();
 		return result;
@@ -76,7 +76,7 @@ public class UserImpl extends BaseDAO implements UserDAO{
 	public boolean deleteUser(User user) {
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-	    String sql = "delete from user where id="+user.getId();
+	    String sql = "delete from lb_user where id="+user.getId();
 		boolean result = jdbcConnection.delete(sql);
 		jdbcConnection.close();
 		return result;
@@ -90,7 +90,7 @@ public class UserImpl extends BaseDAO implements UserDAO{
 		User user = null;
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-	    String sql = "select * from user where id="+id;
+	    String sql = "select * from lb_user where id="+id;
 		ResultSet rs = jdbcConnection.find(sql);
 		try {
 			if(rs.next()) {
@@ -123,7 +123,7 @@ public class UserImpl extends BaseDAO implements UserDAO{
 		User user = null;
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-	    String sql = "select * from user where phone='"+phone +"'";
+	    String sql = "select * from lb_user where phone='"+phone +"'";
 		ResultSet rs = jdbcConnection.find(sql);
 		try {
 			if(rs.next()) {
@@ -156,8 +156,8 @@ public class UserImpl extends BaseDAO implements UserDAO{
 	public User validateUser(User user) {
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-	    String sql = "select * from user where id=" + user.getId() + " and password='" +user.getPassword()+"'";
-	    String sql2 = "select * from user where phone='"+user.getPhone() + "' and password='"+user.getPassword()+"'";
+	    String sql = "select * from lb_user where id=" + user.getId() + " and password='" +user.getPassword()+"'";
+	    String sql2 = "select * from lb_user where phone='"+user.getPhone() + "' and password='"+user.getPassword()+"'";
 		ResultSet rs = jdbcConnection.find(sql);
 		ResultSet rs2 = jdbcConnection.find(sql2);
 		User user2 = null;

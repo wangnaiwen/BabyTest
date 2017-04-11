@@ -17,7 +17,7 @@ public class ScImpl extends BaseDAO implements ScDAO{
 	public boolean insertSc(Sc sc) {
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-	    String sql = "insert into sc values(null, '"+sc.getName()+"',"+sc.getMcId()+")";
+	    String sql = "insert into lb_sc values(null, '"+sc.getName()+"',"+sc.getMcId()+")";
 	    System.out.println(sql);
 		boolean result = jdbcConnection.insert(sql);
 		jdbcConnection.close();
@@ -28,7 +28,7 @@ public class ScImpl extends BaseDAO implements ScDAO{
 	public boolean updateSc(Sc sc) {
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-	    String sql = "update sc set name='"+sc.getName()+"',mc_id="+sc.getMcId() +" where id=" + sc.getId();
+	    String sql = "update lb_sc set name='"+sc.getName()+"',mc_id="+sc.getMcId() +" where id=" + sc.getId();
 	    System.out.println(sql);
 		boolean result = jdbcConnection.update(sql);
 		jdbcConnection.close();
@@ -39,7 +39,7 @@ public class ScImpl extends BaseDAO implements ScDAO{
 	public boolean deleteSc(int id) {
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-	    String sql = "delete from sc where id="+id;
+	    String sql = "delete from lb_sc where id="+id;
 	    System.out.println(sql);
 		boolean result = jdbcConnection.delete(sql);
 		jdbcConnection.close();

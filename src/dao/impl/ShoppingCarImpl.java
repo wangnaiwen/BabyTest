@@ -16,7 +16,7 @@ public class ShoppingCarImpl extends BaseDAO implements ShoppingCarDAO{
 	public boolean insertShoppingCar(ShoppingCar car) {
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-	    String sql = "insert into shopping_car values(null, "+car.getUserId()+","+car.getProductId()+",'"
+	    String sql = "insert into lb_shopping_car values(null, "+car.getUserId()+","+car.getProductId()+",'"
 		+car.getProductName()+ "','"+ car.getProductCover()+"',"+car.getRetailPrice()+","
 	    		+car.getProductCount()+")";
 	    System.out.println(sql);
@@ -29,7 +29,7 @@ public class ShoppingCarImpl extends BaseDAO implements ShoppingCarDAO{
 	public boolean updateShoppingCar(ShoppingCar car) {
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-	    String sql = "update shopping_car set user_id="+car.getUserId()+",product_id="+car.getProductId()
+	    String sql = "update lb_shopping_car set user_id="+car.getUserId()+",product_id="+car.getProductId()
 	    		+",product_name='"+car.getProductName()+ "',product_cover='"+ car.getProductCover()
 	    		+"',retail_price="+car.getRetailPrice()+",product_count="+car.getProductCount()
 	    		+" where id="+car.getId();
@@ -43,7 +43,7 @@ public class ShoppingCarImpl extends BaseDAO implements ShoppingCarDAO{
 	public boolean updateShoppingCarProductCount(int id, int count) {
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-	    String sql = "update shopping_car set product_count="+count +" where id="+id;
+	    String sql = "update lb_shopping_car set product_count="+count +" where id="+id;
 	    System.out.println(sql);
 		boolean result = jdbcConnection.update(sql);
 		jdbcConnection.close();
@@ -54,7 +54,7 @@ public class ShoppingCarImpl extends BaseDAO implements ShoppingCarDAO{
 	public boolean deleteShoppingCar(int id) {
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-	    String sql = "delete from shopping_car where id=" +id;
+	    String sql = "delete from lb_shopping_car where id=" +id;
 	    System.out.println(sql);
 		boolean result = jdbcConnection.delete(sql);
 		jdbcConnection.close();
@@ -66,7 +66,7 @@ public class ShoppingCarImpl extends BaseDAO implements ShoppingCarDAO{
 		List<ShoppingCar> carList = null;
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-	    String sql = "select * from shopping_car where user_id="+userId;
+	    String sql = "select * from lb_shopping_car where user_id="+userId;
 		ResultSet rs = jdbcConnection.find(sql);
 		try {
 			while(rs.next()) {
@@ -104,7 +104,7 @@ public class ShoppingCarImpl extends BaseDAO implements ShoppingCarDAO{
 		ShoppingCar car = null;
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-	    String sql = "select * from shopping_car where user_id="+userId +
+	    String sql = "select * from lb_shopping_car where user_id="+userId +
 	    		" and product_id=" +productId;
 		ResultSet rs = jdbcConnection.find(sql);
 		try {
@@ -137,7 +137,7 @@ public class ShoppingCarImpl extends BaseDAO implements ShoppingCarDAO{
 	public boolean updateShoppingCarAddOneProduct(int id) {
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-	    String sql = "update shopping_car set product_count = (product_count + 1) where id = " +id;
+	    String sql = "update lb_shopping_car set product_count = (product_count + 1) where id = " +id;
 	    System.out.println(sql);
 		boolean result = jdbcConnection.insert(sql);
 		jdbcConnection.close();

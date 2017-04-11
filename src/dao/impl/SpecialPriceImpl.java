@@ -16,7 +16,7 @@ public class SpecialPriceImpl extends BaseDAO implements SpecialPriceDAO{
 	public boolean insertSpecialPrice(SpecialPrice specialPrice) {
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-	    String sql = "insert into special_price values(null, "+specialPrice.getProductId()+",'"+specialPrice.getTime()+"')";
+	    String sql = "insert into lb_special_price values(null, "+specialPrice.getProductId()+",'"+specialPrice.getTime()+"')";
 	    System.out.println(sql);
 		boolean result = jdbcConnection.insert(sql);
 		jdbcConnection.close();
@@ -29,7 +29,7 @@ public class SpecialPriceImpl extends BaseDAO implements SpecialPriceDAO{
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
 		//找最顶上的四个
-	    String sql = "SELECT * FROM special_price ORDER BY id DESC LIMIT 0,4;";
+	    String sql = "SELECT * FROM lb_special_price ORDER BY id DESC LIMIT 0,4;";
 		ResultSet rs = jdbcConnection.find(sql);
 		try {
 			while(rs.next()) {

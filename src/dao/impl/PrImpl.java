@@ -16,7 +16,7 @@ public class PrImpl extends BaseDAO implements PrDAO{
 	public boolean insertPr(Pr pr) {
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-	    String sql = "insert into pr values(null, "+pr.getDealId()+",'"+pr.getUserNickName()+"',"+pr.getProductId() +","+pr.getUserId()
+	    String sql = "insert into lb_pr values(null, "+pr.getDealId()+",'"+pr.getUserNickName()+"',"+pr.getProductId() +","+pr.getUserId()
 	    		+","+pr.getProductScore()+","+pr.getServiceScore()+","+pr.getLogisticsScore()+",'"+pr.getEvalution()+"',"+pr.getTime()+")";
 	    System.out.println(sql);
 		boolean result = jdbcConnection.insert(sql);
@@ -40,7 +40,7 @@ public class PrImpl extends BaseDAO implements PrDAO{
 	public boolean deletePr(int id) {
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-	    String sql = "delete from pr where id=" + id;
+	    String sql = "delete from lb_pr where id=" + id;
 	    System.out.println(sql);
 		boolean result = jdbcConnection.delete(sql);
 		jdbcConnection.close();
@@ -52,7 +52,7 @@ public class PrImpl extends BaseDAO implements PrDAO{
 		Pr pr = null;
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-	    String sql = "select * from pr where id="+id;
+	    String sql = "select * from lb_pr where id="+id;
 		ResultSet rs = jdbcConnection.find(sql);
 		try {
 			if(rs.next()) {
@@ -88,7 +88,7 @@ public class PrImpl extends BaseDAO implements PrDAO{
 		List<Pr> prList = null;
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-	    String sql = "select * from pr where user_id="+userId+" order by id desc limit "+((number-1)*20)+","+number*20;;
+	    String sql = "select * from lb_pr where user_id="+userId+" order by id desc limit "+((number-1)*20)+","+number*20;;
 		ResultSet rs = jdbcConnection.find(sql);
 		try {
 			while(rs.next()) {
@@ -128,7 +128,7 @@ public class PrImpl extends BaseDAO implements PrDAO{
 		List<Pr> prList = null;
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-	    String sql = "select * from pr where deal_id="+dealId;
+	    String sql = "select * from lb_pr where deal_id="+dealId;
 		ResultSet rs = jdbcConnection.find(sql);
 		try {
 			while(rs.next()) {
@@ -169,7 +169,7 @@ public class PrImpl extends BaseDAO implements PrDAO{
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
 		//这里采用分页查询,一次查询得到20条数据
-	    String sql = "select * from pr where product_id="+productId+" order by id desc limit "+((number-1)*20)+","+number*20;
+	    String sql = "select * from lb_pr where product_id="+productId+" order by id desc limit "+((number-1)*20)+","+number*20;
 		ResultSet rs = jdbcConnection.find(sql);
 		try {
 			while(rs.next()) {

@@ -16,7 +16,7 @@ public class McImpl extends BaseDAO implements McDAO{
 	public boolean insertMc(Mc mc) {
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-	    String sql = "insert into mc values(null, '"+mc.getName()+"')";
+	    String sql = "insert into lb_mc values(null, '"+mc.getName()+"')";
 	    System.out.println(sql);
 		boolean result = jdbcConnection.insert(sql);
 		jdbcConnection.close();
@@ -27,7 +27,7 @@ public class McImpl extends BaseDAO implements McDAO{
 	public boolean updateMc(Mc mc) {
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-	    String sql = "update mc set name='"+mc.getName()+"' where id=" +mc.getId();
+	    String sql = "update lb_mc set name='"+mc.getName()+"' where id=" +mc.getId();
 	    System.out.println(sql);
 		boolean result = jdbcConnection.update(sql);
 		jdbcConnection.close();
@@ -38,7 +38,7 @@ public class McImpl extends BaseDAO implements McDAO{
 	public boolean deleteMc(int id) {
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-	    String sql = "delete from mc where id="+id;
+	    String sql = "delete from lb_mc where id="+id;
 	    System.out.println(sql);
 		boolean result = jdbcConnection.delete(sql);
 		jdbcConnection.close();
@@ -50,7 +50,7 @@ public class McImpl extends BaseDAO implements McDAO{
 		Mc mc = null;
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-	    String sql = "select * from mc where id="+id;
+	    String sql = "select * from lb_mc where id="+id;
 		ResultSet rs = jdbcConnection.find(sql);
 		try {
 			if(rs.next()) {
@@ -78,7 +78,7 @@ public class McImpl extends BaseDAO implements McDAO{
 		List<Mc> mcList = null;
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-	    String sql = "select * from mc";
+	    String sql = "select * from lb_mc";
 		ResultSet rs = jdbcConnection.find(sql);
 		try {
 			while(rs.next()) {

@@ -16,8 +16,8 @@ public class OrderImpl extends BaseDAO implements OrderDAO{
 	public boolean insertOrder(Order order) {
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-	    String sql = "insert into order values(null, "+order.getShopId()+","+order.getUserId() +",'"+order.getOrderNumber()+
-	    		"',"+order.getOrderType()+",'"+order.getCreateTime()+"','"+order.getPayTime()+"','"+order.getFinishTime()+"')";
+	    String sql = "insert into lb_order values(null,"+order.getShopId()+","+order.getUserId() +",'"+order.getOrderNumber()+
+	    		"',"+order.getOrderType()+",'"+order.getCreateTime()+"','"+order.getPayTime()+"','"+order.getFinishTime()+"',"+order.getAddressId()+")";
 	    System.out.println(sql);
 		boolean result = jdbcConnection.insert(sql);
 		jdbcConnection.close();
@@ -28,9 +28,9 @@ public class OrderImpl extends BaseDAO implements OrderDAO{
 	public boolean updateOrder(Order order) {
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-	    String sql = "update order set shop_id="+order.getShopId()+",user_id="+order.getUserId() +",order_number='"+order.getOrderNumber()+
+	    String sql = "update lb_order set shop_id="+order.getShopId()+",user_id="+order.getUserId() +",order_number='"+order.getOrderNumber()+
 	    		"',order_type="+order.getOrderType()+",create_time='"+order.getCreateTime()+"',pay_time='"+order.getPayTime()+"',finish_time='"+order.getFinishTime()
-	    		+"' where id=" +order.getId();
+	    		+"',address_id="+ order.getAddressId()+" where id=" +order.getId();
 	    System.out.println(sql);
 		boolean result = jdbcConnection.update(sql);
 		jdbcConnection.close();
@@ -41,7 +41,7 @@ public class OrderImpl extends BaseDAO implements OrderDAO{
 	public boolean deleteOrder(int id) {
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-	    String sql = "delete from order where id=" + id;
+	    String sql = "delete from lb_order where id=" + id;
 		boolean result = jdbcConnection.delete(sql);
 		jdbcConnection.close();
 		return result;
@@ -52,7 +52,7 @@ public class OrderImpl extends BaseDAO implements OrderDAO{
 		Order order = null;
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-	    String sql = "select * from order where id="+id;
+	    String sql = "select * from lb_order where id="+id;
 		ResultSet rs = jdbcConnection.find(sql);
 		try {
 			while(rs.next()) {
@@ -65,6 +65,43 @@ public class OrderImpl extends BaseDAO implements OrderDAO{
 				order.setCreateTime(rs.getString("create_time"));
 				order.setPayTime(rs.getString("pay_time"));
 				order.setFinishTime(rs.getString("finish_time"));
+				order.setAddressId(rs.getInt("address_id"));
+			}
+			jdbcConnection.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			if(rs != null){
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return order;
+	}
+
+	
+	@Override
+	public Order findOrderByNumbering(String order_number) {
+		Order order = null;
+		JDBCConnection jdbcConnection = getJdbcConnection();
+		jdbcConnection.OpenConn();
+	    String sql = "select * from lb_order where order_number='"+order_number +"'";
+		ResultSet rs = jdbcConnection.find(sql);
+		try {
+			while(rs.next()) {
+				order = new Order();
+				order.setId(rs.getInt("id"));
+				order.setShopId(rs.getInt("shop_id"));
+				order.setUserId(rs.getInt("user_id"));
+				order.setOrderNumber(rs.getString("order_number"));
+				order.setOrderType(rs.getInt("order_type"));
+				order.setCreateTime(rs.getString("create_time"));
+				order.setPayTime(rs.getString("pay_time"));
+				order.setFinishTime(rs.getString("finish_time"));
+				order.setAddressId(rs.getInt("address_id"));
 			}
 			jdbcConnection.close();
 		} catch (SQLException e) {
@@ -86,10 +123,10 @@ public class OrderImpl extends BaseDAO implements OrderDAO{
 		List<Order> orders = null;
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-	    String sql = "select * from order where user_id="+userId;
+	    String sql = "select * from lb_order where user_id="+userId;
 		ResultSet rs = jdbcConnection.find(sql);
 		try {
-			if(rs.next()) {
+			while(rs.next()) {
 				Order order = new Order();
 				order.setId(rs.getInt("id"));
 				order.setShopId(rs.getInt("shop_id"));
@@ -99,6 +136,7 @@ public class OrderImpl extends BaseDAO implements OrderDAO{
 				order.setCreateTime(rs.getString("create_time"));
 				order.setPayTime(rs.getString("pay_time"));
 				order.setFinishTime(rs.getString("finish_time"));
+				order.setAddressId(rs.getInt("address_id"));
 				if(orders == null){
 					orders = new ArrayList<Order>();
 				}
@@ -124,10 +162,10 @@ public class OrderImpl extends BaseDAO implements OrderDAO{
 		List<Order> orders = null;
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-	    String sql = "select * from order where shop_id="+shopId;
+	    String sql = "select * from lb_order where shop_id="+shopId;
 		ResultSet rs = jdbcConnection.find(sql);
 		try {
-			if(rs.next()) {
+			while(rs.next()) {
 				Order order = new Order();
 				order.setId(rs.getInt("id"));
 				order.setShopId(rs.getInt("shop_id"));
@@ -137,6 +175,7 @@ public class OrderImpl extends BaseDAO implements OrderDAO{
 				order.setCreateTime(rs.getString("create_time"));
 				order.setPayTime(rs.getString("pay_time"));
 				order.setFinishTime(rs.getString("finish_time"));
+				order.setAddressId(rs.getInt("address_id"));
 				if(orders == null){
 					orders = new ArrayList<Order>();
 				}
