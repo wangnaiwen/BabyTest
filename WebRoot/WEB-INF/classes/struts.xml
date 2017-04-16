@@ -228,5 +228,32 @@
                 <param name="root">dataMap</param>  
             </result>
 		</action>
+		
+		<!-- user wallet action -->
+		<action name="updateWalletPassword" class="updateWalletPasswordAction" >
+		    <result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
+		<action name="addWalletMoney" class="addWalletMoneyAction" >
+		    <result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
+		<action name="subWalletMoney" class="subWalletMoneyAction" >
+		    <result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
+		<action name="valiteWallet" class="valiteWalletAction" >
+		    <result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
+		<action name="findWalletMoneyByUserId" class="findWalletMoneyByUserIdAction" >
+		    <result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
 	</package>
 </struts>   

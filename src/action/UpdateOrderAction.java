@@ -27,6 +27,7 @@ public class UpdateOrderAction extends ActionSupport{
 	private String payTime;
 	private String finishTime;
 	private int addressId;
+	private String remark;
 	private UpdateOrderServiceDAO updateOrderServiceDAO;
 	public int getId() {
 		return id;
@@ -88,6 +89,13 @@ public class UpdateOrderAction extends ActionSupport{
 	public void setUpdateOrderServiceDAO(UpdateOrderServiceDAO updateOrderServiceDAO) {
 		this.updateOrderServiceDAO = updateOrderServiceDAO;
 	}
+	
+	public String getRemark() {
+		return remark;
+	}
+	public void setRemark(String remark) {
+		this.remark = remark;
+	}
 	@Override
 	public String execute() throws Exception{
 		Order order = new Order();
@@ -100,6 +108,7 @@ public class UpdateOrderAction extends ActionSupport{
 		order.setCreateTime(createTime);
 		order.setPayTime(payTime);
 		order.setAddressId(addressId);
+		order.setRemark(remark);
 		dataMap = new HashMap<String, Object>();  
 		dataMap.put("updateOrder", updateOrderServiceDAO.updateOrder(order));
 		return "success";

@@ -10,6 +10,7 @@ public class Order {
 	private String payTime;
 	private String finishTime;
 	private int addressId;
+	private String remark;
 	public int getId() {
 		return id;
 	}
@@ -63,5 +64,11 @@ public class Order {
 	}
 	public void setAddressId(int addressId) {
 		this.addressId = addressId;
+	}
+	public String getRemark() {
+		return remark;
+	}
+	public void setRemark(String remark) {
+		this.remark = remark;
 	}
 }

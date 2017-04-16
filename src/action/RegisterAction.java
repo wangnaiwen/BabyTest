@@ -9,9 +9,11 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import service.dao.FindUserServiceDAO;
 import service.dao.InsertUserInfoServiceDAO;
+import service.dao.InsertWalletServiceDAO;
 import service.dao.RegisterServiceDAO;
 import domain.User;
 import domain.UserInfo;
+import domain.Wallet;
 
 public class RegisterAction extends ActionSupport{
 	/**
@@ -26,10 +28,11 @@ public class RegisterAction extends ActionSupport{
     private RegisterServiceDAO registerServiceDAO;
     private FindUserServiceDAO findUserServiceDAO;
     private InsertUserInfoServiceDAO insertUserInfoServiceDAO;
+    private InsertWalletServiceDAO insertWalletServiceDAO;
     
 	private String phone;
 	private String password;
-	
+	private int payPassword;
 	public String getPhone() {
 		return phone;
 	}
@@ -42,7 +45,12 @@ public class RegisterAction extends ActionSupport{
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
+	public int getPayPassword() {
+		return payPassword;
+	}
+	public void setPayPassword(int payPassword) {
+		this.payPassword = payPassword;
+	}
 	public void setRegisterServiceDAO(RegisterServiceDAO registerServiceDAO) {
 		this.registerServiceDAO = registerServiceDAO;
 	}
@@ -57,6 +65,14 @@ public class RegisterAction extends ActionSupport{
 	public void setInsertUserInfoServiceDAO(
 			InsertUserInfoServiceDAO insertUserInfoServiceDAO) {
 		this.insertUserInfoServiceDAO = insertUserInfoServiceDAO;
+	}
+	
+	public InsertWalletServiceDAO getInsertWalletServiceDAO() {
+		return insertWalletServiceDAO;
+	}
+	public void setInsertWalletServiceDAO(
+			InsertWalletServiceDAO insertWalletServiceDAO) {
+		this.insertWalletServiceDAO = insertWalletServiceDAO;
 	}
 	/**
 	 * Register:
@@ -88,8 +104,13 @@ public class RegisterAction extends ActionSupport{
 				user = findUserServiceDAO.findUserByPhone(u.getPhone());
 				UserInfo userInfo = new UserInfo();
 				userInfo.setUserId(user.getId());
-			
-				dataMap.put("register", insertUserInfoServiceDAO.insertUserInfo(userInfo));
+				if(insertUserInfoServiceDAO.insertUserInfo(userInfo)){
+					Wallet wallet = new Wallet();
+					wallet.setUserId(user.getId());
+					wallet.setMoney(50000);
+					wallet.setPassword(payPassword);
+					dataMap.put("register", insertWalletServiceDAO.insertWallet(wallet));
+				}
 				return "success";
 			}else{
 				dataMap.put("register", false);

@@ -17,7 +17,8 @@ public class OrderImpl extends BaseDAO implements OrderDAO{
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
 	    String sql = "insert into lb_order values(null,"+order.getShopId()+","+order.getUserId() +",'"+order.getOrderNumber()+
-	    		"',"+order.getOrderType()+",'"+order.getCreateTime()+"','"+order.getPayTime()+"','"+order.getFinishTime()+"',"+order.getAddressId()+")";
+	    		"',"+order.getOrderType()+",'"+order.getCreateTime()+"','"+order.getPayTime()+"','"+order.getFinishTime()+"',"
+	    	+order.getAddressId()+",'"+order.getRemark()+"')";
 	    System.out.println(sql);
 		boolean result = jdbcConnection.insert(sql);
 		jdbcConnection.close();
@@ -30,7 +31,7 @@ public class OrderImpl extends BaseDAO implements OrderDAO{
 		jdbcConnection.OpenConn();
 	    String sql = "update lb_order set shop_id="+order.getShopId()+",user_id="+order.getUserId() +",order_number='"+order.getOrderNumber()+
 	    		"',order_type="+order.getOrderType()+",create_time='"+order.getCreateTime()+"',pay_time='"+order.getPayTime()+"',finish_time='"+order.getFinishTime()
-	    		+"',address_id="+ order.getAddressId()+" where id=" +order.getId();
+	    		+"',address_id="+ order.getAddressId()+",remark='"+order.getRemark()+"' where id=" +order.getId();
 	    System.out.println(sql);
 		boolean result = jdbcConnection.update(sql);
 		jdbcConnection.close();
@@ -66,6 +67,7 @@ public class OrderImpl extends BaseDAO implements OrderDAO{
 				order.setPayTime(rs.getString("pay_time"));
 				order.setFinishTime(rs.getString("finish_time"));
 				order.setAddressId(rs.getInt("address_id"));
+				order.setRemark(rs.getString("remark"));
 			}
 			jdbcConnection.close();
 		} catch (SQLException e) {
@@ -102,6 +104,7 @@ public class OrderImpl extends BaseDAO implements OrderDAO{
 				order.setPayTime(rs.getString("pay_time"));
 				order.setFinishTime(rs.getString("finish_time"));
 				order.setAddressId(rs.getInt("address_id"));
+				order.setRemark(rs.getString("remark"));
 			}
 			jdbcConnection.close();
 		} catch (SQLException e) {
@@ -123,7 +126,7 @@ public class OrderImpl extends BaseDAO implements OrderDAO{
 		List<Order> orders = null;
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-	    String sql = "select * from lb_order where user_id="+userId;
+	    String sql = "select * from lb_order where user_id="+userId +" and order_type != 0"; 
 		ResultSet rs = jdbcConnection.find(sql);
 		try {
 			while(rs.next()) {
@@ -137,6 +140,7 @@ public class OrderImpl extends BaseDAO implements OrderDAO{
 				order.setPayTime(rs.getString("pay_time"));
 				order.setFinishTime(rs.getString("finish_time"));
 				order.setAddressId(rs.getInt("address_id"));
+				order.setRemark(rs.getString("remark"));
 				if(orders == null){
 					orders = new ArrayList<Order>();
 				}
@@ -162,7 +166,7 @@ public class OrderImpl extends BaseDAO implements OrderDAO{
 		List<Order> orders = null;
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-	    String sql = "select * from lb_order where shop_id="+shopId;
+	    String sql = "select * from lb_order where shop_id = "+shopId +" and order_type != 0 and order_type != 1";
 		ResultSet rs = jdbcConnection.find(sql);
 		try {
 			while(rs.next()) {
@@ -176,6 +180,7 @@ public class OrderImpl extends BaseDAO implements OrderDAO{
 				order.setPayTime(rs.getString("pay_time"));
 				order.setFinishTime(rs.getString("finish_time"));
 				order.setAddressId(rs.getInt("address_id"));
+				order.setRemark(rs.getString("remark"));
 				if(orders == null){
 					orders = new ArrayList<Order>();
 				}

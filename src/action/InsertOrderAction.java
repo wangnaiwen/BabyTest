@@ -26,6 +26,7 @@ public class InsertOrderAction extends ActionSupport{
 	private String payTime;
 	private String finishTime;
 	private int addressId;
+	private String remark;
 	private InsertOrderServiceDAO insertOrderServiceDAO;
 	private FindOrderByOrderNumberServiceDAO findOrderByOrderNumberServiceDAO;
 	
@@ -91,6 +92,13 @@ public class InsertOrderAction extends ActionSupport{
 	public void setAddressId(int addressId) {
 		this.addressId = addressId;
 	}
+	
+	public String getRemark() {
+		return remark;
+	}
+	public void setRemark(String remark) {
+		this.remark = remark;
+	}
 	@Override
 	public String execute() throws Exception{
 		Order order = new Order();
@@ -102,6 +110,7 @@ public class InsertOrderAction extends ActionSupport{
 		order.setCreateTime(createTime);
 		order.setPayTime(payTime);
 		order.setAddressId(addressId);
+		order.setRemark(remark);
 		dataMap = new HashMap<String, Object>();  
 		boolean reuslt = insertOrderServiceDAO.insertOrder(order);
 		if(reuslt){

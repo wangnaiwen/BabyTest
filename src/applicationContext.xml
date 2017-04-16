@@ -22,6 +22,7 @@
 	<bean id="newProductDAO" class="dao.impl.NewProductImpl" parent="baseDAO"></bean>
 	<bean id="hotSaleDAO" class="dao.impl.HotSaleImpl" parent="baseDAO"></bean>
 	<bean id="specialPriceDAO" class="dao.impl.SpecialPriceImpl" parent="baseDAO"></bean>
+	<bean id="walletDAO" class="dao.impl.WalletImpl" parent="baseDAO"></bean>
 	
 	<!-- configure the service -->
 	<!-- user service -->
@@ -174,6 +175,16 @@
 	<bean id="insertSpecialPriceServiceDAO" class="service.InsertSpecialPriceService" parent="baseSpecialPriceServiceDAO"></bean>
 	<bean id="findSpecialPriceServiceDAO" class="service.FindSpecialPriceService" parent="baseSpecialPriceServiceDAO"></bean>
 	
+		<!-- user wallet service -->
+	<bean id="baseWalletServiceDAO" class="service.dao.BaseWalletServiceDAO">
+		<property name="walletDAO" ref="walletDAO"></property>
+	</bean>
+	<bean id="insertWalletServiceDAO" class="service.InsertWalletService" parent="baseWalletServiceDAO"></bean>
+	<bean id="updateWalletPasswordServiceDAO" class="service.UpdateWalletPasswordService" parent="baseWalletServiceDAO"></bean>
+	<bean id="addWalletMoneyServiceDAO" class="service.AddWalletMoneyService" parent="baseWalletServiceDAO"></bean>
+	<bean id="subWalletMoneyServiceDAO" class="service.SubWalletMoneyService" parent="baseWalletServiceDAO"></bean>
+	<bean id="valiteWalletServiceDAO" class="service.ValiteWalletService" parent="baseWalletServiceDAO"></bean>
+	<bean id="findWalletMoneyByUserIdServiceDAO" class="service.FindWalletMoneyByUserIdService" parent="baseWalletServiceDAO"></bean>
 	
 	
 	<!-- configure the action -->
@@ -185,6 +196,7 @@
 		<property name="registerServiceDAO" ref="registerServiceDAO"></property>
 		<property name="findUserServiceDAO" ref="findUserServiceDAO"></property>
 		<property name="insertUserInfoServiceDAO" ref="insertUserInfoServiceDAO"></property>
+		<property name="insertWalletServiceDAO" ref="insertWalletServiceDAO"></property>
 	</bean>
 	<bean id="updateUserPasswordAction" class="action.UpdateUserPasswordAction">
 		<property name="updateUserPasswordServiceDAO" ref="updateUserPasswordServiceDAO"></property>
@@ -326,4 +338,22 @@
 	<bean id="findDealByOrderIdAction" class="action.FindDealByOrderIdAction">
 		<property name="findDealByOrderIdServiceDAO" ref="findDealByOrderIdServiceDAO"></property>
 	</bean>
+	
+	<!-- deal action -->
+	<bean id="updateWalletPasswordAction" class="action.UpdateWalletPasswordAction">
+		<property name="updateWalletPasswordServiceDAO" ref="updateWalletPasswordServiceDAO"></property>
+	</bean>
+	<bean id="addWalletMoneyAction" class="action.AddWalletMoneyAction">
+		<property name="addWalletMoneyServiceDAO" ref="addWalletMoneyServiceDAO"></property>
+	</bean>
+	<bean id="subWalletMoneyAction" class="action.SubWalletMoneyAction">
+		<property name="subWalletMoneyServiceDAO" ref="subWalletMoneyServiceDAO"></property>
+	</bean>
+	<bean id="valiteWalletAction" class="action.ValiteWalletAction">
+		<property name="valiteWalletServiceDAO" ref="valiteWalletServiceDAO"></property>
+	</bean>
+	<bean id="findWalletMoneyByUserIdAction" class="action.FindWalletMoneyByUserIdAction">
+		<property name="findWalletMoneyByUserIdServiceDAO" ref="findWalletMoneyByUserIdServiceDAO"></property>
+	</bean>
+	
 </beans>
