@@ -356,4 +356,11 @@
 		<property name="findWalletMoneyByUserIdServiceDAO" ref="findWalletMoneyByUserIdServiceDAO"></property>
 	</bean>
 	
+	<!-- deal action -->
+	<bean id="findProductByIdAction" class="action.FindProductByIdAction">
+		<property name="findProductByIdServiceDAO" ref="findProductByIdServiceDAO"></property>
+	</bean>
+	<bean id="findProductByScIdAction" class="action.FindProductByScIdAction">
+		<property name="findProductByScIdServiceDAO" ref="findProductByScIdServiceDAO"></property>
+	</bean>
 </beans>
