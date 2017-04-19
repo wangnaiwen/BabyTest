@@ -270,6 +270,9 @@
 	<bean id="findPrsByProductIdAction" class="action.FindPrsByProductIdAction">
 		<property name="findPrsByProductIdServiceDAO" ref="findPrsByProductIdServiceDAO"></property>
 	</bean>
+	<bean id="findPrsByDealIdAction" class="action.FindPrsByDealIdAction">
+		<property name="findPrsByDealIdServiceDAO" ref="findPrsByDealIdServiceDAO"></property>
+	</bean>
 	
 	<!-- shoppingCar action -->
 	<bean id="insertShoppingCarAction" class="action.InsertShoppingCarAction">

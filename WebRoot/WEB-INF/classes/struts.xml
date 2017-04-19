@@ -125,6 +125,11 @@
                 <param name="root">dataMap</param>  
             </result>
 		</action>
+		<action name="findPrsByDealId" class="findPrsByDealIdAction" >
+		    <result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
 		
 	<!-- shopping car review action-->	
 		<action name="insertShoppingCar" class="insertShoppingCarAction" >
