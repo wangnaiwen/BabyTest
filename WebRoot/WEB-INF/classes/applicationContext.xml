@@ -366,4 +366,20 @@
 	<bean id="findProductByScIdAction" class="action.FindProductByScIdAction">
 		<property name="findProductByScIdServiceDAO" ref="findProductByScIdServiceDAO"></property>
 	</bean>
+	
+	<!-- mc action -->
+	<bean id="findMcByIdAction" class="action.FindMcByIdAction">
+		<property name="findMcByIdServiceDAO" ref="findMcByIdServiceDAO"></property>
+	</bean>
+	<bean id="findMcsAction" class="action.FindMcsAction">
+		<property name="findMcsServiceDAO" ref="findMcsServiceDAO"></property>
+	</bean>
+	
+	<!-- sc action -->
+	<bean id="findScByIdAction" class="action.FindScByIdAction">
+		<property name="findScByIdServiceDAO" ref="findScByIdServiceDAO"></property>
+	</bean>
+	<bean id="findScByMcIdAction" class="action.FindScByMcIdAction">
+		<property name="findScByMcIdServiceDAO" ref="findScsByMcIdServiceDAO"></property>
+	</bean>
 </beans>

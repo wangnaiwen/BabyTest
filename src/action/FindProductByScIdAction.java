@@ -18,6 +18,7 @@ public class FindProductByScIdAction extends ActionSupport{
     private String key = "Just see see";
 	private static final long serialVersionUID = 1L;
 	private int scId;
+	private int number;
 	private FindProductByScIdServiceDAO findProductByScIdServiceDAO;
 	
 	public int getScId() {
@@ -25,6 +26,12 @@ public class FindProductByScIdAction extends ActionSupport{
 	}
 	public void setScId(int scId) {
 		this.scId = scId;
+	}
+	public int getNumber() {
+		return number;
+	}
+	public void setNumber(int number) {
+		this.number = number;
 	}
 	public FindProductByScIdServiceDAO getFindProductByScIdServiceDAO() {
 		return findProductByScIdServiceDAO;
@@ -36,7 +43,7 @@ public class FindProductByScIdAction extends ActionSupport{
 	@Override
 	public String execute() throws Exception{
 		dataMap = new HashMap<String, Object>();  
-		dataMap.put("findProductByscId", findProductByScIdServiceDAO.findProductByScId(scId));
+		dataMap.put("findProductByscId", findProductByScIdServiceDAO.findProductByScId(scId, number));
 		return "success";
 	}
 	public Map<String, Object> getDataMap() {  

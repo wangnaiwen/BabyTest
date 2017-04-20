@@ -5,5 +5,5 @@ import java.util.List;
 import domain.Product;
 
 public interface FindProductByScIdServiceDAO {
-	List<Product> findProductByScId(int scId);
+	List<Product> findProductByScId(int scId, int number);
 }

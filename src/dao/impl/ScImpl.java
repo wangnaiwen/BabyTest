@@ -17,7 +17,7 @@ public class ScImpl extends BaseDAO implements ScDAO{
 	public boolean insertSc(Sc sc) {
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-	    String sql = "insert into lb_sc values(null, '"+sc.getName()+"',"+sc.getMcId()+")";
+	    String sql = "insert into lb_sc values(null, '"+sc.getName()+"',"+sc.getMcId()+",'"+sc.getImage()+"')";
 	    System.out.println(sql);
 		boolean result = jdbcConnection.insert(sql);
 		jdbcConnection.close();
@@ -28,7 +28,7 @@ public class ScImpl extends BaseDAO implements ScDAO{
 	public boolean updateSc(Sc sc) {
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-	    String sql = "update lb_sc set name='"+sc.getName()+"',mc_id="+sc.getMcId() +" where id=" + sc.getId();
+	    String sql = "update lb_sc set name='"+sc.getName()+"',mc_id="+sc.getMcId()+ ",image='"+sc.getImage()+"' where id=" + sc.getId();
 	    System.out.println(sql);
 		boolean result = jdbcConnection.update(sql);
 		jdbcConnection.close();
@@ -51,7 +51,7 @@ public class ScImpl extends BaseDAO implements ScDAO{
 		Sc sc = null;
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-	    String sql = "select * from sc where id="+id;
+	    String sql = "select * from lb_sc where id="+id;
 		ResultSet rs = jdbcConnection.find(sql);
 		try {
 			if(rs.next()) {
@@ -59,6 +59,7 @@ public class ScImpl extends BaseDAO implements ScDAO{
 				sc.setId(rs.getInt("id"));
 				sc.setName(rs.getString("name"));
 				sc.setMcId(rs.getInt("mc_id"));
+				sc.setImage(rs.getString("image"));
 			}
 			jdbcConnection.close();
 		} catch (SQLException e) {
@@ -80,7 +81,7 @@ public class ScImpl extends BaseDAO implements ScDAO{
 		List<Sc> scList = null;
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-	    String sql = "select * from sc where mc_id="+mcId;
+	    String sql = "select * from lb_sc where mc_id="+mcId;
 		ResultSet rs = jdbcConnection.find(sql);
 		try {
 			while(rs.next()) {
@@ -88,6 +89,7 @@ public class ScImpl extends BaseDAO implements ScDAO{
 				sc.setId(rs.getInt("id"));
 				sc.setName(rs.getString("name"));
 				sc.setMcId(rs.getInt("mc_id"));
+				sc.setImage(rs.getString("image"));
 				if(scList == null){
 					scList = new ArrayList<Sc>();
 				}

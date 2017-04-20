@@ -4,6 +4,7 @@ public class Sc {
 	private int id;
 	private String name;
 	private int mcId;
+	private String image;
 	public int getId() {
 		return id;
 	}
@@ -22,5 +23,12 @@ public class Sc {
 	public void setMcId(int mcId) {
 		this.mcId = mcId;
 	}
+	public String getImage() {
+		return image;
+	}
+	public void setImage(String image) {
+		this.image = image;
+	}
+	
 	
 }

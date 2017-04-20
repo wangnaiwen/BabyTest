@@ -272,5 +272,29 @@
                 <param name="root">dataMap</param>  
             </result>
 		</action>
+		
+		<!-- mc action -->
+		<action name="findMcById" class="findMcByIdAction" >
+		    <result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
+		<action name="findMcs" class="findMcsAction" >
+		    <result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
+		
+		<!-- sc action -->
+		<action name="findScById" class="findScByIdAction" >
+		    <result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
+		<action name="findScByMcId" class="findScByMcIdAction" >
+		    <result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
 	</package>
 </struts>   

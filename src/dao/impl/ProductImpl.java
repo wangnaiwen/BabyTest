@@ -121,11 +121,11 @@ public class ProductImpl extends BaseDAO implements ProductDAO{
 	}
 
 	@Override
-	public List<Product> findProductByScId(int scId) {
+	public List<Product> findProductByScId(int scId, int number) {
 		List<Product> products = null;
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-	    String sql = "select * from lb_product where sc_id="+scId;
+	    String sql = "select * from lb_product where sc_id="+scId+" order by id desc limit "+ ((number-1)*10)+","+number*10;
 		ResultSet rs = jdbcConnection.find(sql);
 		try {
 			while(rs.next()) {

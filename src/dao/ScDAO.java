@@ -10,5 +10,5 @@ public interface ScDAO {
 	boolean deleteSc(int id);
 	Sc findScById(int id);
 	List<Sc> findScsByMcId(int mcId);
-
+	
 }

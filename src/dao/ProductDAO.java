@@ -10,5 +10,5 @@ public interface ProductDAO {
 	boolean deleteProduct(int id);
 	Product findProductById(int id);
 	Product findProductByNumbering(String numbering);
-	List<Product> findProductByScId(int scId);
+	List<Product> findProductByScId(int scId, int number);
 }
