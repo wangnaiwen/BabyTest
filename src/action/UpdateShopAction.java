@@ -27,6 +27,7 @@ public class UpdateShopAction extends ActionSupport{
 	private long money;
 	private String idCard;
 	private int reviewType;
+	private int invitee;
 	
 	public UpdateShopServiceDAO getUpdateShopServiceDAO() {
 		return updateShopServiceDAO;
@@ -82,6 +83,13 @@ public class UpdateShopAction extends ActionSupport{
 	public void setReviewType(int reviewType) {
 		this.reviewType = reviewType;
 	}
+	
+	public int getInvitee() {
+		return invitee;
+	}
+	public void setInvitee(int invitee) {
+		this.invitee = invitee;
+	}
 	@Override
 	public String execute() throws Exception{
 		Shop shop = new Shop();
@@ -93,6 +101,7 @@ public class UpdateShopAction extends ActionSupport{
 		shop.setReviewType(reviewType);
 		shop.setOwner(owner);
 		shop.setWechat(wechat);
+		shop.setInvitee(invitee);
 		dataMap = new HashMap<String, Object>();  
 		dataMap.put("updateShop", updateShopServiceDAO.updateShop(shop));
 		return "success";

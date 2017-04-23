@@ -30,6 +30,11 @@
                 <param name="root">dataMap</param>  
             </result>
 		</action>
+		<action name="findUserById" class="findUserByIdAction" >
+		    <result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
 		
 	<!-- userinfo action-->
 		<action name="insertUserInfo" class="insertUserInfoAction" >
@@ -211,6 +216,11 @@
                 <param name="root">dataMap</param>  
             </result>
 		</action>
+		<action name="findOrderByInvitee" class="findOrderByInviteeAction" >
+		    <result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
 		
 	<!-- deal action -->
 		<action name="insertDeal" class="insertDealAction" >
@@ -229,6 +239,16 @@
             </result>
 		</action>
 		<action name="findDealByOrderId" class="findDealByOrderIdAction" >
+		    <result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
+		<action name="findIncomeByShopId" class="findIncomeByShopIdAction" >
+		    <result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
+		<action name="findIncomeByInvitee" class="findIncomeByInviteeAction" >
 		    <result type="json">  
                 <param name="root">dataMap</param>  
             </result>

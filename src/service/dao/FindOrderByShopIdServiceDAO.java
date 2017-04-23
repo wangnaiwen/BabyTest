@@ -5,5 +5,5 @@ import java.util.List;
 import domain.Order;
 
 public interface FindOrderByShopIdServiceDAO {
-	List<Order> findOrderByShopId(int shopId);
+	List<Order> findOrderByShopId(int shopId, int number);
 }

@@ -118,4 +118,59 @@ public class DealImpl extends BaseDAO implements DealDAO{
 		return deals;
 	}
 
+	@Override
+	public int findIncomeByShopId(int shopId) {
+		int income = 0;
+		JDBCConnection jdbcConnection = getJdbcConnection();
+		jdbcConnection.OpenConn();
+	    String sql = "SELECT SUM(sum_price) FROM lb_deal WHERE order_id IN "
+	    		+ "(SELECT id FROM lb_order WHERE shop_id = "+shopId+" AND order_type = 5)";
+		ResultSet rs = jdbcConnection.find(sql);
+		try {
+			if(rs.next()) {
+				income = rs.getInt("SUM(sum_price)");
+			}
+			jdbcConnection.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			if(rs != null){
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return income;
+	}
+
+	@Override
+	public int findIncomeByInvitee(int invitee) {
+		int income = 0;
+		JDBCConnection jdbcConnection = getJdbcConnection();
+		jdbcConnection.OpenConn();
+	    String sql = "SELECT SUM(sum_price) FROM lb_deal WHERE order_id IN "
+	    		+ "(SELECT id FROM lb_order WHERE shop_id IN "
+	    		+ "(SELECT id FROM lb_shop WHERE invitee = "+invitee+") AND order_type = 5)";
+		ResultSet rs = jdbcConnection.find(sql);
+		try {
+			if(rs.next()) {
+				income = rs.getInt("SUM(sum_price)");
+			}
+			jdbcConnection.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			if(rs != null){
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return income;
+	}
+
 }

@@ -34,6 +34,7 @@
     <bean id="updateUserPasswordServiceDAO" class="service.UpdateUserPasswordService" parent="baseUserServiceDAO"></bean>	
     <bean id="updateUserTypeServiceDAO" class="service.UpdateUserTypeService" parent="baseUserServiceDAO"></bean>
 	<bean id="findUserServiceDAO" class="service.FindUserService" parent="baseUserServiceDAO"></bean>
+	<bean id="findUserByIdServiceDAO" class="service.FindUserByIdService" parent="baseUserServiceDAO"></bean>
 	
 	<!-- userinfo service -->
 	<bean id="baseUserInfoServiceDAO" class="service.dao.BaseUserInfoServiceDAO">
@@ -64,6 +65,9 @@
 	<bean id="deleteDealServiceDAO" class="service.DeleteDealService" parent="baseDealServiceDAO"></bean>
 	<bean id="findDealByIdServiceDAO" class="service.FindDealByIdService" parent="baseDealServiceDAO"></bean>
 	<bean id="findDealByOrderIdServiceDAO" class="service.FindDealByOrderIdService" parent="baseDealServiceDAO"></bean>
+	<bean id="findIncomeByShopIdServiceDAO" class="service.FindIncomeByShopIdService" parent="baseDealServiceDAO"></bean>
+	<bean id="findIncomeByInviteeServiceDAO" class="service.FindIncomeByInviteeService" parent="baseDealServiceDAO"></bean>
+	
 	
 	<!-- mc service -->
 	<bean id="baseMcServiceDAO" class="service.dao.BaseMcServiceDAO">
@@ -86,6 +90,8 @@
 	<bean id="findOrderByUserIdServiceDAO" class="service.FindOrderByUserIdService" parent="baseOrderServiceDAO"></bean>
 	<bean id="findOrderByShopIdServiceDAO" class="service.FindOrderByShopIdService" parent="baseOrderServiceDAO"></bean>
 	<bean id="findOrderByOrderNumberServiceDAO" class="service.FindOrderByOrderNumberService" parent="baseOrderServiceDAO"></bean>
+	<bean id="findOrderByInviteeServiceDAO" class="service.FindOrderByInviteeService" parent="baseOrderServiceDAO"></bean>
+	
 	
 	<!-- pr service -->
 	<bean id="basePrServiceDAO" class="service.dao.BasePrServiceDAO">
@@ -207,6 +213,9 @@
 	<bean id="findUserAction" class="action.FindUserAction">
 		<property name="findUserServiceDAO" ref="findUserServiceDAO"></property>
 	</bean>
+	<bean id="findUserByIdAction" class="action.FindUserByIdAction">
+		<property name="findUserByIdServiceDAO" ref="findUserByIdServiceDAO"></property>
+	</bean>
 	
 	<!-- userinfo action -->
 	<bean id ="insertUserInfoAction" class="action.InsertUserInfoAction">
@@ -327,6 +336,9 @@
 	<bean id="findOrderByShopIdAction" class="action.FindOrderByShopIdAction">
 		<property name="findOrderByShopIdServiceDAO" ref="findOrderByShopIdServiceDAO"></property>
 	</bean>
+	<bean id="findOrderByInviteeAction" class="action.FindOrderByInviteeAction">
+		<property name="findOrderByInviteeServiceDAO" ref="findOrderByInviteeServiceDAO"></property>
+	</bean>
 	
 	<!-- deal action -->
 	<bean id="insertDealAction" class="action.InsertDealAction">
@@ -357,6 +369,12 @@
 	</bean>
 	<bean id="findWalletMoneyByUserIdAction" class="action.FindWalletMoneyByUserIdAction">
 		<property name="findWalletMoneyByUserIdServiceDAO" ref="findWalletMoneyByUserIdServiceDAO"></property>
+	</bean>
+	<bean id="findIncomeByShopIdAction" class="action.FindIncomeByShopIdAction">
+		<property name="findIncomeByShopIdServiceDAO" ref="findIncomeByShopIdServiceDAO"></property>
+	</bean>
+	<bean id="findIncomeByInviteeAction" class="action.FindIncomeByInviteeAction">
+		<property name="findIncomeByInviteeServiceDAO" ref="findIncomeByInviteeServiceDAO"></property>
 	</bean>
 	
 	<!-- deal action -->

@@ -162,11 +162,11 @@ public class OrderImpl extends BaseDAO implements OrderDAO{
 	}
 
 	@Override
-	public List<Order> findOrderByShopId(int shopId) {
+	public List<Order> findOrderByShopId(int shopId, int number) {
 		List<Order> orders = null;
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-	    String sql = "select * from lb_order where shop_id = "+shopId +" and order_type != 0 and order_type != 1";
+	    String sql = "select * from lb_order where shop_id = "+shopId +" and order_type = 5 order by id desc limit "+((number-1)*10)+","+number*10;
 		ResultSet rs = jdbcConnection.find(sql);
 		try {
 			while(rs.next()) {
@@ -201,4 +201,46 @@ public class OrderImpl extends BaseDAO implements OrderDAO{
 		return orders;
 	}
 
+	@Override
+	public List<Order> findOrderByInvitee(int invitee, int number) {
+		List<Order> orders = null;
+		JDBCConnection jdbcConnection = getJdbcConnection();
+		jdbcConnection.OpenConn();
+	    String sql = "SELECT * from lb_order where shop_id IN "
+	    		+ "(SELECT id FROM lb_shop where invitee = "+invitee+") and order_type = 5 order by id desc limit "+((number-1)*10)+","+number*10 ;
+		ResultSet rs = jdbcConnection.find(sql);
+		try {
+			while(rs.next()) {
+				Order order = new Order();
+				order.setId(rs.getInt("id"));
+				order.setShopId(rs.getInt("shop_id"));
+				order.setUserId(rs.getInt("user_id"));
+				order.setOrderNumber(rs.getString("order_number"));
+				order.setOrderType(rs.getInt("order_type"));
+				order.setCreateTime(rs.getString("create_time"));
+				order.setPayTime(rs.getString("pay_time"));
+				order.setFinishTime(rs.getString("finish_time"));
+				order.setAddressId(rs.getInt("address_id"));
+				order.setRemark(rs.getString("remark"));
+				if(orders == null){
+					orders = new ArrayList<Order>();
+				}
+				orders.add(order);
+			}
+			jdbcConnection.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			if(rs != null){
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return orders;
+	}
+
+	
 }

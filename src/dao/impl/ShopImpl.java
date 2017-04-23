@@ -16,8 +16,14 @@ public class ShopImpl extends BaseDAO implements ShopDAO{
 	public boolean insertShop(Shop shop) {
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-	    String sql = "insert into lb_shop values(null, "+shop.getUserId()+",'"+shop.getName()+"','"+shop.getOwner()+"','"
-	    		+ shop.getWechat()+ "',"+shop.getMoney()+ ",'"+shop.getIdCard()+"',"+shop.getReviewType()+","+shop.getInvitee()+ ")";
+		String sql = null;
+		if(shop.getInvitee() == 0){
+			sql = "insert into lb_shop values(null, "+shop.getUserId()+",'"+shop.getName()+"','"+shop.getOwner()+"','"
+		    		+ shop.getWechat()+ "',"+shop.getMoney()+ ",'"+shop.getIdCard()+"',"+shop.getReviewType()+",null)";
+		}else {
+			sql = "insert into lb_shop values(null, "+shop.getUserId()+",'"+shop.getName()+"','"+shop.getOwner()+"','"
+		    		+ shop.getWechat()+ "',"+shop.getMoney()+ ",'"+shop.getIdCard()+"',"+shop.getReviewType()+","+shop.getInvitee()+ ")";
+		}
 	    System.out.println(sql);
 		boolean result = jdbcConnection.insert(sql);
 		jdbcConnection.close();
@@ -28,8 +34,16 @@ public class ShopImpl extends BaseDAO implements ShopDAO{
 	public boolean updateShop(Shop shop) {
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-	    String sql = "update lb_shop set name='"+shop.getName()+"',owner='"+shop.getOwner()+ "',wechat='"+shop.getWechat()+"',money="
-		+shop.getMoney()+",id_card='"+shop.getIdCard()+"',review_type=" +shop.getReviewType() +" where id="+ shop.getId();
+		String sql = null;
+		if(shop.getInvitee() == 0){
+			sql = "update lb_shop set name='"+shop.getName()+"',owner='"+shop.getOwner()+ "',wechat='"+shop.getWechat()+"',money="
+					+shop.getMoney()+",id_card='"+shop.getIdCard()+"',review_type=" +shop.getReviewType()
+					+",invitee = null where id="+ shop.getId();
+		}else{
+			sql = "update lb_shop set name='"+shop.getName()+"',owner='"+shop.getOwner()+ "',wechat='"+shop.getWechat()+"',money="
+					+shop.getMoney()+",id_card='"+shop.getIdCard()+"',review_type=" +shop.getReviewType() 
+					+",invitee=" +shop.getInvitee()+" where id="+ shop.getId();
+		}
 	    System.out.println(sql);
 		boolean result = jdbcConnection.update(sql);
 		jdbcConnection.close();

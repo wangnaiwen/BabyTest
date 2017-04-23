@@ -88,7 +88,7 @@ public class PrImpl extends BaseDAO implements PrDAO{
 		List<Pr> prList = null;
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-	    String sql = "select * from lb_pr where user_id="+userId+" order by id desc limit "+((number-1)*20)+","+number*20;;
+	    String sql = "select * from lb_pr where user_id="+userId+" order by id desc limit "+((number-1)*20)+","+number*20;
 		ResultSet rs = jdbcConnection.find(sql);
 		try {
 			while(rs.next()) {

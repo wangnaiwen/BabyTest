@@ -10,4 +10,6 @@ public interface DealDAO {
 	boolean deleteDeal(int id);
 	Deal findDealById(int id);
 	List<Deal> findDealByOrderId(int orderId);
+	int findIncomeByShopId(int shopId);
+	int findIncomeByInvitee(int invitee);
 }

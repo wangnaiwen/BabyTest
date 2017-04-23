@@ -127,7 +127,7 @@ public class ReceAddressImpl extends BaseDAO implements ReceAddressDAO{
 		ReceAddress address = null;
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-	    String sql = "select * from lb_rece_add where id=(select max(id) from rece_add where user_id="+userId + ")";
+	    String sql = "select * from lb_rece_add where id=(select max(id) from lb_rece_add where user_id="+userId + ")";
 		ResultSet rs = jdbcConnection.find(sql);
 		try {
 			if(rs.next()) {

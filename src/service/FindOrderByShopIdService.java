@@ -10,9 +10,9 @@ import service.dao.FindOrderByShopIdServiceDAO;
 public class FindOrderByShopIdService extends BaseOrderServiceDAO implements FindOrderByShopIdServiceDAO{
 
 	@Override
-	public List<Order> findOrderByShopId(int shopId) {
+	public List<Order> findOrderByShopId(int shopId, int number) {
 		OrderDAO orderDAO = getOrderDAO();
-		return orderDAO.findOrderByShopId(shopId);
+		return orderDAO.findOrderByShopId(shopId, number);
 	}
 
 }

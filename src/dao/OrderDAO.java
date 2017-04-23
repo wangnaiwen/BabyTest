@@ -10,5 +10,6 @@ public interface OrderDAO {
 	Order findOrderById(int id);
 	Order findOrderByNumbering(String order_number);
 	List<Order> findOrderByUserId(int userId);
-	List<Order> findOrderByShopId(int shopId);
+	List<Order> findOrderByShopId(int shopId, int number);
+	List<Order> findOrderByInvitee(int invitee, int number);
 }
