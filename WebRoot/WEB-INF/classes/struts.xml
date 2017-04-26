@@ -292,6 +292,11 @@
                 <param name="root">dataMap</param>  
             </result>
 		</action>
+		<action name="findProductByKey" class="findProductByKeyAction" >
+		    <result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
 		
 		<!-- mc action -->
 		<action name="findMcById" class="findMcByIdAction" >
@@ -312,6 +317,30 @@
             </result>
 		</action>
 		<action name="findScByMcId" class="findScByMcIdAction" >
+		    <result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
+		
+		<!-- withdraw action -->
+		<action name="insertWithdraw" class="insertWithdrawAction" >
+		    <result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
+		<action name="findWithdrawMoneyByUserId" class="findWithdrawMoneyByUserIdAction" >
+		    <result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
+		
+		<!-- search action -->
+		<action name="insertSearch" class="insertSearchAction" >
+		    <result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
+		<action name="findSearchByUserId" class="findSearchByUserIdAction" >
 		    <result type="json">  
                 <param name="root">dataMap</param>  
             </result>

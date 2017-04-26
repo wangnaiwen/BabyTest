@@ -23,7 +23,7 @@ public class WalletImpl extends BaseDAO implements WalletDAO{
 	}
 
 	@Override
-	public boolean updateWalletPassword(int userId, int password) {
+	public boolean updateWalletPassword(int userId, String password) {
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
 	    String sql = "update lb_user_wallet set password = '" +password + "' where user_id = " +userId;
@@ -56,7 +56,7 @@ public class WalletImpl extends BaseDAO implements WalletDAO{
 	}
 
 	@Override
-	public boolean valiteWallet(int userId, int password) {
+	public boolean valiteWallet(int userId, String password) {
 		boolean result = false;
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();

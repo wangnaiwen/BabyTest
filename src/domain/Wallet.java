@@ -4,7 +4,7 @@ public class Wallet {
 	private int id;
 	private int userId;
 	private int money;
-	private int password;
+	private String password;
 	public int getId() {
 		return id;
 	}
@@ -23,10 +23,10 @@ public class Wallet {
 	public void setMoney(int money) {
 		this.money = money;
 	}
-	public int getPassword() {
+	public String getPassword() {
 		return password;
 	}
-	public void setPassword(int password) {
+	public void setPassword(String password) {
 		this.password = password;
 	}
 }

@@ -7,7 +7,7 @@ import service.dao.UpdateWalletPasswordServiceDAO;
 public class UpdateWalletPasswordService extends BaseWalletServiceDAO implements UpdateWalletPasswordServiceDAO{
 
 	@Override
-	public boolean updateWalletPassword(int userId, int password) {
+	public boolean updateWalletPassword(int userId, String password) {
 		WalletDAO walletDAO = getWalletDAO();
 		return walletDAO.updateWalletPassword(userId,password);
 	}

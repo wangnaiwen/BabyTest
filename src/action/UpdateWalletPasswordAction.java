@@ -17,7 +17,7 @@ public class UpdateWalletPasswordAction  extends ActionSupport{
     private Map<String,Object> dataMap;  
     private String key = "Just see see";
     private int userId;
-    private int password;
+    private String password;
     private UpdateWalletPasswordServiceDAO updateWalletPasswordServiceDAO;
     
     public int getUserId() {
@@ -26,10 +26,10 @@ public class UpdateWalletPasswordAction  extends ActionSupport{
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
-	public int getPassword() {
+	public String getPassword() {
 		return password;
 	}
-	public void setPassword(int password) {
+	public void setPassword(String password) {
 		this.password = password;
 	}
 	public UpdateWalletPasswordServiceDAO getUpdateWalletPasswordServiceDAO() {

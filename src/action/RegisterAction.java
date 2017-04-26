@@ -32,7 +32,7 @@ public class RegisterAction extends ActionSupport{
     
 	private String phone;
 	private String password;
-	private int payPassword;
+	private String payPassword;
 	public String getPhone() {
 		return phone;
 	}
@@ -45,10 +45,10 @@ public class RegisterAction extends ActionSupport{
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public int getPayPassword() {
+	public String getPayPassword() {
 		return payPassword;
 	}
-	public void setPayPassword(int payPassword) {
+	public void setPayPassword(String payPassword) {
 		this.payPassword = payPassword;
 	}
 	public void setRegisterServiceDAO(RegisterServiceDAO registerServiceDAO) {

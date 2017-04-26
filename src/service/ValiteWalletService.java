@@ -7,7 +7,7 @@ import dao.WalletDAO;
 public class ValiteWalletService extends BaseWalletServiceDAO implements ValiteWalletServiceDAO{
 
 	@Override
-	public boolean valiteWallet(int userId, int password) {
+	public boolean valiteWallet(int userId, String password) {
 		WalletDAO walletDAO = getWalletDAO();
 		return walletDAO.valiteWallet(userId, password);
 	}

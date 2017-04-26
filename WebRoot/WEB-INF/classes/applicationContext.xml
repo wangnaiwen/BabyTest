@@ -23,6 +23,9 @@
 	<bean id="hotSaleDAO" class="dao.impl.HotSaleImpl" parent="baseDAO"></bean>
 	<bean id="specialPriceDAO" class="dao.impl.SpecialPriceImpl" parent="baseDAO"></bean>
 	<bean id="walletDAO" class="dao.impl.WalletImpl" parent="baseDAO"></bean>
+	<bean id="withdrawDAO" class="dao.impl.WithdrawImpl" parent="baseDAO"></bean>
+	<bean id="searchDAO" class="dao.impl.SearchImpl" parent="baseDAO"></bean>
+	
 	
 	<!-- configure the service -->
 	<!-- user service -->
@@ -114,6 +117,7 @@
 	<bean id="findProductByIdServiceDAO" class="service.FindProductByIdService" parent="baseProductServiceDAO"></bean>
 	<bean id="findProductByNumberingServiceDAO" class="service.FindProductByNumberingService" parent="baseProductServiceDAO"></bean>
 	<bean id="findProductByScIdServiceDAO" class="service.FindProductByScIdService" parent="baseProductServiceDAO"></bean>
+	<bean id="findProductByKeyServiceDAO" class="service.FindProductByKeyService" parent="baseProductServiceDAO"></bean>
 	
 	<!-- shop service -->
 	<bean id="baseShopServiceDAO" class="service.dao.BaseShopServiceDAO">
@@ -191,6 +195,20 @@
 	<bean id="subWalletMoneyServiceDAO" class="service.SubWalletMoneyService" parent="baseWalletServiceDAO"></bean>
 	<bean id="valiteWalletServiceDAO" class="service.ValiteWalletService" parent="baseWalletServiceDAO"></bean>
 	<bean id="findWalletMoneyByUserIdServiceDAO" class="service.FindWalletMoneyByUserIdService" parent="baseWalletServiceDAO"></bean>
+	
+	<!-- withdraw service -->
+	<bean id="baseWithdrawServiceDAO" class="service.dao.BaseWithdrawServiceDAO">
+		<property name="withdrawDAO" ref="withdrawDAO"></property>
+	</bean>
+	<bean id="insertWithdrawServiceDAO" class="service.InsertWithdrawService" parent="baseWithdrawServiceDAO"></bean>
+	<bean id="findWithdrawMoneyByUserIdServiceDAO" class="service.FindWithdrawMoneyByUserIdService" parent="baseWithdrawServiceDAO"></bean>
+	
+	<!-- search service -->
+	<bean id="baseSearchServiceDAO" class="service.dao.BaseSearchServiceDAO">
+		<property name="searchDAO" ref="searchDAO"></property>
+	</bean>
+	<bean id="insertSearchServiceDAO" class="service.InsertSearchService" parent="baseSearchServiceDAO"></bean>
+	<bean id="findSearchByUserIdServiceDAO" class="service.FindSearchByUserIdService" parent="baseSearchServiceDAO"></bean>
 	
 	
 	<!-- configure the action -->
@@ -377,12 +395,16 @@
 		<property name="findIncomeByInviteeServiceDAO" ref="findIncomeByInviteeServiceDAO"></property>
 	</bean>
 	
-	<!-- deal action -->
+	<!-- product action -->
 	<bean id="findProductByIdAction" class="action.FindProductByIdAction">
 		<property name="findProductByIdServiceDAO" ref="findProductByIdServiceDAO"></property>
 	</bean>
 	<bean id="findProductByScIdAction" class="action.FindProductByScIdAction">
 		<property name="findProductByScIdServiceDAO" ref="findProductByScIdServiceDAO"></property>
+	</bean>
+	<bean id="findProductByKeyAction" class="action.FindProductByKeyAction">
+		<property name="findProductByKeyServiceDAO" ref="findProductByKeyServiceDAO"></property>
+		<property name="insertSearchServiceDAO" ref="insertSearchServiceDAO"></property>
 	</bean>
 	
 	<!-- mc action -->
@@ -399,5 +421,21 @@
 	</bean>
 	<bean id="findScByMcIdAction" class="action.FindScByMcIdAction">
 		<property name="findScByMcIdServiceDAO" ref="findScsByMcIdServiceDAO"></property>
+	</bean>
+	
+	<!-- withdraw action -->
+	<bean id="insertWithdrawAction" class="action.InsertWithdrawAction">
+		<property name="insertWithdrawServiceDAO" ref="insertWithdrawServiceDAO"></property>
+	</bean>
+	<bean id="findWithdrawMoneyByUserIdAction" class="action.FindWithdrawByUserIdAction">
+		<property name="findWithdrawMoneyByUserIServiceDAO" ref="findWithdrawMoneyByUserIdServiceDAO"></property>
+	</bean>
+	
+	<!-- search action -->
+	<bean id="insertSearchAction" class="action.InsertSearchAction">
+		<property name="insertSearchServiceDAO" ref="insertSearchServiceDAO"></property>
+	</bean>
+	<bean id="findSearchByUserIdAction" class="action.FindSearchByUserIdAction">
+		<property name="findSearchByUserIdServiceDAO" ref="findSearchByUserIdServiceDAO"></property>
 	</bean>
 </beans>

@@ -159,4 +159,44 @@ public class ProductImpl extends BaseDAO implements ProductDAO{
 		return products;
 	}
 
+	//Ä£ºý²éÑ¯
+	@Override
+	public List<Product> findProductByKey(String key) {
+		List<Product> products = null;
+		JDBCConnection jdbcConnection = getJdbcConnection();
+		jdbcConnection.OpenConn();
+	    String sql = "select * from lb_product where name LIKE '%"+key+"%' LIMIT 0, 10";
+		ResultSet rs = jdbcConnection.find(sql);
+		try {
+			while(rs.next()) {
+				Product p = new Product();
+				p.setId(rs.getInt("id"));
+				p.setScId(rs.getInt("sc_id"));
+				p.setNumbering(rs.getString("numbering"));
+				p.setName(rs.getString("name"));
+				p.setBrand(rs.getString("brand"));
+				p.setDescription(rs.getString("description"));
+				p.setStandardPrice(rs.getInt("standard_price"));
+				p.setRetailPrice(rs.getInt("retail_price"));
+				p.setCoverImg(rs.getString("cover_img"));
+				if(products == null){
+					products = new ArrayList<Product>();
+				}
+				products.add(p);
+			}
+			jdbcConnection.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			if(rs != null){
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return products;
+	}
+
 }
