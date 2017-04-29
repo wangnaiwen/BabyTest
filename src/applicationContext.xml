@@ -25,6 +25,7 @@
 	<bean id="walletDAO" class="dao.impl.WalletImpl" parent="baseDAO"></bean>
 	<bean id="withdrawDAO" class="dao.impl.WithdrawImpl" parent="baseDAO"></bean>
 	<bean id="searchDAO" class="dao.impl.SearchImpl" parent="baseDAO"></bean>
+	<bean id="adminDAO" class="dao.impl.AdminImpl" parent="baseDAO"></bean>
 	
 	
 	<!-- configure the service -->
@@ -94,6 +95,8 @@
 	<bean id="findOrderByShopIdServiceDAO" class="service.FindOrderByShopIdService" parent="baseOrderServiceDAO"></bean>
 	<bean id="findOrderByOrderNumberServiceDAO" class="service.FindOrderByOrderNumberService" parent="baseOrderServiceDAO"></bean>
 	<bean id="findOrderByInviteeServiceDAO" class="service.FindOrderByInviteeService" parent="baseOrderServiceDAO"></bean>
+	<bean id="findSentOrderServiceDAO" class="service.FindSentService" parent="baseOrderServiceDAO"></bean>
+	<bean id="findFinishOrderServiceDAO" class="service.FindFinishOrderService" parent="baseOrderServiceDAO"></bean>
 	
 	
 	<!-- pr service -->
@@ -209,6 +212,12 @@
 	</bean>
 	<bean id="insertSearchServiceDAO" class="service.InsertSearchService" parent="baseSearchServiceDAO"></bean>
 	<bean id="findSearchByUserIdServiceDAO" class="service.FindSearchByUserIdService" parent="baseSearchServiceDAO"></bean>
+	
+	<!-- admin service -->
+	<bean id="baseAdminServiceDAO" class="service.dao.BaseAdminServiceDAO">
+		<property name="adminDAO" ref="adminDAO"></property>
+	</bean>
+	<bean id="findAdminServiceDAO" class="service.FindAdminService" parent="baseAdminServiceDAO"></bean>
 	
 	
 	<!-- configure the action -->
@@ -357,6 +366,12 @@
 	<bean id="findOrderByInviteeAction" class="action.FindOrderByInviteeAction">
 		<property name="findOrderByInviteeServiceDAO" ref="findOrderByInviteeServiceDAO"></property>
 	</bean>
+	<bean id="findSentOrderAction" class="action.FindBeSentOrderAction">
+		<property name="findSentOrderServiceDAO" ref="findSentOrderServiceDAO"></property>
+	</bean>
+	<bean id="findFinishOrderAction" class="action.FindFinishOrderAction">
+		<property name="findFinishOrderServiceDAO" ref="findFinishOrderServiceDAO"></property>
+	</bean>
 	
 	<!-- deal action -->
 	<bean id="insertDealAction" class="action.InsertDealAction">
@@ -437,5 +452,10 @@
 	</bean>
 	<bean id="findSearchByUserIdAction" class="action.FindSearchByUserIdAction">
 		<property name="findSearchByUserIdServiceDAO" ref="findSearchByUserIdServiceDAO"></property>
+	</bean>
+	
+	<!-- admin action -->
+	<bean id="findAdminAction" class="action.FindAdminAction">
+		<property name="findAdminServiceDAO" ref="findAdminServiceDAO"></property>
 	</bean>
 </beans>

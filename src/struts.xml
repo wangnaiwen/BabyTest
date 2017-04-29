@@ -221,6 +221,14 @@
                 <param name="root">dataMap</param>  
             </result>
 		</action>
+		<action name="findBeSentOrder" class="findBeSentOrderActioin" >
+		    <result name="success">/admin_index.html</result>
+			<result name="error">/error.html</result>
+		</action>
+		<action name="findFinishOrder" class="findFinishOrderActioin" >
+		    <result name="success">/admin_index.html</result>
+			<result name="error">/error.html</result>
+		</action>
 		
 	<!-- deal action -->
 		<action name="insertDeal" class="insertDealAction" >
@@ -297,6 +305,14 @@
                 <param name="root">dataMap</param>  
             </result>
 		</action>
+		<action name="insertProduct" class="insertProdcutAction">
+			<result name="success">/admin_index.html</result>
+			<result name="error">/error.html</result>
+		</action>
+		<action name="updateProduct" class="updateProdcutAction">
+			<result name="success">/admin_index.html</result>
+			<result name="error">/error.html</result>
+		</action>
 		
 		<!-- mc action -->
 		<action name="findMcById" class="findMcByIdAction" >
@@ -344,6 +360,12 @@
 		    <result type="json">  
                 <param name="root">dataMap</param>  
             </result>
+		</action>
+		
+		<!-- admin action -->
+		<action name="findAdmin" class="findAdminAction">
+			<result name="success">/admin_index.html</result>
+			<result name="error">/error.html</result>
 		</action>
 	</package>
 </struts>   

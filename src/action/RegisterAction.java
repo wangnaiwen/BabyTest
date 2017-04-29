@@ -109,11 +109,17 @@ public class RegisterAction extends ActionSupport{
 					wallet.setUserId(user.getId());
 					wallet.setMoney(50000);
 					wallet.setPassword(payPassword);
-					dataMap.put("register", insertWalletServiceDAO.insertWallet(wallet));
+					if(insertWalletServiceDAO.insertWallet(wallet)){
+						dataMap.put("register",findUserServiceDAO.findUserByPhone(phone));
+					}else{
+						dataMap.put("register",null);
+					}
+				}else{
+					dataMap.put("register",null);
 				}
 				return "success";
 			}else{
-				dataMap.put("register", false);
+				dataMap.put("register", null);
 				return "success";
 			}
 		}

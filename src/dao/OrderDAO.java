@@ -12,4 +12,8 @@ public interface OrderDAO {
 	List<Order> findOrderByUserId(int userId);
 	List<Order> findOrderByShopId(int shopId, int number);
 	List<Order> findOrderByInvitee(int invitee, int number);
+	
+	List<Order> findbeSentOrders(int page);
+	List<Order> findFinishOrders(int page);
+
 }

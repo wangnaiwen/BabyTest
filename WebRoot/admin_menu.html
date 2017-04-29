@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
+<html>
+  <head>
+    <title>admin_menu.html</title>
+	
+<META NAME="Generator" CONTENT="EditPlus">
+<META NAME="Author" CONTENT="">
+<META NAME="Keywords" CONTENT="">
+<META NAME="Description" CONTENT="">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+<SCRIPT language=javascript>
+        function selectbox(indexbox)
+        {
+            parent.right.location.href = indexbox;
+        }
+    </SCRIPT>
+    <SCRIPT language=javascript src="js/dtree/dtree.js"></SCRIPT>
+    <script type="text/javascript" src="js/dtree/java-like.util.js"></script>
+    <link rel="stylesheet" href="css/dtree.css" type="text/css">
+  </head>
+  
+  <body>
+    <form action="" name="form1" method=POST>
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+            <td rowspan="5" width="1" bgcolor="CCCCCC"></td>
+            <td bgcolor="CCCCCC" height="1"></td>
+            <td rowspan="4" bgcolor="CCCCCC" width="1"></td>
+        </tr>
+
+        <tr>
+            <td bgcolor="E3E7FF" align="center" height="5"></td>
+        </tr>
+
+        <tr>
+            <td bgcolor="CCCCCC" height="1"></td>
+        </tr>
+
+        <tr>
+            <td bgcolor="F9F9F9" align="center" valign="top">
+                <table width="90%" border="0" align="center" cellpadding="1" cellspacing="1" bgcolor="F5F5F5">
+                    <tr bgcolor="F3F9FF">
+                        <td bgcolor="F5F5F5">
+                            <SCRIPT LANGUAGE="JavaScript">
+                                d = new dTree('d');
+                                d.config.target = "right";
+                                d.config.imageDir = 'images/dtree';
+                                d.reSetImagePath();
+                                d.config.folderLinks = false;
+                                d.config.closeSameLevel = true;
+                                var isOpen ;
+                                d.add(0, -1, '爱婴岛后台管理系统');
+                                
+                                d.add(1, 0, '商品管理');                               
+                                d.add(11, 1, '添加商品', 'welcome.html', '', 'right');
+                                d.add(12, 1, '下架商品', 'welcome.html', '', 'right');
+                                d.add(13, 1, '更改商品', 'welcome.html', '', 'right');
+                                d.add(14, 1, '查看商品', 'welcome.html', '', 'right');
+                                d.add(15, 1, '热门商品', 'welcome.html', '', 'right');
+                                d.add(16, 1, '特价商品', 'welcome.html', '', 'right');
+
+								d.add(2, 0,  '订单管理');                               
+                                d.add(21, 2, '待发货', 'welcome.html', '', 'right');
+                                d.add(22, 2, '待收货', 'welcome.html', '', 'right');
+                                d.add(23, 2, '已完成', 'welcome.html', '', 'right');
+                                
+                                d.add(3, 0,  '店铺管理');                               
+                                d.add(31, 3, '待审核', 'welcome.html', '', 'right');
+                                d.add(32, 3, '未通过', 'welcome.html', '', 'right');
+                                d.add(33, 3, '已审核', 'welcome.html', '', 'right');
+                                
+                                d.add(4, 0,  '文章管理');                               
+                                d.add(41, 4, '写文章', 'welcome.html', '', 'right');
+                                d.add(42, 4, '全部文章', 'welcome.html', '', 'right');
+                                d.add(43, 4, '文章更新', 'welcome.html', '', 'right');
+                                
+                                document.write(d);
+                            </script>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+        <tr>
+            <td background="images/jao1.gif" colspan="2" align="right"><img
+                    src="images/jao.gif" width="8" height="8"></td>
+        </tr>
+    </table>
+</form>
+  </body>
+</html>

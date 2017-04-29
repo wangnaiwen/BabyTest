@@ -242,5 +242,83 @@ public class OrderImpl extends BaseDAO implements OrderDAO{
 		return orders;
 	}
 
-	
+	@Override
+	public List<Order> findbeSentOrders(int page) {
+		List<Order> orders = null;
+		JDBCConnection jdbcConnection = getJdbcConnection();
+		jdbcConnection.OpenConn();
+	    String sql = "select * from lb_order where order_type = 2 limit "+((page-1)*10)+","+page*10;
+		ResultSet rs = jdbcConnection.find(sql);
+		try {
+			while(rs.next()) {
+				Order order = new Order();
+				order.setId(rs.getInt("id"));
+				order.setShopId(rs.getInt("shop_id"));
+				order.setUserId(rs.getInt("user_id"));
+				order.setOrderNumber(rs.getString("order_number"));
+				order.setOrderType(rs.getInt("order_type"));
+				order.setCreateTime(rs.getString("create_time"));
+				order.setPayTime(rs.getString("pay_time"));
+				order.setFinishTime(rs.getString("finish_time"));
+				order.setAddressId(rs.getInt("address_id"));
+				order.setRemark(rs.getString("remark"));
+				if(orders == null){
+					orders = new ArrayList<Order>();
+				}
+				orders.add(order);
+			}
+			jdbcConnection.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			if(rs != null){
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return orders;
+	}
+
+	@Override
+	public List<Order> findFinishOrders(int page) {
+		List<Order> orders = null;
+		JDBCConnection jdbcConnection = getJdbcConnection();
+		jdbcConnection.OpenConn();
+	    String sql = "select * from lb_order where order_type = 5 limit "+((page-1)*10)+","+page*10;
+		ResultSet rs = jdbcConnection.find(sql);
+		try {
+			while(rs.next()) {
+				Order order = new Order();
+				order.setId(rs.getInt("id"));
+				order.setShopId(rs.getInt("shop_id"));
+				order.setUserId(rs.getInt("user_id"));
+				order.setOrderNumber(rs.getString("order_number"));
+				order.setOrderType(rs.getInt("order_type"));
+				order.setCreateTime(rs.getString("create_time"));
+				order.setPayTime(rs.getString("pay_time"));
+				order.setFinishTime(rs.getString("finish_time"));
+				order.setAddressId(rs.getInt("address_id"));
+				order.setRemark(rs.getString("remark"));
+				if(orders == null){
+					orders = new ArrayList<Order>();
+				}
+				orders.add(order);
+			}
+			jdbcConnection.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			if(rs != null){
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return orders;
+	}
 }
