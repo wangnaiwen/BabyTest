@@ -15,5 +15,8 @@ public interface OrderDAO {
 	
 	List<Order> findbeSentOrders(int page);
 	List<Order> findFinishOrders(int page);
-
+	
+	//发货订单
+	boolean updateOrderType(int id, int type);
+	//待发货订单的总量
 }

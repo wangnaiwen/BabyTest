@@ -39,6 +39,7 @@ public class AddWalletMoneyAction  extends ActionSupport{
 			AddWalletMoneyServiceDAO addWalletMoneyServiceDAO) {
 		this.addWalletMoneyServiceDAO = addWalletMoneyServiceDAO;
 	}
+	
 	@Override
    	public String execute() throws Exception{
     	dataMap = new HashMap<String, Object>();  

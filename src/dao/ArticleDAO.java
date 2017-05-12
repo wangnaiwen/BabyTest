@@ -11,5 +11,5 @@ public interface ArticleDAO {
 	boolean updateArticleLikeTimes(int id);
 	boolean updateArticleReadTimes(int id);
 	Article findArticleById(int id);
-	List<Article> findAllArticles();
+	List<Article> findAllArticles(int page);
 }

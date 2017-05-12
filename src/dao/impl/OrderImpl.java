@@ -321,4 +321,15 @@ public class OrderImpl extends BaseDAO implements OrderDAO{
 		}
 		return orders;
 	}
+
+	@Override
+	public boolean updateOrderType(int id, int type) {
+		JDBCConnection jdbcConnection = getJdbcConnection();
+		jdbcConnection.OpenConn();
+	    String sql = "update lb_order set order_type = "+type+" where id = "+id ;
+	    System.out.println(sql);
+		boolean result = jdbcConnection.update(sql);
+		jdbcConnection.close();
+		return result;
+	}
 }

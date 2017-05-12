@@ -97,6 +97,7 @@
 	<bean id="findOrderByInviteeServiceDAO" class="service.FindOrderByInviteeService" parent="baseOrderServiceDAO"></bean>
 	<bean id="findSentOrderServiceDAO" class="service.FindSentService" parent="baseOrderServiceDAO"></bean>
 	<bean id="findFinishOrderServiceDAO" class="service.FindFinishOrderService" parent="baseOrderServiceDAO"></bean>
+	<bean id="updateOrderTypeServiceDAO" class="service.UpdateOrderTypeService" parent="baseOrderServiceDAO"></bean>
 	
 	
 	<!-- pr service -->
@@ -132,6 +133,8 @@
 	<bean id="findShopByIdServiceDAO" class="service.FindShopByIdService" parent="baseShopServiceDAO"></bean>
 	<bean id="findShopByUserIdServiceDAO" class="service.FindShopByUserIdService" parent="baseShopServiceDAO"></bean>
 	<bean id="findShopByInviteeServiceDAO" class="service.FindShopByInviteeService" parent="baseShopServiceDAO"></bean>
+	<bean id="findShopByTypeServiceDAO" class="service.FindShopByTypeService" parent="baseShopServiceDAO"></bean>
+	<bean id="updateShopTypeServiceDAO" class="service.UpdateShopTypeService" parent="baseShopServiceDAO"></bean>
 	
 	<!-- sc service -->
 	<bean id="baseScServiceDAO" class="service.dao.BaseScServiceDAO">
@@ -345,6 +348,12 @@
 	<bean id="findShopByInviteeAction" class="action.FindShopByInviteeAction">
 		<property name="findShopByInviteeServiceDAO" ref="findShopByInviteeServiceDAO"></property>
 	</bean>
+	<bean id="findShopByTypeAction" class="action.FindShopByTypeAction">
+		<property name="findShopByTypeServiceDAO" ref="findShopByTypeServiceDAO"></property>
+	</bean>
+	<bean id="updateShopTypeAction" class="action.UpdateShopTypeAction">
+		<property name="updateShopTypeServiceDAO" ref="updateShopTypeServiceDAO"></property>
+	</bean>
 	
 	<!-- order action -->
 	<bean id="insertOrderAction" class="action.InsertOrderAction">
@@ -366,12 +375,13 @@
 	<bean id="findOrderByInviteeAction" class="action.FindOrderByInviteeAction">
 		<property name="findOrderByInviteeServiceDAO" ref="findOrderByInviteeServiceDAO"></property>
 	</bean>
-	<bean id="findSentOrderAction" class="action.FindBeSentOrderAction">
+	<bean id="findBeSentOrderAction" class="action.FindBeSentOrderAction">
 		<property name="findSentOrderServiceDAO" ref="findSentOrderServiceDAO"></property>
 	</bean>
 	<bean id="findFinishOrderAction" class="action.FindFinishOrderAction">
 		<property name="findFinishOrderServiceDAO" ref="findFinishOrderServiceDAO"></property>
 	</bean>
+	
 	
 	<!-- deal action -->
 	<bean id="insertDealAction" class="action.InsertDealAction">
@@ -385,6 +395,9 @@
 	</bean>
 	<bean id="findDealByOrderIdAction" class="action.FindDealByOrderIdAction">
 		<property name="findDealByOrderIdServiceDAO" ref="findDealByOrderIdServiceDAO"></property>
+	</bean>
+	<bean id="updateOrderTypeAction" class="action.UpdateOrderTypeAction">
+		<property name="updateOrderTypeServiceDAO" ref="updateOrderTypeServiceDAO"></property>
 	</bean>
 	
 	<!-- deal action -->
@@ -421,6 +434,15 @@
 		<property name="findProductByKeyServiceDAO" ref="findProductByKeyServiceDAO"></property>
 		<property name="insertSearchServiceDAO" ref="insertSearchServiceDAO"></property>
 	</bean>
+	<bean id="findProductByKeywordAction" class="action.FindProductByKeywordAction">
+		<property name="findProductByKeyServiceDAO" ref="findProductByKeyServiceDAO"></property>
+	</bean>
+	<bean id="insertProductAction" class="action.InsertProductAction">
+		<property name="insertProductServiceDAO" ref="insertProductServiceDAO"></property>
+	</bean>
+	<bean id="updateProductAction" class="action.UpdateProductAction">
+		<property name="updateProductServiceDAO" ref="updateProductServiceDAO"></property>
+	</bean>
 	
 	<!-- mc action -->
 	<bean id="findMcByIdAction" class="action.FindMcByIdAction">
@@ -429,6 +451,12 @@
 	<bean id="findMcsAction" class="action.FindMcsAction">
 		<property name="findMcsServiceDAO" ref="findMcsServiceDAO"></property>
 	</bean>
+	<bean id="insertMcAction" class="action.InsertMcAction">
+		<property name="insertMcServiceDAO" ref="insertMcServiceDAO"></property>
+	</bean>
+	<bean id="updateMcAction" class="action.UpdateMcAction">
+		<property name="updateMcServiceDAO" ref="updateMcServiceDAO"></property>
+	</bean>
 	
 	<!-- sc action -->
 	<bean id="findScByIdAction" class="action.FindScByIdAction">
@@ -436,6 +464,12 @@
 	</bean>
 	<bean id="findScByMcIdAction" class="action.FindScByMcIdAction">
 		<property name="findScByMcIdServiceDAO" ref="findScsByMcIdServiceDAO"></property>
+	</bean>
+	<bean id="insertScAction" class="action.InsertScAction">
+		<property name="insertScServiceDAO" ref="insertScServiceDAO"></property>
+	</bean>
+	<bean id="updateScAction" class="action.UpdateScAction">
+		<property name="updateScServiceDAO" ref="updateScServiceDAO"></property>
 	</bean>
 	
 	<!-- withdraw action -->
@@ -458,4 +492,36 @@
 	<bean id="findAdminAction" class="action.FindAdminAction">
 		<property name="findAdminServiceDAO" ref="findAdminServiceDAO"></property>
 	</bean>
+	<bean id="adminLoginAction" class="action.AdminLoginAction">
+		<property name="findAdminServiceDAO" ref="findAdminServiceDAO"></property>
+	</bean>
+	<bean id="adminLogoutAction" class="action.AdminLogoutAction">
+	</bean>
+	
+	<!-- article action -->
+	<bean id="insertArticleAction" class="action.InsertArticleAction">
+		<property name="insertArticleServiceDAO" ref="insertArticleServiceDAO"></property>
+	</bean>
+	<bean id="updateArticleAction" class="action.UpdateArticleAction">
+		<property name="updateArticleServiceDAO" ref="updateArticleServiceDAO"></property>
+	</bean>
+	<bean id="deleteArticleAction" class="action.DeleteArticleAction">
+		<property name="deleteArticleServiceDAO" ref="deleteArticleServiceDAO"></property>
+	</bean>
+	<bean id="updateArticleReadTimesAction" class="action.UpdateArticleReadTimesAction">
+		<property name="updateArticleReadTimesServiceDAO" ref="updateArticleReadTimesServiceDAO"></property>
+	</bean>
+	<bean id="updateArticleLikeTimesAction" class="action.UpdateArticleLikeTimesAction">
+		<property name="updateArticleLikeTimesServiceDAO" ref="updateArticleLikeTimesServiceDAO"></property>
+	</bean>
+	<bean id="findAllArticlesAction" class="action.FindAllArticlesAction">
+		<property name="findAllArticleServiceDAO" ref="findAllArticlesServiceDAO"></property>
+	</bean>
+	
+	
+	<!-- Web端的接口统一放在这里 Service-->
+	<bean id="orderServiceDAO" class="web.service.OrderService" parent="baseOrderServiceDAO"></bean>
+	
+	<bean id="uploadAction" class="action.UploadAction"></bean>
+	
 </beans>

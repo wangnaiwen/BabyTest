@@ -10,6 +10,7 @@ public class Product {
 	private String description;
 	private String coverImg;
 	private int scId;
+	private int count;
 	public int getId() {
 		return id;
 	}
@@ -63,6 +64,12 @@ public class Product {
 	}
 	public void setScId(int scId) {
 		this.scId = scId;
+	}
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
 	}
 	
 }

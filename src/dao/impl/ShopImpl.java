@@ -169,5 +169,54 @@ public class ShopImpl extends BaseDAO implements ShopDAO{
 		}
 		return shopList;
 	}
-	
+
+	@Override
+	public List<Shop> findShopByType(int type, int page) {
+		List<Shop> shopList = null;
+		JDBCConnection jdbcConnection = getJdbcConnection();
+		jdbcConnection.OpenConn();
+	    String sql = "select * from lb_shop where review_type="+type+" limit "+((page-1)*10)+","+page*10;
+		ResultSet rs = jdbcConnection.find(sql);
+		try {
+			while(rs.next()) {
+				Shop shop = new Shop();
+				shop.setId(rs.getInt("id"));
+				shop.setName(rs.getString("name"));
+				shop.setOwner(rs.getString("owner"));
+				shop.setUserId(rs.getInt("user_id"));
+				shop.setMoney(rs.getLong("money"));
+				shop.setWechat(rs.getString("wechat"));
+				shop.setIdCard(rs.getString("id_card"));
+				shop.setReviewType(rs.getInt("review_type"));
+				shop.setInvitee(rs.getInt("invitee"));
+				if(shopList == null){
+					shopList = new ArrayList<Shop>();
+				}
+				shopList.add(shop);
+			}
+			jdbcConnection.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			if(rs != null){
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return shopList;
+	}
+
+	@Override
+	public boolean updateShopType(int id, int type) {
+		JDBCConnection jdbcConnection = getJdbcConnection();
+		jdbcConnection.OpenConn();
+		String sql = "update lb_shop set review_type = " + type + " where id = " + id;
+	    System.out.println(sql);
+		boolean result = jdbcConnection.update(sql);
+		jdbcConnection.close();
+		return result;
+	}
 }

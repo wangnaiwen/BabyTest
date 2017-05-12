@@ -1,17 +1,24 @@
 package action;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import org.apache.struts2.json.annotations.JSON;
+
 import service.dao.InsertProductServiceDAO;
 
 import com.opensymphony.xwork2.ActionSupport;
 
 import domain.Product;
 
-public class InsertProdcutAction extends ActionSupport{
+public class InsertProductAction extends ActionSupport{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+    private Map<String,Object> dataMap;  
+    private String key = "Just see see";
 	private String numbering;
 	private String name;
 	private String brand;
@@ -20,6 +27,7 @@ public class InsertProdcutAction extends ActionSupport{
 	private String description;
 	private String coverImg;
 	private int scId;
+	private int count;
 	private InsertProductServiceDAO insertProductServiceDAO;
 	
 	public String getNumbering() {
@@ -77,7 +85,21 @@ public class InsertProdcutAction extends ActionSupport{
 			InsertProductServiceDAO insertProductServiceDAO) {
 		this.insertProductServiceDAO = insertProductServiceDAO;
 	}
-	
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
+	}
+	public Map<String, Object> getDataMap() {  
+        return dataMap;  
+	}
+	    
+	//设置key属性不作为json的内容返回  
+    @JSON(serialize=false)  
+    public String getKey() {  
+        return key;  
+    }  
 	@Override
 	public String execute() throws Exception {
 		Product product = new Product();
@@ -88,11 +110,10 @@ public class InsertProdcutAction extends ActionSupport{
 		product.setNumbering(numbering);
 		product.setRetailPrice(retailPrice);
 		product.setScId(scId);
+		product.setCount(count);
 		product.setStandardPrice(standardPrice);
-		if(insertProductServiceDAO.insertProduct(product)){
-			return SUCCESS;
-		}else{
-			return ERROR;
-		}
+		dataMap = new HashMap<String, Object>();  
+   		dataMap.put("insertProduct", insertProductServiceDAO.insertProduct(product));
+   		return "success";
 	}
 }

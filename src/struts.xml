@@ -189,6 +189,16 @@
                 <param name="root">dataMap</param>  
             </result>
 		</action>
+		<action name="findShopByType" class="findShopByTypeAction" >
+		    <result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
+		<action name="updateShopType" class="updateShopTypeAction" >
+		    <result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
 		
 	<!-- order action -->
 		<action name="insertOrder" class="insertOrderAction" >
@@ -221,9 +231,15 @@
                 <param name="root">dataMap</param>  
             </result>
 		</action>
-		<action name="findBeSentOrder" class="findBeSentOrderActioin" >
-		    <result name="success">/admin_index.html</result>
-			<result name="error">/error.html</result>
+		<action name="findBeSentOrder" class="findBeSentOrderAction" >
+		    <result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
+		<action name="updateOrderType" class="updateOrderTypeAction" >
+		    <result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
 		</action>
 		<action name="findFinishOrder" class="findFinishOrderActioin" >
 		    <result name="success">/admin_index.html</result>
@@ -305,13 +321,20 @@
                 <param name="root">dataMap</param>  
             </result>
 		</action>
-		<action name="insertProduct" class="insertProdcutAction">
-			<result name="success">/admin_index.html</result>
-			<result name="error">/error.html</result>
+		<action name="findProductByKeyword" class="findProductByKeywordAction" >
+		    <result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
 		</action>
-		<action name="updateProduct" class="updateProdcutAction">
-			<result name="success">/admin_index.html</result>
-			<result name="error">/error.html</result>
+		<action name="insertProduct" class="insertProductAction" >
+		    <result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
+		<action name="updateProduct" class="updateProductAction" >
+		    <result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
 		</action>
 		
 		<!-- mc action -->
@@ -325,6 +348,16 @@
                 <param name="root">dataMap</param>  
             </result>
 		</action>
+		<action name="insertMc" class="insertMcAction" >
+		    <result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
+		<action name="updateMc" class="updateMcAction" >
+		    <result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
 		
 		<!-- sc action -->
 		<action name="findScById" class="findScByIdAction" >
@@ -333,6 +366,16 @@
             </result>
 		</action>
 		<action name="findScByMcId" class="findScByMcIdAction" >
+		    <result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
+		<action name="insertSc" class="insertScAction" >
+		    <result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
+		<action name="updateSc" class="updateScAction" >
 		    <result type="json">  
                 <param name="root">dataMap</param>  
             </result>
@@ -367,5 +410,58 @@
 			<result name="success">/admin_index.html</result>
 			<result name="error">/error.html</result>
 		</action>
+		<action name="adminLogin" class="adminLoginAction">
+			<result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
+		<action name="logout" class="adminLogoutAction">
+			<result name="success">/login.html</result>
+		</action>
+		
+		<!-- article action -->
+		<action name="insertArticle" class="insertArticleAction">
+			<result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
+		<action name="updateArticle" class="updateArticleAction">
+			<result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
+		<action name="deleteArticle" class="deleteArticleAction">
+			<result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
+		<action name="updateArticleReadTimes" class="updateArticleReadTimesAction">
+			<result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
+		<action name="updateArticleLikeTimes" class="updateArticleLikeTimesAction">
+			<result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
+		<action name="findAllArticles" class="findAllArticlesAction">
+			<result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
+		
+		<action name="upload" class="uploadAction" method="execute">   
+           <result type="stream">  
+                <param name="contentType">text/html</param>
+     			<param name="inputStream">inputStream</param>
+            </result>
+            <param name="maximumSize ">1000000</param>    
+            <param name="allowedTypes">application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,text/plain</param>    
+		</action>
 	</package>
+	<constant name="struts.action.extension" value=","></constant>    
+    <!-- 上传文件最大限制（如果为多文件上传，则为多个文件的总大小） -->    
+    <constant name="struts.multipart.maxSize" value="40000000"></constant>    
+    <!-- 存放上传文件的临时目录 -->    
 </struts>   

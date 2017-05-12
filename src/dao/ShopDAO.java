@@ -11,4 +11,8 @@ public interface ShopDAO {
 	Shop findShopByUserId(int userId);
 	Shop findShopById(int id);
 	List<Shop> findShopByInvitee(int invitee);
+	
+	//分页查找未审核的店铺,审核商家
+	List<Shop> findShopByType(int type, int page);
+	boolean updateShopType(int id,int type);
 }

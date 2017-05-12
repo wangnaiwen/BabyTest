@@ -5,5 +5,5 @@ import java.util.List;
 import domain.Article;
 
 public interface FindAllArticleServiceDAO {
-	List<Article> findAllArticles();
+	List<Article> findAllArticles(int page);
 }

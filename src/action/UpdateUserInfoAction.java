@@ -1,10 +1,12 @@
 package action;
 
+import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.struts2.json.annotations.JSON;
 
+import com.mysql.jdbc.log.Log;
 import com.opensymphony.xwork2.ActionSupport;
 
 import service.dao.UpdateUserInfoServiceDAO;
@@ -97,6 +99,7 @@ public class UpdateUserInfoAction extends ActionSupport{
 	public String execute() throws Exception{
 		
 		UserInfo u = new UserInfo();
+		System.out.println("12354:" + userImg);
 		u.setId(id);
 		u.setUserId(userId);
 		u.setSex(sex);

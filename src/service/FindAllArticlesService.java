@@ -10,9 +10,9 @@ import service.dao.BaseArticleServiceDAO;
 public class FindAllArticlesService extends BaseArticleServiceDAO implements FindAllArticleServiceDAO{
 
 	@Override
-	public List<Article> findAllArticles() {
+	public List<Article> findAllArticles(int page) {
 		ArticleDAO articleDAO = getArticleDAO();
-		return articleDAO.findAllArticles();
+		return articleDAO.findAllArticles(page);
 	}
 
 }

@@ -18,7 +18,7 @@ public class ProductImpl extends BaseDAO implements ProductDAO{
 		jdbcConnection.OpenConn();
 	    String sql = "insert into lb_product values(null, "+product.getScId()+",'"+product.getNumbering()+"','"+product.getName() +"','"
 	    		+product.getBrand()+"',"+product.getRetailPrice()+","+product.getStandardPrice()+",'"
-	    		+product.getDescription()+"','"+product.getCoverImg()+"')";
+	    		+product.getDescription()+"','"+product.getCoverImg()+"',"+product.getCount()+")";
 	    System.out.println(sql);
 		boolean result = jdbcConnection.insert(sql);
 		jdbcConnection.close();
@@ -67,6 +67,7 @@ public class ProductImpl extends BaseDAO implements ProductDAO{
 				p.setDescription(rs.getString("description"));
 				p.setStandardPrice(rs.getInt("standard_price"));
 				p.setRetailPrice(rs.getInt("retail_price"));
+				p.setCount(rs.getInt("count"));
 				p.setCoverImg(rs.getString("cover_img"));
 			}
 			jdbcConnection.close();
@@ -103,7 +104,7 @@ public class ProductImpl extends BaseDAO implements ProductDAO{
 				p.setStandardPrice(rs.getInt("standard_price"));
 				p.setRetailPrice(rs.getInt("retail_price"));
 				p.setCoverImg(rs.getString("cover_img"));
-	
+				p.setCount(rs.getInt("count"));
 			}
 			jdbcConnection.close();
 		} catch (SQLException e) {
@@ -139,6 +140,7 @@ public class ProductImpl extends BaseDAO implements ProductDAO{
 				p.setStandardPrice(rs.getInt("standard_price"));
 				p.setRetailPrice(rs.getInt("retail_price"));
 				p.setCoverImg(rs.getString("cover_img"));
+				p.setCount(rs.getInt("count"));
 				if(products == null){
 					products = new ArrayList<Product>();
 				}
@@ -179,6 +181,7 @@ public class ProductImpl extends BaseDAO implements ProductDAO{
 				p.setStandardPrice(rs.getInt("standard_price"));
 				p.setRetailPrice(rs.getInt("retail_price"));
 				p.setCoverImg(rs.getString("cover_img"));
+				p.setCount(rs.getInt("count"));
 				if(products == null){
 					products = new ArrayList<Product>();
 				}

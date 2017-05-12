@@ -1,5 +1,10 @@
 package action;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import org.apache.struts2.json.annotations.JSON;
+
 import service.dao.UpdateProductServiceDAO;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -12,6 +17,8 @@ public class UpdateProductAction extends ActionSupport{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+    private Map<String,Object> dataMap;  
+    private String key = "Just see see";
 	private int id;
 	private String numbering;
 	private String name;
@@ -21,6 +28,7 @@ public class UpdateProductAction extends ActionSupport{
 	private String description;
 	private String coverImg;
 	private int scId;
+	private int count;
 	
 	private UpdateProductServiceDAO updateProductServiceDAO;
 	
@@ -85,6 +93,20 @@ public class UpdateProductAction extends ActionSupport{
 			UpdateProductServiceDAO updateProductServiceDAO) {
 		this.updateProductServiceDAO = updateProductServiceDAO;
 	}
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
+	}	
+	public Map<String, Object> getDataMap() {  
+        return dataMap;  
+	}
+	//设置key属性不作为json的内容返回  
+    @JSON(serialize=false)  
+    public String getKey() {  
+        return key;  
+    }  
 	@Override
 	public String execute() throws Exception {
 		Product product = new Product();
@@ -96,11 +118,10 @@ public class UpdateProductAction extends ActionSupport{
 		product.setNumbering(numbering);
 		product.setRetailPrice(retailPrice);
 		product.setScId(scId);
+		product.setCount(count);
 		product.setStandardPrice(standardPrice);
-		if(updateProductServiceDAO.updateProduct(product)){
-			return SUCCESS;
-		}else{
-			return ERROR;
-		}
+		dataMap = new HashMap<String, Object>();  
+   		dataMap.put("updateProduct", updateProductServiceDAO.updateProduct(product));
+   		return "success";
 	}
 }
