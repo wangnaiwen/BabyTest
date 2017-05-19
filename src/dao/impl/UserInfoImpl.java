@@ -139,4 +139,17 @@ public class UserInfoImpl extends BaseDAO implements UserInfoDAO{
 		}
 		return userInfo;
 	}
+
+	@Override
+	public boolean updateUserImg(int userId, String image) {
+		JDBCConnection jdbcConnection = getJdbcConnection();
+		jdbcConnection.OpenConn();
+	    String sql = "update lb_user_info set user_img='"+image+ "' where user_id="+userId;
+		System.out.print(sql);
+	    boolean result = jdbcConnection.update(sql);
+		jdbcConnection.close();
+		return result;
+	}
+	
+	
 }

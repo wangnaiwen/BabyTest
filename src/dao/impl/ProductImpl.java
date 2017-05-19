@@ -202,4 +202,41 @@ public class ProductImpl extends BaseDAO implements ProductDAO{
 		return products;
 	}
 
+	@Override
+	public int findProductCountById(int id) {
+		int count = 0;
+		JDBCConnection jdbcConnection = getJdbcConnection();
+		jdbcConnection.OpenConn();
+	    String sql = "select count from lb_product where id="+id;
+		ResultSet rs = jdbcConnection.find(sql);
+		try {
+			if(rs.next()) {
+				count = rs.getInt("count");
+			}
+			jdbcConnection.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			if(rs != null){
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return count;
+	}
+
+	@Override
+	public boolean updateProductCountById(int id, int count) {
+		JDBCConnection jdbcConnection = getJdbcConnection();
+		jdbcConnection.OpenConn();
+	    String sql = "update lb_product set count = (count -"+ count +") where id =" + id;
+	    System.out.println(sql);
+		boolean result = jdbcConnection.update(sql);
+		jdbcConnection.close();
+		return result;
+	}
+
 }

@@ -48,6 +48,7 @@
 	<bean id="updateUserInfoServiceDAO" class="service.UpdateUserInfoService" parent="baseUserInfoServiceDAO"></bean>
 	<bean id="findUserInfoServiceDAO" class="service.FindUserInfoService" parent="baseUserInfoServiceDAO"></bean>
 	<bean id="findUserInfoByUserIdServiceDAO" class="service.FindUserInfoByUserIdService" parent="baseUserInfoServiceDAO"></bean>
+	<bean id="updateUserImgServiceDAO" class="service.UpdateUserImgService" parent="baseUserInfoServiceDAO"></bean>
 	
 	<!-- receAddress service -->
 	<bean id="baseReceAddressServiceDAO" class="service.dao.BaseReceAddressServiceDAO">
@@ -122,6 +123,8 @@
 	<bean id="findProductByNumberingServiceDAO" class="service.FindProductByNumberingService" parent="baseProductServiceDAO"></bean>
 	<bean id="findProductByScIdServiceDAO" class="service.FindProductByScIdService" parent="baseProductServiceDAO"></bean>
 	<bean id="findProductByKeyServiceDAO" class="service.FindProductByKeyService" parent="baseProductServiceDAO"></bean>
+	<bean id="findProductCountByIdServiceDAO" class="service.FindProductCountByIdService" parent="baseProductServiceDAO"></bean>
+	<bean id="updateProductCountByIdServiceDAO" class="service.UpdateProductCountByIdService" parent="baseProductServiceDAO"></bean>
 	
 	<!-- shop service -->
 	<bean id="baseShopServiceDAO" class="service.dao.BaseShopServiceDAO">
@@ -259,6 +262,9 @@
 	</bean>
 	<bean id="findUserInfoByUserIdAction" class="action.FindUserInfoByUserIdAction">
 		<property name="findUserInfoByUserIdServiceDAO" ref="findUserInfoByUserIdServiceDAO"></property>
+	</bean>
+	<bean id="updateUserImgAction" class="action.UpdateUserImgAction">
+		<property name="updateUserImgServiceDAO" ref="updateUserImgServiceDAO"></property>
 	</bean>
 	
 	<!-- receAddress action -->
@@ -442,6 +448,12 @@
 	</bean>
 	<bean id="updateProductAction" class="action.UpdateProductAction">
 		<property name="updateProductServiceDAO" ref="updateProductServiceDAO"></property>
+	</bean>
+	<bean id="findProductCountByIdAction" class="action.FindProductCountByIdAction">
+		<property name="findProductCountByIdServiceDAO" ref="findProductCountByIdServiceDAO"></property>
+	</bean>
+	<bean id="updateProductCountByIdAction" class="action.UpdateProductCountByIdAction">
+		<property name="updateProductCountByIdServiceDAO" ref="updateProductCountByIdServiceDAO"></property>
 	</bean>
 	
 	<!-- mc action -->

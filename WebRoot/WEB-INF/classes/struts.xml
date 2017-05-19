@@ -60,6 +60,11 @@
                 <param name="root">dataMap</param>  
             </result>
 		</action>
+		<action name="updateUserImg" class="updateUserImgAction" >
+		    <result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
 		
 	<!-- receAddress action-->
 		<action name="insertReceAddress" class="insertReceAddressAction" >
@@ -332,6 +337,16 @@
             </result>
 		</action>
 		<action name="updateProduct" class="updateProductAction" >
+		    <result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
+		<action name="findProductCountById" class="findProductCountByIdAction" >
+		    <result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
+		<action name="updateProductCountById" class="updateProductCountByIdAction" >
 		    <result type="json">  
                 <param name="root">dataMap</param>  
             </result>

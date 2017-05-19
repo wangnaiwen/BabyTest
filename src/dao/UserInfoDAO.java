@@ -12,4 +12,5 @@ public interface UserInfoDAO {
 	boolean deleteUserInfo(UserInfo userInfo);
 	UserInfo findUserInfoById(int id);
 	UserInfo findUserInfoByUserId(int userId);
+	boolean updateUserImg(int userId,String image);
 }

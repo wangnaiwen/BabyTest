@@ -12,4 +12,6 @@ public interface ProductDAO {
 	Product findProductByNumbering(String numbering);
 	List<Product> findProductByScId(int scId, int number);
 	List<Product> findProductByKey(String key);
+	int findProductCountById(int id);
+	boolean updateProductCountById(int id, int count);
 }
