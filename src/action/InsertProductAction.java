@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.struts2.json.annotations.JSON;
 
+import service.dao.FindProductByNumberingServiceDAO;
 import service.dao.InsertProductServiceDAO;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -29,6 +30,7 @@ public class InsertProductAction extends ActionSupport{
 	private int scId;
 	private int count;
 	private InsertProductServiceDAO insertProductServiceDAO;
+	private FindProductByNumberingServiceDAO findProductByNumberingServiceDAO;
 	
 	public String getNumbering() {
 		return numbering;
@@ -85,6 +87,14 @@ public class InsertProductAction extends ActionSupport{
 			InsertProductServiceDAO insertProductServiceDAO) {
 		this.insertProductServiceDAO = insertProductServiceDAO;
 	}
+	
+	public FindProductByNumberingServiceDAO getFindProductByNumberingServiceDAO() {
+		return findProductByNumberingServiceDAO;
+	}
+	public void setFindProductByNumberingServiceDAO(
+			FindProductByNumberingServiceDAO findProductByNumberingServiceDAO) {
+		this.findProductByNumberingServiceDAO = findProductByNumberingServiceDAO;
+	}
 	public int getCount() {
 		return count;
 	}
@@ -112,8 +122,17 @@ public class InsertProductAction extends ActionSupport{
 		product.setScId(scId);
 		product.setCount(count);
 		product.setStandardPrice(standardPrice);
-		dataMap = new HashMap<String, Object>();  
-   		dataMap.put("insertProduct", insertProductServiceDAO.insertProduct(product));
+		dataMap = new HashMap<String, Object>();
+		if (insertProductServiceDAO.insertProduct(product)) {
+			Product product2 =findProductByNumberingServiceDAO.findProductByNumbering(numbering);
+			if(product2 != null){
+				dataMap.put("insertProduct", product2.getId());
+			}else{
+				dataMap.put("insertProduct", 0);
+			}
+		}else{ //0´ú±í·µ»Ø´íÎó
+			dataMap.put("insertProduct", 0);
+		}
    		return "success";
 	}
 }

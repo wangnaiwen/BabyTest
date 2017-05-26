@@ -1,0 +1,74 @@
+package domain;
+
+public class OffProduct {
+	private int id;
+	private String numbering;
+	private String name;
+	private String brand;
+	private long retailPrice;
+	private long standardPrice;
+	private String description;
+	private String coverImg;
+	private int scId;
+	private int count;
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getNumbering() {
+		return numbering;
+	}
+	public void setNumbering(String numbering) {
+		this.numbering = numbering;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getBrand() {
+		return brand;
+	}
+	public void setBrand(String brand) {
+		this.brand = brand;
+	}
+	public long getRetailPrice() {
+		return retailPrice;
+	}
+	public void setRetailPrice(long retailPrice) {
+		this.retailPrice = retailPrice;
+	}
+	public long getStandardPrice() {
+		return standardPrice;
+	}
+	public void setStandardPrice(long standardPrice) {
+		this.standardPrice = standardPrice;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public String getCoverImg() {
+		return coverImg;
+	}
+	public void setCoverImg(String coverImg) {
+		this.coverImg = coverImg;
+	}
+	public int getScId() {
+		return scId;
+	}
+	public void setScId(int scId) {
+		this.scId = scId;
+	}
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
+	}
+}

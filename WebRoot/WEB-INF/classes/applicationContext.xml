@@ -26,7 +26,8 @@
 	<bean id="withdrawDAO" class="dao.impl.WithdrawImpl" parent="baseDAO"></bean>
 	<bean id="searchDAO" class="dao.impl.SearchImpl" parent="baseDAO"></bean>
 	<bean id="adminDAO" class="dao.impl.AdminImpl" parent="baseDAO"></bean>
-	
+	<bean id="productImageDAO" class="dao.impl.ProductImageImp" parent="baseDAO"></bean>
+	<bean id="offProductDAO" class="dao.impl.OffProductImp" parent="baseDAO"></bean>
 	
 	<!-- configure the service -->
 	<!-- user service -->
@@ -225,6 +226,24 @@
 	</bean>
 	<bean id="findAdminServiceDAO" class="service.FindAdminService" parent="baseAdminServiceDAO"></bean>
 	
+	<!-- product image service -->
+	<bean id="baseProductImageServiceDAO" class="service.dao.BaseProductImageServiceDAO">
+		<property name="productImageDAO" ref="productImageDAO"></property>
+	</bean>
+	<bean id="insertProductImageServiceDAO" class="service.InsertProductImageServiceImp" parent="baseProductImageServiceDAO"></bean>
+	<bean id="findImagesByProductIdServiceDAO" class="service.FindImagesByProductIdServiceImp" parent="baseProductImageServiceDAO"></bean>
+	<!--off product service -->
+	<bean id="baseOffProductServiceDAO" class="service.dao.BaseOffProductServiceDAO">
+		<property name="offProductDAO" ref="offProductDAO"></property>
+	</bean>
+	<bean id="insertOffProductServiceDAO" class="service.InsertOffProductService" parent="baseOffProductServiceDAO"></bean>
+	
+	
+	
+	
+	
+	
+	
 	
 	<!-- configure the action -->
 	<!-- user action -->
@@ -298,11 +317,17 @@
 		<property name="findHotSaleServiceDAO" ref="findHotSaleServiceDAO"></property>
 		<property name="findProductByIdServiceDAO" ref="findProductByIdServiceDAO"></property>
 	</bean>
+	<bean id="insertHotSaleAction" class="action.InsertHotSaleAction">
+		<property name="insertHotSaleServiceDAO" ref="insertHotSaleServiceDAO"></property>
+	</bean>
 	
 	<!-- special price action -->
 	<bean id="findSpecialPriceAction" class="action.FindSpecialPriceAction">
 		<property name="findSpecialPriceServiceDAO" ref="findSpecialPriceServiceDAO"></property>
 		<property name="findProductByIdServiceDAO" ref="findProductByIdServiceDAO"></property>
+	</bean>
+	<bean id="insertSpecialPriceAction" class="action.InsertSpecialPriceAction">
+		<property name="insertSpecialPriceServiceDAO" ref="insertSpecialPriceServiceDAO"></property>
 	</bean>
 	
 	<!-- product review action -->
@@ -445,6 +470,7 @@
 	</bean>
 	<bean id="insertProductAction" class="action.InsertProductAction">
 		<property name="insertProductServiceDAO" ref="insertProductServiceDAO"></property>
+		<property name="findProductByNumberingServiceDAO" ref="findProductByNumberingServiceDAO"></property>
 	</bean>
 	<bean id="updateProductAction" class="action.UpdateProductAction">
 		<property name="updateProductServiceDAO" ref="updateProductServiceDAO"></property>
@@ -454,6 +480,11 @@
 	</bean>
 	<bean id="updateProductCountByIdAction" class="action.UpdateProductCountByIdAction">
 		<property name="updateProductCountByIdServiceDAO" ref="updateProductCountByIdServiceDAO"></property>
+	</bean>
+	<bean id="deleteProductAction" class="action.DeleteProductAction">
+		<property name="findProductByIdServiceDAO" ref="findProductByIdServiceDAO"></property>
+		<property name="deleteProductServiceDAO" ref="deleteProductServiceDAO"></property>
+		<property name="insertOffProductServiceDAO" ref="insertOffProductServiceDAO"></property>
 	</bean>
 	
 	<!-- mc action -->
@@ -528,6 +559,14 @@
 	</bean>
 	<bean id="findAllArticlesAction" class="action.FindAllArticlesAction">
 		<property name="findAllArticleServiceDAO" ref="findAllArticlesServiceDAO"></property>
+	</bean>
+	
+	<!-- product image action -->
+	<bean id="insertProductImageAction" class="action.InsertProductImageAction">
+		<property name="insertProductImageServiceDAO" ref="insertProductImageServiceDAO"></property>
+	</bean>
+	<bean id="findImagesByProductIdAction" class="action.FindImagesByProductIdAction">
+		<property name="findImagesByProductIdServiceDAO" ref="findImagesByProductIdServiceDAO"></property>
 	</bean>
 	
 	

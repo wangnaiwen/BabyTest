@@ -8,7 +8,7 @@ import service.dao.InsertSpecialPriceServiceDAO;
 public class InsertSpecialPriceService extends BaseSpecialPriceServiceDAO implements InsertSpecialPriceServiceDAO{
 
 	@Override
-	public boolean insertNewProduct(SpecialPrice specialPrice) {
+	public boolean insertSpecialPrice(SpecialPrice specialPrice) {
 		SpecialPriceDAO specialPriceDAO = getSpecialPriceDAO();
 		return specialPriceDAO.insertSpecialPrice(specialPrice);
 	}

@@ -111,9 +111,19 @@
                 <param name="root">dataMap</param>  
             </result>
 		</action>
+		<action name="insertHotSale" class="insertHotSaleAction" >
+		    <result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
 	
 	<!-- SpecialPrice action-->	
 		<action name="findSpecialPrice" class="findSpecialPriceAction" >
+		    <result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
+		<action name="insertSpecialPrice" class="insertSpecialPriceAction" >
 		    <result type="json">  
                 <param name="root">dataMap</param>  
             </result>
@@ -351,6 +361,11 @@
                 <param name="root">dataMap</param>  
             </result>
 		</action>
+		<action name="deleteProduct" class="deleteProductAction" >
+		    <result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
 		
 		<!-- mc action -->
 		<action name="findMcById" class="findMcByIdAction" >
@@ -465,6 +480,19 @@
                 <param name="root">dataMap</param>  
             </result>
 		</action>
+		
+		<!-- product image action -->
+		<action name="insertProductImage" class="insertProductImageAction">
+			<result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
+		<action name="findImagesByProductId" class="findImagesByProductIdAction">
+			<result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
+		
 		
 		<action name="upload" class="uploadAction" method="execute">   
            <result type="stream">  

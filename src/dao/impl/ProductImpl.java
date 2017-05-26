@@ -42,7 +42,7 @@ public class ProductImpl extends BaseDAO implements ProductDAO{
 	public boolean deleteProduct(int id) {
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-	    String sql = "delete lb_product where id=" + id;
+	    String sql = "delete from lb_product where id=" + id;
 	    System.out.println(sql);
 		boolean result = jdbcConnection.delete(sql);
 		jdbcConnection.close();
@@ -90,7 +90,7 @@ public class ProductImpl extends BaseDAO implements ProductDAO{
 		Product p = null;
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-	    String sql = "select * from lb_product where numbering='"+numbering +"'";
+	    String sql = "select * from lb_product where numbering='"+numbering +"' ORDER BY id DESC  LIMIT 0, 1";
 		ResultSet rs = jdbcConnection.find(sql);
 		try {
 			if(rs.next()) {
