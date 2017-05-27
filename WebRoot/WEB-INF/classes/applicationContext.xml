@@ -73,6 +73,7 @@
 	<bean id="findDealByOrderIdServiceDAO" class="service.FindDealByOrderIdService" parent="baseDealServiceDAO"></bean>
 	<bean id="findIncomeByShopIdServiceDAO" class="service.FindIncomeByShopIdService" parent="baseDealServiceDAO"></bean>
 	<bean id="findIncomeByInviteeServiceDAO" class="service.FindIncomeByInviteeService" parent="baseDealServiceDAO"></bean>
+	<bean id="findSumPriceServiceDAO" class="service.FindSumPriceService" parent="baseDealServiceDAO"></bean>
 	
 	
 	<!-- mc service -->
@@ -430,8 +431,17 @@
 	<bean id="updateOrderTypeAction" class="action.UpdateOrderTypeAction">
 		<property name="updateOrderTypeServiceDAO" ref="updateOrderTypeServiceDAO"></property>
 	</bean>
+	<bean id="findIncomeByShopIdAction" class="action.FindIncomeByShopIdAction">
+		<property name="findIncomeByShopIdServiceDAO" ref="findIncomeByShopIdServiceDAO"></property>
+	</bean>
+	<bean id="findIncomeByInviteeAction" class="action.FindIncomeByInviteeAction">
+		<property name="findIncomeByInviteeServiceDAO" ref="findIncomeByInviteeServiceDAO"></property>
+	</bean>
+	<bean id="findSumPriceAction" class="action.FindSumPriceAction">
+		<property name="findSumPriceServiceDAO" ref="findSumPriceServiceDAO"></property>
+	</bean>
 	
-	<!-- deal action -->
+	<!-- wallet action -->
 	<bean id="updateWalletPasswordAction" class="action.UpdateWalletPasswordAction">
 		<property name="updateWalletPasswordServiceDAO" ref="updateWalletPasswordServiceDAO"></property>
 	</bean>
@@ -447,12 +457,7 @@
 	<bean id="findWalletMoneyByUserIdAction" class="action.FindWalletMoneyByUserIdAction">
 		<property name="findWalletMoneyByUserIdServiceDAO" ref="findWalletMoneyByUserIdServiceDAO"></property>
 	</bean>
-	<bean id="findIncomeByShopIdAction" class="action.FindIncomeByShopIdAction">
-		<property name="findIncomeByShopIdServiceDAO" ref="findIncomeByShopIdServiceDAO"></property>
-	</bean>
-	<bean id="findIncomeByInviteeAction" class="action.FindIncomeByInviteeAction">
-		<property name="findIncomeByInviteeServiceDAO" ref="findIncomeByInviteeServiceDAO"></property>
-	</bean>
+	
 	
 	<!-- product action -->
 	<bean id="findProductByIdAction" class="action.FindProductByIdAction">

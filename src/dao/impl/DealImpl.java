@@ -173,4 +173,34 @@ public class DealImpl extends BaseDAO implements DealDAO{
 		return income;
 	}
 
+	@Override
+	public int findSumPriceByDay(String startDay, String endDay) {
+		int sumPrice = 0;
+		JDBCConnection jdbcConnection = getJdbcConnection();
+		jdbcConnection.OpenConn();
+	    String sql = "SELECT SUM(sum_price) FROM lb_deal WHERE order_id IN("
+	    		+ "SELECT id FROM lb_order WHERE create_time > "+ startDay 
+	    		+ " AND create_time < " + endDay
+	    		+ " AND order_type >= 2)";
+	    System.out.println(sql);
+		ResultSet rs = jdbcConnection.find(sql);
+		try {
+			if(rs.next()) {
+				sumPrice = rs.getInt("SUM(sum_price)");
+			}
+			jdbcConnection.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			if(rs != null){
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return sumPrice;
+	}
+
 }

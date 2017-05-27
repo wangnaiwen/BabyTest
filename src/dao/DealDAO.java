@@ -12,4 +12,5 @@ public interface DealDAO {
 	List<Deal> findDealByOrderId(int orderId);
 	int findIncomeByShopId(int shopId);
 	int findIncomeByInvitee(int invitee);
+	int findSumPriceByDay(String startDay, String endDay);
 }

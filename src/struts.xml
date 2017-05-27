@@ -292,6 +292,11 @@
                 <param name="root">dataMap</param>  
             </result>
 		</action>
+		<action name="findSumPrice" class="findSumPriceAction" >
+		    <result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
 		
 		<!-- user wallet action -->
 		<action name="updateWalletPassword" class="updateWalletPasswordAction" >
