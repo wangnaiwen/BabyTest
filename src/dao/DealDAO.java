@@ -2,6 +2,7 @@ package dao;
 
 import java.util.List;
 
+import bean.ProductSaleCount;
 import domain.Deal;
 
 public interface DealDAO {
@@ -13,4 +14,5 @@ public interface DealDAO {
 	int findIncomeByShopId(int shopId);
 	int findIncomeByInvitee(int invitee);
 	int findSumPriceByDay(String startDay, String endDay);
+	List<ProductSaleCount> findPoductSaleCount();
 }

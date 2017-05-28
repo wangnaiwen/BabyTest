@@ -74,6 +74,7 @@
 	<bean id="findIncomeByShopIdServiceDAO" class="service.FindIncomeByShopIdService" parent="baseDealServiceDAO"></bean>
 	<bean id="findIncomeByInviteeServiceDAO" class="service.FindIncomeByInviteeService" parent="baseDealServiceDAO"></bean>
 	<bean id="findSumPriceServiceDAO" class="service.FindSumPriceService" parent="baseDealServiceDAO"></bean>
+	<bean id="findProductSaleCountServiceDAO" class="service.FindProductSaleCountService" parent="baseDealServiceDAO"></bean>
 	
 	
 	<!-- mc service -->
@@ -439,6 +440,9 @@
 	</bean>
 	<bean id="findSumPriceAction" class="action.FindSumPriceAction">
 		<property name="findSumPriceServiceDAO" ref="findSumPriceServiceDAO"></property>
+	</bean>
+	<bean id="findProductSaleCountAction" class="action.FindProductSaleCountAction">
+		<property name="findProductSaleCountServiceDAO" ref="findProductSaleCountServiceDAO"></property>
 	</bean>
 	
 	<!-- wallet action -->

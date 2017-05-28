@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import bean.ProductSaleCount;
 import jdbc.JDBCConnection;
 import dao.BaseDAO;
 import dao.DealDAO;
@@ -203,4 +204,39 @@ public class DealImpl extends BaseDAO implements DealDAO{
 		return sumPrice;
 	}
 
+	@Override
+	public List<ProductSaleCount> findPoductSaleCount() {
+		List<ProductSaleCount> productSaleCounts = null;
+		JDBCConnection jdbcConnection = getJdbcConnection();
+		jdbcConnection.OpenConn();
+	    String sql = "SELECT product_name, SUM(product_count) FROM lb_deal WHERE order_id "
+	    		+ "IN(SELECT id FROM lb_order WHERE order_type >= 2) GROUP BY product_id";
+	    System.out.println(sql);
+		ResultSet rs = jdbcConnection.find(sql);
+		try {
+			while(rs.next()) {
+				ProductSaleCount saleCount = new ProductSaleCount();
+				saleCount.setCount( rs.getInt("SUM(product_count)"));
+				saleCount.setName(rs.getString("product_name"));
+				if (productSaleCounts == null) {
+					productSaleCounts = new ArrayList<ProductSaleCount>();
+				}
+				productSaleCounts.add(saleCount);
+			}
+			jdbcConnection.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			if(rs != null){
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return productSaleCounts;
+	}
+
+	
 }
