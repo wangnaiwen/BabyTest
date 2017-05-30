@@ -23,6 +23,7 @@ public class InsertDealAction extends ActionSupport{
 	private String productName;
 	private int productCount;
 	private long sumPrice;
+	private long price;
 	private InsertDealServiceDAO insertDealServiceDAO;
 	
 	public InsertDealServiceDAO getInsertDealServiceDAO() {
@@ -62,7 +63,13 @@ public class InsertDealAction extends ActionSupport{
 		this.sumPrice = sumPrice;
 	}
     
-    @Override
+    public long getPrice() {
+		return price;
+	}
+	public void setPrice(long price) {
+		this.price = price;
+	}
+	@Override
 	public String execute() throws Exception{
 		Deal deal = new Deal();
 		deal.setOrderId(orderId);
@@ -70,7 +77,7 @@ public class InsertDealAction extends ActionSupport{
 		deal.setProductName(productName);
 		deal.setProductId(productId);
 		deal.setSumPrice(sumPrice);
-	
+		deal.setPrice(price);
 		dataMap = new HashMap<String, Object>();  
 		dataMap.put("insertDeal", insertDealServiceDAO.insertDeal(deal));
 		return "success";

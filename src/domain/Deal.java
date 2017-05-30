@@ -8,6 +8,7 @@ public class Deal {
 	private String productName;
 	private int productCount;
 	private long sumPrice;
+	private long price;
 	
 	public int getId() {
 		return id;
@@ -44,6 +45,12 @@ public class Deal {
 	}
 	public void setSumPrice(long sumPrice) {
 		this.sumPrice = sumPrice;
+	}
+	public long getPrice() {
+		return price;
+	}
+	public void setPrice(long price) {
+		this.price = price;
 	}
 	
 }

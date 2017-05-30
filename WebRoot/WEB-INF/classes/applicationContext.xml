@@ -102,6 +102,7 @@
 	<bean id="findSentOrderServiceDAO" class="service.FindSentService" parent="baseOrderServiceDAO"></bean>
 	<bean id="findFinishOrderServiceDAO" class="service.FindFinishOrderService" parent="baseOrderServiceDAO"></bean>
 	<bean id="updateOrderTypeServiceDAO" class="service.UpdateOrderTypeService" parent="baseOrderServiceDAO"></bean>
+	<bean id="findQuitOrdersServiceDAO" class="service.FindQuitOrdersService" parent="baseOrderServiceDAO"></bean>
 	
 	
 	<!-- pr service -->
@@ -413,6 +414,9 @@
 	</bean>
 	<bean id="findFinishOrderAction" class="action.FindFinishOrderAction">
 		<property name="findFinishOrderServiceDAO" ref="findFinishOrderServiceDAO"></property>
+	</bean>
+	<bean id="findQuitOrdersAction" class="action.FindQuitOrdersAction">
+		<property name="findQuitOrdersServiceDAO" ref="findQuitOrdersServiceDAO"></property>
 	</bean>
 	
 	

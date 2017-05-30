@@ -126,7 +126,7 @@ public class OrderImpl extends BaseDAO implements OrderDAO{
 		List<Order> orders = null;
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-	    String sql = "select * from lb_order where user_id="+userId +" and order_type != 0"; 
+	    String sql = "select * from lb_order where user_id="+userId +" and order_type > 0"; 
 		ResultSet rs = jdbcConnection.find(sql);
 		try {
 			while(rs.next()) {
@@ -332,4 +332,46 @@ public class OrderImpl extends BaseDAO implements OrderDAO{
 		jdbcConnection.close();
 		return result;
 	}
+
+	@Override
+	public List<Order> findQuitOrders(int userId) {
+		List<Order> orders = null;
+		JDBCConnection jdbcConnection = getJdbcConnection();
+		jdbcConnection.OpenConn();
+	    String sql = "select * from lb_order where user_id="+userId +" and order_type = -1"; 
+		ResultSet rs = jdbcConnection.find(sql);
+		try {
+			while(rs.next()) {
+				Order order = new Order();
+				order.setId(rs.getInt("id"));
+				order.setShopId(rs.getInt("shop_id"));
+				order.setUserId(rs.getInt("user_id"));
+				order.setOrderNumber(rs.getString("order_number"));
+				order.setOrderType(rs.getInt("order_type"));
+				order.setCreateTime(rs.getString("create_time"));
+				order.setPayTime(rs.getString("pay_time"));
+				order.setFinishTime(rs.getString("finish_time"));
+				order.setAddressId(rs.getInt("address_id"));
+				order.setRemark(rs.getString("remark"));
+				if(orders == null){
+					orders = new ArrayList<Order>();
+				}
+				orders.add(order);
+			}
+			jdbcConnection.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			if(rs != null){
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return orders;
+	}
+	
+	
 }

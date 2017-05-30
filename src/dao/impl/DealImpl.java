@@ -18,7 +18,7 @@ public class DealImpl extends BaseDAO implements DealDAO{
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
 	    String sql = "insert into lb_deal values(null, "+deal.getOrderId()+","+deal.getProductId() +",'"
-		+deal.getProductName()+"',"+deal.getProductCount()+","+deal.getSumPrice()+")";
+		+deal.getProductName()+"',"+deal.getProductCount()+","+deal.getSumPrice()+","+ deal.getPrice()+")";
 	    System.out.println(sql);
 		boolean result = jdbcConnection.insert(sql);
 		jdbcConnection.close();
@@ -30,8 +30,8 @@ public class DealImpl extends BaseDAO implements DealDAO{
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
 	    String sql = "update lb_deal set order_id="+deal.getOrderId()+",product_id="+deal.getProductId() +",product_name='"
-		+deal.getProductName()+"',product_count="+deal.getProductCount()+",sum_price="+deal.getSumPrice()+" where id="
-		+deal.getId();
+		+deal.getProductName()+"',product_count="+deal.getProductCount()+",sum_price="+deal.getSumPrice()+
+		",price="+deal.getPrice()+" where id="+deal.getId();
 	    System.out.println(sql);
 		boolean result = jdbcConnection.update(sql);
 		jdbcConnection.close();
@@ -65,6 +65,7 @@ public class DealImpl extends BaseDAO implements DealDAO{
 				deal.setProductName(rs.getString("product_name"));
 				deal.setProductCount(rs.getInt("product_count"));
 				deal.setSumPrice(rs.getInt("sum_price"));
+				deal.setPrice(rs.getInt("price"));
 			}
 			jdbcConnection.close();
 		} catch (SQLException e) {
@@ -98,7 +99,7 @@ public class DealImpl extends BaseDAO implements DealDAO{
 				deal.setProductName(rs.getString("product_name"));
 				deal.setProductCount(rs.getInt("product_count"));
 				deal.setSumPrice(rs.getInt("sum_price"));
-				
+				deal.setPrice(rs.getInt("price"));
 				if(deals == null){
 					deals = new ArrayList<Deal>();
 				}

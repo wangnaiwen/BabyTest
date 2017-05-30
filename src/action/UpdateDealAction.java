@@ -25,6 +25,7 @@ public class UpdateDealAction extends ActionSupport{
 	private String productName;
 	private int productCount;
 	private long sumPrice;
+	private long price;
 	
 	
 	public UpdateDealServiceDAO getUpdateDealServiceDAO() {
@@ -69,8 +70,15 @@ public class UpdateDealAction extends ActionSupport{
 	public void setSumPrice(long sumPrice) {
 		this.sumPrice = sumPrice;
 	}
+	
     
-    @Override
+    public long getPrice() {
+		return price;
+	}
+	public void setPrice(long price) {
+		this.price = price;
+	}
+	@Override
 	public String execute() throws Exception{
     	Deal deal = new Deal();
     	deal.setId(id);
@@ -79,6 +87,7 @@ public class UpdateDealAction extends ActionSupport{
 		deal.setProductName(productName);
 		deal.setProductId(productId);
 		deal.setSumPrice(sumPrice);
+		deal.setPrice(price);
 	
 		dataMap = new HashMap<String, Object>();  
 		dataMap.put("updatetDeal", updateDealServiceDAO.updateDeal(deal));

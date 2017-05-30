@@ -18,5 +18,6 @@ public interface OrderDAO {
 	
 	//发货订单
 	boolean updateOrderType(int id, int type);
-	//待发货订单的总量
+	//已取消的订单
+	List<Order> findQuitOrders(int userId);
 }
