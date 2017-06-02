@@ -1,12 +1,10 @@
 package action;
 
-import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.struts2.json.annotations.JSON;
 
-import com.mysql.jdbc.log.Log;
 import com.opensymphony.xwork2.ActionSupport;
 
 import service.dao.UpdateUserInfoServiceDAO;

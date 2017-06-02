@@ -381,6 +381,11 @@
                 <param name="root">dataMap</param>  
             </result>
 		</action>
+		<action name="recommendProduct" class="recommendProductAction" >
+		    <result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
 		
 		<!-- mc action -->
 		<action name="findMcById" class="findMcByIdAction" >
@@ -508,6 +513,12 @@
             </result>
 		</action>
 		
+		<!-- article like action -->
+		<action name="validateArticleLike" class="validateArticleLikeAction">
+			<result type="json">  
+                <param name="root">dataMap</param>  
+            </result>
+		</action>
 		
 		<action name="upload" class="uploadAction" method="execute">   
            <result type="stream">  

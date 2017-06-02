@@ -1,15 +1,19 @@
 package action;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.struts2.json.annotations.JSON;
 
 import service.dao.FindProductByNumberingServiceDAO;
+import service.dao.InsertNewProductServiceDAO;
 import service.dao.InsertProductServiceDAO;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+import domain.NewProduct;
 import domain.Product;
 
 public class InsertProductAction extends ActionSupport{
@@ -31,6 +35,7 @@ public class InsertProductAction extends ActionSupport{
 	private int count;
 	private InsertProductServiceDAO insertProductServiceDAO;
 	private FindProductByNumberingServiceDAO findProductByNumberingServiceDAO;
+	private InsertNewProductServiceDAO insertNewProductServiceDAO;
 	
 	public String getNumbering() {
 		return numbering;
@@ -95,6 +100,13 @@ public class InsertProductAction extends ActionSupport{
 			FindProductByNumberingServiceDAO findProductByNumberingServiceDAO) {
 		this.findProductByNumberingServiceDAO = findProductByNumberingServiceDAO;
 	}
+	public InsertNewProductServiceDAO getInsertNewProductServiceDAO() {
+		return insertNewProductServiceDAO;
+	}
+	public void setInsertNewProductServiceDAO(
+			InsertNewProductServiceDAO insertNewProductServiceDAO) {
+		this.insertNewProductServiceDAO = insertNewProductServiceDAO;
+	}
 	public int getCount() {
 		return count;
 	}
@@ -127,6 +139,14 @@ public class InsertProductAction extends ActionSupport{
 			Product product2 =findProductByNumberingServiceDAO.findProductByNumbering(numbering);
 			if(product2 != null){
 				dataMap.put("insertProduct", product2.getId());
+				
+				SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				Date date = new Date();
+				String time = simpleDateFormat.format(date);
+				NewProduct newPrduct = new NewProduct();
+				newPrduct.setProductId(product2.getId());
+				newPrduct.setTime(time);
+				insertNewProductServiceDAO.insertNewProduct(newPrduct);
 			}else{
 				dataMap.put("insertProduct", 0);
 			}

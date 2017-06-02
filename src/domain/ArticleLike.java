@@ -1,9 +1,9 @@
 package domain;
 
-public class Search {
+public class ArticleLike {
 	private int id;
 	private int userId;
-	private String key;
+	private int articleId;
 	public int getId() {
 		return id;
 	}
@@ -16,10 +16,12 @@ public class Search {
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
-	public String getKey() {
-		return key;
+	public int getArticleId() {
+		return articleId;
 	}
-	public void setKey(String key) {
-		this.key = key;
+	public void setArticleId(int articleId) {
+		this.articleId = articleId;
 	}
+	
+	
 }

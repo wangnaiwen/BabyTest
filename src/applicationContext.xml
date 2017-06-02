@@ -28,6 +28,7 @@
 	<bean id="adminDAO" class="dao.impl.AdminImpl" parent="baseDAO"></bean>
 	<bean id="productImageDAO" class="dao.impl.ProductImageImp" parent="baseDAO"></bean>
 	<bean id="offProductDAO" class="dao.impl.OffProductImp" parent="baseDAO"></bean>
+	<bean id="articleLikeDAO" class="dao.impl.ArticleLikeImp" parent="baseDAO"></bean>
 	
 	<!-- configure the service -->
 	<!-- user service -->
@@ -241,8 +242,13 @@
 	</bean>
 	<bean id="insertOffProductServiceDAO" class="service.InsertOffProductService" parent="baseOffProductServiceDAO"></bean>
 	
-	
-	
+	<!-- article like service -->
+	<bean id="baseArticleLikeServiceDAO" class="service.dao.BaseArticleLikeServiceDAO">
+		<property name="articleLikeDAO" ref="articleLikeDAO"></property>
+	</bean>
+	<bean id="insertArticleLikeServiceDAO" class="service.InsertArticleLikeService" parent="baseArticleLikeServiceDAO"></bean>
+	<bean id="validateArticleLikeServiceDAO" class="service.ValidateArticleLikeService" parent="baseArticleLikeServiceDAO"></bean>
+
 	
 	
 	
@@ -484,6 +490,7 @@
 	<bean id="insertProductAction" class="action.InsertProductAction">
 		<property name="insertProductServiceDAO" ref="insertProductServiceDAO"></property>
 		<property name="findProductByNumberingServiceDAO" ref="findProductByNumberingServiceDAO"></property>
+		<property name="insertNewProductServiceDAO" ref="insertNewProductServiceDAO"></property>
 	</bean>
 	<bean id="updateProductAction" class="action.UpdateProductAction">
 		<property name="updateProductServiceDAO" ref="updateProductServiceDAO"></property>
@@ -498,6 +505,13 @@
 		<property name="findProductByIdServiceDAO" ref="findProductByIdServiceDAO"></property>
 		<property name="deleteProductServiceDAO" ref="deleteProductServiceDAO"></property>
 		<property name="insertOffProductServiceDAO" ref="insertOffProductServiceDAO"></property>
+	</bean>
+	<bean id="recommendProductAction" class="action.RecommendProductAction">
+		<property name="findSearchByUserIdServiceDAO" ref="findSearchByUserIdServiceDAO"></property>
+		<property name="findProductByKeyServiceDAO" ref="findProductByKeyServiceDAO"></property>
+		<property name="hotSaleServiceDAO" ref="findHotSaleServiceDAO"></property>
+		<property name="findProductByIdServiceDAO" ref="findProductByIdServiceDAO"></property>
+		
 	</bean>
 	
 	<!-- mc action -->
@@ -569,7 +583,9 @@
 	</bean>
 	<bean id="updateArticleLikeTimesAction" class="action.UpdateArticleLikeTimesAction">
 		<property name="updateArticleLikeTimesServiceDAO" ref="updateArticleLikeTimesServiceDAO"></property>
+		<property name="insertArticleLikeServiceDAO" ref="insertArticleLikeServiceDAO"></property>
 	</bean>
+	
 	<bean id="findAllArticlesAction" class="action.FindAllArticlesAction">
 		<property name="findAllArticleServiceDAO" ref="findAllArticlesServiceDAO"></property>
 	</bean>
@@ -580,6 +596,11 @@
 	</bean>
 	<bean id="findImagesByProductIdAction" class="action.FindImagesByProductIdAction">
 		<property name="findImagesByProductIdServiceDAO" ref="findImagesByProductIdServiceDAO"></property>
+	</bean>
+	
+	<!-- article like action -->
+	<bean id="validateArticleLikeAction" class="action.ValidateArticleLikeAction">
+		<property name="validateArticleLikeServiceDAO" ref="validateArticleLikeServiceDAO"></property>
 	</bean>
 	
 	
