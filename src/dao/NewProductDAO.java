@@ -9,4 +9,5 @@ public interface NewProductDAO {
 	/*boolean updateNewProduct(NewProduct newProduct);
 	boolean deleteNewProduct(int id);*/
 	List<NewProduct> findNewProducts();
+	boolean deleteNewProduct(int productId);
 }

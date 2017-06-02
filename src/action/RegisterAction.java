@@ -1,5 +1,7 @@
 package action;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -94,16 +96,18 @@ public class RegisterAction extends ActionSupport{
 		User user = findUserServiceDAO.findUserByPhone(u.getPhone());
 		
 		if(user != null){
-			System.out.println("*********************");
 			dataMap.put("exist", true);
 			return "success";
 		}else{
 			dataMap.put("exist", false);
-			
 			if(registerServiceDAO.register(u)){
 				user = findUserServiceDAO.findUserByPhone(u.getPhone());
 				UserInfo userInfo = new UserInfo();
 				userInfo.setUserId(user.getId());
+				
+				SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HHmmssSSS");
+				Date date = new Date();
+				userInfo.setNickName(simpleDateFormat.format(date));
 				if(insertUserInfoServiceDAO.insertUserInfo(userInfo)){
 					Wallet wallet = new Wallet();
 					wallet.setUserId(user.getId());

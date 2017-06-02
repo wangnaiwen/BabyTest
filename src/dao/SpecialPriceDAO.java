@@ -9,4 +9,5 @@ public interface SpecialPriceDAO {
 	/*boolean updateNewProduct(NewProduct newProduct);
 	boolean deleteNewProduct(int id);*/
 	List<SpecialPrice> findSpecialPrices();
+	boolean deleteSpecialPrice(int productId);
 }

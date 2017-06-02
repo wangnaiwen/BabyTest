@@ -22,6 +22,17 @@ public class SpecialPriceImpl extends BaseDAO implements SpecialPriceDAO{
 		jdbcConnection.close();
 		return result;
 	}
+	
+	@Override
+	public boolean deleteSpecialPrice(int productId) {
+		JDBCConnection jdbcConnection = getJdbcConnection();
+		jdbcConnection.OpenConn();
+	    String sql = "delete from lb_special_price where product_id=" + productId;
+	    System.out.println(sql);
+		boolean result = jdbcConnection.delete(sql);
+		jdbcConnection.close();
+		return result;
+	}
 
 	@Override
 	public List<SpecialPrice> findSpecialPrices() {

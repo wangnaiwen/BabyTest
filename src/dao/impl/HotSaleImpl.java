@@ -23,6 +23,19 @@ public class HotSaleImpl extends BaseDAO implements HotSaleDAO{
 		return result;
 	}
 
+
+	@Override
+	public boolean deleteHotSale(int productId) {
+		JDBCConnection jdbcConnection = getJdbcConnection();
+		jdbcConnection.OpenConn();
+	    String sql = "delete from lb_hot_sale where product_id=" + productId;
+	    System.out.println(sql);
+		boolean result = jdbcConnection.delete(sql);
+		jdbcConnection.close();
+		return result;
+	}
+
+
 	@Override
 	public List<HotSale> findHotSales() {
 		List<HotSale> hosHotSales = null;

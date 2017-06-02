@@ -18,7 +18,7 @@ public class ProductImpl extends BaseDAO implements ProductDAO{
 		jdbcConnection.OpenConn();
 	    String sql = "insert into lb_product values(null, "+product.getScId()+",'"+product.getNumbering()+"','"+product.getName() +"','"
 	    		+product.getBrand()+"',"+product.getRetailPrice()+","+product.getStandardPrice()+",'"
-	    		+product.getDescription()+"','"+product.getCoverImg()+"',"+product.getCount()+")";
+	    		+product.getDescription()+"','"+product.getCoverImg()+"',"+product.getCount()+",0)";
 	    System.out.println(sql);
 		boolean result = jdbcConnection.insert(sql);
 		jdbcConnection.close();
@@ -42,9 +42,9 @@ public class ProductImpl extends BaseDAO implements ProductDAO{
 	public boolean deleteProduct(int id) {
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-	    String sql = "delete from lb_product where id=" + id;
+	    String sql = "update lb_product set type = 1 where id=" + id;
 	    System.out.println(sql);
-		boolean result = jdbcConnection.delete(sql);
+		boolean result = jdbcConnection.update(sql);
 		jdbcConnection.close();
 		return result;
 	}
@@ -126,7 +126,7 @@ public class ProductImpl extends BaseDAO implements ProductDAO{
 		List<Product> products = null;
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-	    String sql = "select * from lb_product where sc_id="+scId+" order by id desc limit "+ ((number-1)*10)+","+number*10;
+	    String sql = "select * from lb_product where sc_id="+scId+" and type = 0 order by id desc limit "+ ((number-1)*10)+","+number*10;
 		ResultSet rs = jdbcConnection.find(sql);
 		try {
 			while(rs.next()) {
@@ -167,7 +167,7 @@ public class ProductImpl extends BaseDAO implements ProductDAO{
 		List<Product> products = null;
 		JDBCConnection jdbcConnection = getJdbcConnection();
 		jdbcConnection.OpenConn();
-	    String sql = "select * from lb_product where name LIKE '%"+key+"%' LIMIT 0, 10";
+	    String sql = "select * from lb_product where type = 0 and name LIKE '%"+key+"%' LIMIT 0, 10";
 		ResultSet rs = jdbcConnection.find(sql);
 		try {
 			while(rs.next()) {

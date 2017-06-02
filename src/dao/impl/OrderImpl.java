@@ -372,6 +372,4 @@ public class OrderImpl extends BaseDAO implements OrderDAO{
 		}
 		return orders;
 	}
-	
-	
 }

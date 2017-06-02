@@ -184,6 +184,7 @@
 	</bean>
 	<bean id="insertNewProductServiceDAO" class="service.InsertNewProductService" parent="baseNewProductServiceDAO"></bean>
 	<bean id="findNewProductServiceDAO" class="service.FindNewProductService" parent="baseNewProductServiceDAO"></bean>
+	<bean id="deleteNewProductServiceDAO" class="service.DeleteNewProductService" parent="baseNewProductServiceDAO"></bean>
 
 		<!-- hot sale service -->
 	<bean id="baseHotSaleServiceDAO" class="service.dao.BaseHotSaleServiceDAO">
@@ -191,13 +192,16 @@
 	</bean>
 	<bean id="insertHotSaleServiceDAO" class="service.InsertHotSaleService" parent="baseHotSaleServiceDAO"></bean>
 	<bean id="findHotSaleServiceDAO" class="service.FindHotSaleService" parent="baseHotSaleServiceDAO"></bean>
-
+	<bean id="deleteHotSaleServiceDAO" class="service.DeleteHotSaleService" parent="baseHotSaleServiceDAO"></bean>
+	
 		<!-- special price service -->
 	<bean id="baseSpecialPriceServiceDAO" class="service.dao.BaseSpecialPriceServiceDAO">
 		<property name="specialPriceDAO" ref="specialPriceDAO"></property>
 	</bean>
 	<bean id="insertSpecialPriceServiceDAO" class="service.InsertSpecialPriceService" parent="baseSpecialPriceServiceDAO"></bean>
 	<bean id="findSpecialPriceServiceDAO" class="service.FindSpecialPriceService" parent="baseSpecialPriceServiceDAO"></bean>
+	<bean id="deleteSpecialPriceServiceDAO" class="service.DeleteSpecialPriceService" parent="baseSpecialPriceServiceDAO"></bean>
+	
 	
 		<!-- user wallet service -->
 	<bean id="baseWalletServiceDAO" class="service.dao.BaseWalletServiceDAO">
@@ -405,24 +409,29 @@
 	</bean>
 	<bean id="findOrderByUserIdAction" class="action.FindOrderByUserIdAction">
 		<property name="findOrderByUserIdServiceDAO" ref="findOrderByUserIdServiceDAO"></property>
+		<property name="findDealByOrderIdServiceDAO" ref="findDealByOrderIdServiceDAO"></property>
 	</bean>
 	<bean id="findOrderByIdAction" class="action.FindOrderByIdAction">
 		<property name="findOrderByIdServiceDAO" ref="findOrderByIdServiceDAO"></property>
 	</bean>
 	<bean id="findOrderByShopIdAction" class="action.FindOrderByShopIdAction">
 		<property name="findOrderByShopIdServiceDAO" ref="findOrderByShopIdServiceDAO"></property>
+		<property name="findDealByOrderIdServiceDAO" ref="findDealByOrderIdServiceDAO"></property>
 	</bean>
 	<bean id="findOrderByInviteeAction" class="action.FindOrderByInviteeAction">
 		<property name="findOrderByInviteeServiceDAO" ref="findOrderByInviteeServiceDAO"></property>
+		<property name="findDealByOrderIdServiceDAO" ref="findDealByOrderIdServiceDAO"></property>
 	</bean>
 	<bean id="findBeSentOrderAction" class="action.FindBeSentOrderAction">
 		<property name="findSentOrderServiceDAO" ref="findSentOrderServiceDAO"></property>
+		<property name="findDealByOrderIdServiceDAO" ref="findDealByOrderIdServiceDAO"></property>
 	</bean>
 	<bean id="findFinishOrderAction" class="action.FindFinishOrderAction">
 		<property name="findFinishOrderServiceDAO" ref="findFinishOrderServiceDAO"></property>
 	</bean>
 	<bean id="findQuitOrdersAction" class="action.FindQuitOrdersAction">
 		<property name="findQuitOrdersServiceDAO" ref="findQuitOrdersServiceDAO"></property>
+		<property name="findDealByOrderIdServiceDAO" ref="findDealByOrderIdServiceDAO"></property>
 	</bean>
 	
 	
@@ -505,6 +514,9 @@
 		<property name="findProductByIdServiceDAO" ref="findProductByIdServiceDAO"></property>
 		<property name="deleteProductServiceDAO" ref="deleteProductServiceDAO"></property>
 		<property name="insertOffProductServiceDAO" ref="insertOffProductServiceDAO"></property>
+		<property name="deleteHotSaleServiceDAO" ref="deleteHotSaleServiceDAO"></property>
+		<property name="deleteNewProductServiceDAO" ref="deleteNewProductServiceDAO"></property>
+		<property name="deleteSpecialPriceServiceDAO" ref="deleteSpecialPriceServiceDAO"></property>
 	</bean>
 	<bean id="recommendProductAction" class="action.RecommendProductAction">
 		<property name="findSearchByUserIdServiceDAO" ref="findSearchByUserIdServiceDAO"></property>

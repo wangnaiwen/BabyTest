@@ -10,4 +10,5 @@ public interface HotSaleDAO {
 	/*boolean updateNewProduct(NewProduct newProduct);
 	boolean deleteNewProduct(int id);*/
 	List<HotSale> findHotSales();
+	boolean deleteHotSale(int productId);
 }

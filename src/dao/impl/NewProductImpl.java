@@ -22,6 +22,19 @@ public class NewProductImpl extends BaseDAO implements NewProductDAO{
 		jdbcConnection.close();
 		return result;
 	}
+	
+	
+
+	@Override
+	public boolean deleteNewProduct(int productId) {
+		JDBCConnection jdbcConnection = getJdbcConnection();
+		jdbcConnection.OpenConn();
+	    String sql = "delete from lb_new_product where product_id=" + productId;
+	    System.out.println(sql);
+		boolean result = jdbcConnection.delete(sql);
+		jdbcConnection.close();
+		return result;
+	}
 
 	@Override
 	public List<NewProduct> findNewProducts() {
