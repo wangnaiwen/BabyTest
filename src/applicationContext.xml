@@ -621,4 +621,11 @@
 	
 	<bean id="uploadAction" class="action.UploadAction"></bean>
 	
+	
+	<!-- Backup Action-->
+	<bean id="backupAction" class="action.BackupAction"></bean>
+	
+	<!-- recover Action-->
+	<bean id="recoverAction" class="action.RecoverAction"></bean>
+	
 </beans>
